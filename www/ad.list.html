@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>MyCare</title>
+        <meta content="IE=edge" http-equiv="x-ua-compatible"/>
+        <meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="yes" name="apple-touch-fullscreen"/>
+        <link rel="stylesheet" href="css/include.css" />
+    </head>
+
+    <body>
+        <div id="main"> <!-- Main Container -->
+
+            <!-- Page Contents -->
+            <div id="content" class="main animated fadein">
+
+                <!-- Header -->
+                <div class="hero-header hero-small m-b-20 animated fadeindown">
+                    <h1 class="hero-title primary-text" style="text-align:right;margin-right:20px;line-height:24px">
+                        <span id="categ_title"></span>
+                        <span style="font-size:14px;"><br/>perto de você</span>
+                    </h1>
+                    <!--
+                    <nav class="white" style='width:70%;float:right;margin-right:10px;'>
+                        <div class="nav-wrapper">
+                            <form>
+                                <div class="input-field">
+                                    <input id="search" type="search" placeholder="Pesquisar..." required style='padding:18px 35px;padding-right:0;width:95%;font-size:16px;'>
+                                    <label for="search"><i class="ion-android-search black-text text-lighten-3"></i></label>
+                                </div>
+                            </form>
+                        </div>
+                    </nav>
+                    -->
+                </div>
+
+
+                <div id="ads">
+
+                    <div id="card_template" class="card animated article fadeInRight " style="display:none;box-shadow: 0px 4px 10px -5px #ccc;">
+                        <div class="go_read header-hover" style="text-shadow: 1px 1px #000;margin-top:-5px;background:url(img/transb30.png)">
+                            <img class="avatar" src="img/user.jpg" alt="">
+                            <div class="details">
+                                <span class="post_user">Jassie North</span>
+                                <span class="small post_date prettydate">5km</span>
+                            </div>
+                        </div>
+                        <div class="go_read image" style="box-shadow: 0px 4px 10px -5px #333;">
+                            <img class="post_img" src="img/4.jpg" alt="">
+                            <div class="opacity-overlay-top"></div>
+                        </div>
+                        <div class="p-10" style="margin-top:-10px;mmargin-bottom:-10px !important">
+
+                            <h4 class="go_read post_title p-10" style="margin-top:10px !important;padding-top:15px;font-size:20px;margin:0;margin-bottom:-10px;lletter-spacing:0.05em;font-weight:bold">Enjoy with my whole heart</h4>
+                            <p class="go_read post_address p-10" style="padding-top:0 !important;font-size:12px"></p>
+
+                            <div class="row m-0 border-top">
+                                <div class="col s4 p-10 center ">
+                                    <h4 class="m-0"><strong class="post_view"></strong></h4>
+                                    <p class="m-0 grey-text small"><i class="fa fa-eye" aria-hidden="true"></i> Ver</p>
+                                </div>
+                                <div class="col s4 p-10 center">
+                                    <h4 class="m-0"><strong class="post_com"></strong></h4>
+                                    <p class="m-0 grey-text small"><i class="fa fa-comment-o" aria-hidden="true"></i> Comentar</p>
+                                </div>
+                                <div class="col s4 p-10 center">
+                                    <h4 class="m-0"><strong class="post_like"></strong></h4>
+                                    <p class="m-0 grey-text small"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Curtir</p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div><!-- /ads -->
+
+                </div>
+
+                <center>
+                    <p id="loading" style="display:none">
+                        <img src="img/loader7.gif" alt="Loading…" style="width:128px" />
+                    </p>
+                </center>
+
+                <!-- Footer -->
+                <footer class="page-footer primary-color">
+                </footer>
+
+            </div> 
+            <!-- End of Page Contents -->
+
+            <!-- Menu Trigger -->
+            <div class="menu-trigger z-depth-2"> 
+                <div id="menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <nav id="menu" class="menu">
+
+            </nav> <!-- End of Menu -->
+
+        </div><!-- End of Main Container -->
+
+        <!-- JQ -->
+        <script src="js/jquery-1.12.2.js"></script>
+        <!-- JW -->
+        <script src="js/jw/app.js"></script>
+        <script src="js/jw/index.js"></script>
+        <!-- GENERAL -->
+        <script src="js/modernizr.js"></script>
+        <script src="js/jquery.swipebox.min.js"></script>   
+        <script src="js/jquery.smoothState.min.js"></script> 
+        <script src="js/materialize.min.js"></script>
+        <script src="js/swiper.min.js"></script>  
+        <script src="js/jquery.mixitup.min.js"></script>
+        <script src="js/masonry.min.js"></script>
+        <script src="js/chart.min.js"></script>
+        <!-- PAGE -->
+        <script src="js/jw/post.js"></script>
+        <script src="js/prettydate.js"></script>
+
+        <script>
+
+            $(document).ready(function () {
+                
+                sessionStorage.last_id = 0;
+
+                if (typeof sessionStorage.categ_title === "undefined") {
+                    sessionStorage.categ_title = "Anúncios";
+                }
+                $("#categ_title").html(sessionStorage.categ_title);
+                sessionStorage.removeItem("categ_title");
+
+                postList();
+
+                var win = $(window);
+
+                // Each time the user scrolls
+                win.scroll(function () {
+                    // End of the document reached?
+                    if ($(document).height() - win.height() == win.scrollTop()) {
+                        
+                        postList();
+                    }
+                });
+
+                $('body').on('click', '.go_read', function () {
+                    var id = $(this).attr("data-id");
+                    sessionStorage.post_id = id;
+                    window.location.href = "ad.read.html";
+                });
+            });
+        </script>
+    </body>
+</html>

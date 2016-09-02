@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>MyCare</title>
+        <meta content="IE=edge" http-equiv="x-ua-compatible"/>
+        <meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="yes" name="apple-touch-fullscreen"/>
+        <link rel="stylesheet" href="css/include.css" />
+    </head>
+
+    <body>
+        <div id="main"> <!-- Main Container -->
+
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal bottom-sheet" style="z-index:99999 !important">
+                <div class="modal-content" style="mmargin-bottom:-20px">
+                    <h4 style="font-size:14px">Comentar sobre <strong>Nickford Pet shop</strong></h4>
+                    <form id="newcom" style="margin-bottom:0px">
+                        <div class="input-field col s12">
+                            <input name="com_txt" type="text" class="validate" maxlength="100">
+                            <input name="post_id" value="" type="hidden" />
+                            <label>Mensagem</label>
+                        </div>
+                    </form>
+                    <div class="loading preloader-wrapper small active" style="display:none">
+                        <div class="spinner-layer spinner-green-only">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div><div class="gap-patch">
+                                <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cb_success" style="display:none">
+                        Enviado. <a href="#!" class=" modal-action modal-close waves-effect waves-green btn" style="float:right;font-size:12px">OK</a>
+                    </div>
+                    <div class="cb_error" style="display:none">
+                        Tente mais tarde. <a href="#!" class="modal-action modal-close waves-effect waves-green btn" style="float:right;font-size:12px">OK</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page Contents -->
+            <div id="content" class="main animated fadein">
+
+                <div class="news-main animated fadein delay-1">
+                    <img alt="" src="img/3.jpg"> 
+                    <a href="#">
+                        <div class="opacity-overlay-black">
+                        </div>
+                    </a>
+
+                    <div class="top-news animated fadeinright delay-1" style="bottom:15px">    
+                        <h4 class="top-news-title" style="margin-bottom:5px">
+                            <a href="#" id="post_title" style="font-weight:bold"></a>
+                        </h4>
+                        <span class="top-news-channel" id="post_neigh_city"></span> <span class="top-news-category">há 3 km</span>
+                        <div class="clr"></div>
+                    </div>
+                </div>
+
+                <div class="row m-0">
+                    <div class="col s4 p-10 center">
+                        <h4 class="m-0"><strong id="post_view"></strong></h4>
+                        <p class="m-0 grey-text small"><i class="fa fa-eye" aria-hidden="true"></i> Visitas</p>
+                    </div>
+                    <div class="col s4 p-10 center">
+                        <h4 class="m-0"><strong id="post_com"></strong></h4>
+                        <p class="m-0 grey-text small"><i class="fa fa-comment-o" aria-hidden="true"></i> Comentar</p>
+                    </div>
+                    <div class="col s4 p-10 center">
+                        <h4 class="m-0" id="post_like"><strong></strong></h4>
+                        <p class="m-0 grey-text small"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Curtir</p>
+                    </div>
+                </div>
+
+                <div class="animated article fadeinup delay-1 border-top">
+                    <div class="p-20">
+
+                        <!-- Contents -->
+                        <p class="text-flow"><span class="dropcap" id="post_txt_"></span><span id="post_txt"></span></p>
+
+                        <p class="remember" style="display:none" id="post_home">
+                            <input type="checkbox" checked="checked" />
+                            <label>Atendemos a domicílio</label>
+                        </p>
+                        <blockquote class="primary-border" id="post_home_txt" style="margin-top:-10px;display:none">"The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog."</blockquote>
+
+                        <!-- Slider --       
+                        <div class="swiper-container swiper-slider m-b-20">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="img/2.jpg" alt="">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="img/3.jpg" alt="">
+                                </div>
+                            </div>
+                        <!-- Add Pagination --
+                        <div class="swiper-pagination"></div>
+                    </div>
+                        <!-- End of Slider -->
+
+                        <p class="text-flow"><b>Serviços:</b> <span id="categ"></span></p>
+
+                        <p class="text-flow" id="post_address_"><b>Endereço:</b> <span id="post_address"></span></p>
+
+                        <div id="iframe"></div>
+
+
+                        <!-- Share -->
+                        <div class="share center-align" style="margin-top:20px">
+                            <h5 style="font-weight:bold">Entre em contato</h5>
+                            <span>
+                                <i style="font-size:50px !important" class="fa fa-facebook-official p-10 blue-text text-darken-4"></i>
+                                <i style="font-size:50px !important" class="fa fa-twitter-square p-10 blue-text"></i>
+                                <i style="font-size:50px !important" class="fa fa-instagram p-10 red-text"></i>
+                                <i style="font-size:50px !important" class="fa fa-phone-square p-10 green-text"></i>
+                                <i style="font-size:50px !important" class="fa fa-envelope-square p-10 orange-text"></i>
+                                <i style="font-size:50px !important" class="fa fa-external-link-square p-10 cyan-text "></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Comments -->
+                    <div class="comments grey lighten-4">
+                        <h5 id="post_com_title"></h5>
+
+                        <div id="com">
+
+                            <div style="display:none" id="com_template" class="media-top-object animated fadeinright">
+                                <img src="img/user4.jpg" alt="" class="media-left avatar">
+                                <div class="media-body">
+                                    <span class="com_user">Luke Noel</span>
+                                    <span class="com_txt small">Ótimo trabalho!</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <center id="loading">
+                            <div class="preloader-wrapper small active">
+                                <div class="spinner-layer spinner-green-only">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div><div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div><div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </center>
+                        <center style="margin-top:15px">
+                            <a href="#modal1" class="waves-effect waves-light btn blue accent-2 modal-trigger" style="font-size:12px;">Enviar comentário</a>
+                        </center>
+
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <footer class="page-footer primary-color">
+                </footer>
+
+            </div> 
+            <!-- End of Page Contents -->
+
+            <!-- Menu Trigger -->
+            <div class="menu-trigger z-depth-2"> 
+                <div id="menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <nav id="menu" class="menu">
+
+            </nav> <!-- End of Menu -->
+
+        </div><!-- End of Main Container -->
+
+        <!-- JQ -->
+        <script src="js/jquery-1.12.2.js"></script>
+        <!-- JW -->
+        <script src="js/jw/app.js"></script>
+        <script src="js/jw/index.js"></script>
+        <!-- GENERAL -->
+        <script src="js/modernizr.js"></script>
+        <script src="js/jquery.swipebox.min.js"></script>   
+        <script src="js/jquery.smoothState.min.js"></script> 
+        <script src="js/materialize.min.js"></script>
+        <script src="js/swiper.min.js"></script>  
+        <script src="js/jquery.mixitup.min.js"></script>
+        <script src="js/masonry.min.js"></script>
+        <script src="js/chart.min.js"></script>
+        <!-- PAGE -->
+        <script src="js/jw/post.js"></script>
+        <script src="js/jw/com.js"></script>
+
+        <script>
+
+            $(document).ready(function () {
+
+                if (sessionStorage.post_id > 0) {
+                    postRead();
+
+                    sessionStorage.com_last_id = 0;
+                    comList();
+                }
+
+                $("body").on("click", "#loadmore", function (e) {
+                    e.preventDefault();
+                    comList();
+                });
+
+                $("#newcom").submit(function (e) {
+                    $(this).hide();
+                    comSend();
+                    return false;
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,230 @@
+<!--
+============
+HOWTO:
+============
+Entre <HEAD>:
+* Add = <link rel="stylesheet" href="css/include.css" />
+* Rem = Todos os estilos
+
+Fim de <BODY>:
+* Add após jQuery = <script src="js/app.js"></script>
+* Add após jQuery = <script src="js/jw.js"></script>
+* Rem = <script src="js/functions.js"></script>
+
+Geral:
+* Rem = Conteúdo de <nav id=menu>
+* Rem = Conteúdo de <footer>
+
+functions.js:
+* Add Line 35 (onReady...render...) = loadMenu();
+-->
+
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>MyCare</title>
+        <meta content="IE=edge" http-equiv="x-ua-compatible"/>
+        <meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="yes" name="apple-touch-fullscreen"/>
+        <link rel="stylesheet" href="css/include.css" />
+    </head>
+
+    <body>
+        <div id="main"> <!-- Main Container -->
+
+            <!-- Page Contents -->
+            <div id="content" class="main animated fadein">
+
+                <div class="bg-3">
+                    <div class="oopacity-overlay"></div>
+                    <!-- Slider -->         
+                    <div class="swiper-container swiper-slider slider-sliced">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="slider-bottom-right valign-wrapper">
+                                    <div class="valign center-align">
+                                        <h2><strong>MyCare</strong></h2>
+                                        <p>Tudo que seu pet precisa,<br/>em um só lugar</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"></div>
+                    </div>
+                    <!-- End of Slider -->
+                </div>
+
+                <!-- Intro -->
+                <div class="section center grey lighten-5">
+                    <i class="ion-alert-circled big"></i>
+                    <h4 class="m-0"><strong>Emergência?</strong></h4>
+                    <div class="line"></div>
+                    <button type="button" class="btn orange waves-effect waves-light">
+                        <i class="ion-search" style="font-size:16px"></i>
+                        Veterinário mais próximo
+                    </button>
+                </div>
+
+
+                <!-- Filters -->
+                <div class="section center" style="padding-bottom:20px;margin-top:-20px">
+                    <i class="ion-happy-outline big"></i>
+                    <h4 class="m-0"><strong>Anúncios MyCare</strong></h4>
+                    <div class="line"></div>
+                    <p class="text-flow m-0">O que você está procurando?</p>
+                </div>
+
+                <!-- Shop -->
+                <div style="text-shadow:2px 2px 5px #000">
+                    <div data-id="1" data-title="Adestradores" class="go_list shop-banner-full float-none animated fadeinup delay-3">
+
+                        <img src="img/banner4d.jpg" alt="">
+                        <div class="opacity-overlay valign-wrapper">
+                            <div class="valign center width-100">
+                                <h3 class="white-text" style="margin:0;font-weight:400">Adestradores</h3>
+                                <p class="white-text" style="margin:0">para treinar seu pet</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div data-id="2" data-title="Clínicas" class="go_list shop-banner-full float-none animated fadeinup delay-3">
+
+                        <img src="img/banner4.jpg" alt="">
+                        <div class="opacity-overlay valign-wrapper">
+                            <div class="valign center width-100">
+                                <h3 class="white-text" style="margin:0;font-weight:400">Clínicas</h3>
+                                <p class="white-text" style="margin:0">de atendimento veterinário</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div data-id="3" data-title="Hospedagens" class="go_list shop-banner-full float-none animated fadeinup delay-3">
+
+                        <img src="img/banner4e.jpg" alt="">
+                        <div class="opacity-overlay valign-wrapper">
+                            <div class="valign center width-100">
+                                <h3 class="white-text" style="margin:0;font-weight:400">Hospedagens</h3>
+                                <p class="white-text" style="margin:0">para cuidar do seu pet</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div data-id="4" data-title="Hospitais" class="go_list shop-banner-full float-none animated fadeinup delay-3">
+
+                        <img src="img/banner4f.jpg" alt="">
+                        <div class="opacity-overlay valign-wrapper">
+                            <div class="valign center width-100">
+                                <h3 class="white-text" style="margin:0;font-weight:400">Hospitais</h3>
+                                <p class="white-text" style="margin:0">para tratar seu pet</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div data-id="6" data-title="Passeadores" class="go_list shop-banner-full float-none animated fadeinup delay-3">
+
+                        <img src="img/banner4c.jpg" alt="">
+                        <div class="opacity-overlay valign-wrapper">
+                            <div class="valign center width-100">
+                                <h3 class="white-text" style="margin:0;font-weight:400">Passeadores</h3>
+                                <p class="white-text" style="margin:0">para guiar seu pet</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div data-id="5" data-title="Pet shops" class="go_list shop-banner-full float-none animated fadeinup delay-3">
+
+                        <img src="img/banner4a.jpg" alt="">
+                        <div class="opacity-overlay valign-wrapper">
+                            <div class="valign center width-100">
+                                <h3 class="white-text" style="margin:0;font-weight:400">Pet shops</h3>
+                                <p class="white-text" style="margin:0">produtos para seu pet</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div data-id="7" data-title="Veterinários" class="go_list shop-banner-full float-none animated fadeinup delay-3">
+
+                        <img src="img/banner4b.jpg" alt="">
+                        <div class="opacity-overlay valign-wrapper">
+                            <div class="valign center width-100">
+                                <h3 class="white-text" style="margin:0;font-weight:400">Veterinários</h3>
+                                <p class="white-text" style="margin:0">que atendam em domicílio</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="section center grey lighten-4">
+                    <i class="ion-wrench big"></i>
+                    <h4 class="m-0"><strong>Versão Beta</strong></h4>
+                    <div class="line"></div>
+                    <p class="text-flow m-0">Seja paciente com MyCare, estamos trabalhando duro para aperfeiçoar o app predileto do seu pet ;)</p>
+                </div>
+                <div class="grey lighten-4">
+                    <img src="img/featured.png" alt="">
+                </div>
+
+                <!-- Footer -->
+                <footer class="page-footer primary-color">
+
+                </footer>
+
+            </div> 
+            <!-- End of Page Contents -->
+
+            <!-- Menu Trigger -->
+            <div class="menu-trigger z-depth-2"> 
+                <div id="menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <nav id="menu" class="menu">
+
+            </nav> <!-- End of Menu -->
+
+        </div><!-- End of Main Container -->
+
+        <!-- JQ -->
+        <script src="js/jquery-1.12.2.js"></script>
+        <!-- JW -->
+        <script src="js/jw/app.js"></script>
+        <script src="js/jw/index.js"></script>
+        <!-- GENERAL -->
+        <script src="js/modernizr.js"></script>
+        <script src="js/jquery.swipebox.min.js"></script>   
+        <script src="js/jquery.smoothState.min.js"></script> 
+        <script src="js/materialize.min.js"></script>
+        <script src="js/swiper.min.js"></script>  
+        <script src="js/jquery.mixitup.min.js"></script>
+        <script src="js/masonry.min.js"></script>
+        <script src="js/chart.min.js"></script>
+        <!--
+        loaded with loadMenu() o jw.js
+        <script src="js/functions.js"></script>
+        -->
+
+        <script>
+            $('body').on('click', '.go_list', function () {
+                var id = $(this).attr("data-id");
+                var title = $(this).attr("data-title");
+                sessionStorage.categ_id = id;
+                sessionStorage.categ_title = title;
+                window.location.href = "ad.list.html";
+            });
+        </script>
+
+    </body>
+</html>
