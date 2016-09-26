@@ -9,6 +9,7 @@
         <meta content="yes" name="apple-mobile-web-app-capable"/>
         <meta content="yes" name="apple-touch-fullscreen"/>
         <link rel="stylesheet" href="css/include.css" />
+        <link rel="stylesheet" href="css/rap.css" />
     </head>
 
     <body>
@@ -31,11 +32,12 @@
 
                 <!-- Form Inputs --> 
                 <div class="form-inputs p-20">
+
                     <form id="post">
                         <input type="hidden" name="post_cpf" value="1" />
                         <div>
                             <div class="input-field animated fadeinright">
-                                <input name="post_title" value="Nickford Pet Shop" type="text" class="validate">
+                                <input name="post_title" value="" type="text" class="validate">
                                 <label>Nome completo</label>
                             </div>
                         </div>
@@ -46,17 +48,17 @@
                         </div>
 
                         <div class="input-field animated fadeinright delay-3">
-                            <input name="post_phone" value="2833334444" type="text">
+                            <input name="post_phone" value="" type="text">
                             <label>Telefone Fixo</label>
                         </div>
 
                         <div class="input-field animated fadeinright delay-4">
-                            <input name="post_phone2" value="28999652165" type="text" class="validate">
+                            <input name="post_phone2" value="" type="text" class="validate">
                             <label>Celular</label>
                         </div>
 
                         <div class="input-field animated fadeinright delay-5">
-                            <input name="post_email" value="contato@nickford.com.br" type="email" class="validate">
+                            <input name="post_email" value="" type="email" class="validate">
                             <label>E-mail</label>
                         </div>
 
@@ -92,39 +94,43 @@
                             <input id="cidade" name="address_city" value="" type="text" class="validate address">
                             <label>Cidade</label>
                         </div>
-                        <div class="select input-field animated fadeinright delay-4">
-                            <input type="hidden" name="address_country" value="BR" />
-                            <select id="uf" name="address_state" class="address">
-                                <option value="">Estado</option>
-                                <option value="AC">Acre</option>
-                                <option value="AL">Alagoas</option>
-                                <option value="AP">Amapá</option>
-                                <option value="AM">Amazonas</option>
-                                <option value="BA">Bahia</option>
-                                <option value="CE">Ceará</option>
-                                <option value="DF">Distrito Federal</option>
-                                <option value="ES">Espirito Santo</option>
-                                <option value="GO">Goiás</option>
-                                <option value="MA">Maranhão</option>
-                                <option value="MS">Mato Grosso do Sul</option>
-                                <option value="MT">Mato Grosso</option>
-                                <option value="MG">Minas Gerais</option>
-                                <option value="PA">Pará</option>
-                                <option value="PB">Paraíba</option>
-                                <option value="PR">Paraná</option>
-                                <option value="PE">Pernambuco</option>
-                                <option value="PI">Piauí</option>
-                                <option value="RJ">Rio de Janeiro</option>
-                                <option value="RN">Rio Grande do Norte</option>
-                                <option value="RS">Rio Grande do Sul</option>
-                                <option value="RO">Rondônia</option>
-                                <option value="RR">Roraima</option>
-                                <option value="SC">Santa Catarina</option>
-                                <option value="SP">São Paulo</option>
-                                <option value="SE">Sergipe</option>
-                                <option value="TO">Tocantins</option>
-                            </select>
-                        </div>
+
+                        <input type="hidden" name="address_country" value="BR" />
+
+                        <label>Estado</label>
+                        <select id="uf" name="address_state" class="address browser-default">
+                            <option value="">Selecione...</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espirito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+
+                        <input name="post_lat" type="hidden" />
+                        <input name="post_lng" type="hidden" />
 
                         <!-- Map -->
                         <div id="iframe" style="margin-top:15px">
@@ -179,10 +185,14 @@
 
                         <div id="categ"></div>
 
-
-                        <a href="#" id="send" class="waves-effect waves-light blue lighten-2 btn-large block animated bouncein delay-6" style="margin-top:50px">
+                        <a href="#!" id="send" class="waves-effect waves-light blue lighten-2 btn-large block animated bouncein delay-6" style="margin-top:50px">
                             Enviar Anúncio
                         </a>
+
+                        <a href="#!" id="cancel" class="waves-effect waves-light grey btn-large block animated bouncein" style="margin-top:20px;">
+                            Cancelar
+                        </a>
+
                     </form>
 
 
@@ -192,7 +202,6 @@
 
                 <!-- Footer -->
                 <footer class="page-footer primary-color">
-
                 </footer>
 
             </div> 
@@ -210,11 +219,12 @@
 
             <!-- Menu -->
             <nav id="menu" class="menu">
-
             </nav> <!-- End of Menu -->
 
         </div><!-- End of Main Container -->
 
+        <!-- PHONEGAP -->
+        <script src="cordova.js"></script>
         <!-- JQ -->
         <script src="js/jquery-1.12.2.js"></script>
         <!-- JW -->
@@ -232,14 +242,36 @@
         <!-- PAGE -->
         <script src="js/jw/categ.js"></script>
         <script src="js/jw/post.js"></script>
+        <script src="js/jw/page.post_read.js"></script>
 
         <script>
 
                                 $(document).ready(function () {
 
+                                    // CARREGAR CATEGORIAS
                                     sessionStorage.categ_type = "cpf";
                                     categRead();
 
+                                    // EDITAR POST?
+                                    if (sessionStorage.edit_post_id > 0) {
+                                        postRead(sessionStorage.edit_post_id, postReadFormCb);
+                                        sessionStorage.edit_post_id = 0;
+                                        $("#send").html("SALVAR ALTERAÇÕES");
+                                    }
+
+                                    // CANCELAR
+                                    $("#cancel").click(function () {
+                                        if ($("#post").serialize() !== sessionStorage.serialize) {
+                                            if (confirm("Descartar alterações efetuadas?")) {
+                                                window.history.back();
+                                            }
+                                        }
+                                        else {
+                                            window.history.back();
+                                        }
+                                    });
+
+                                    // ATEND. DOMICILIAR
                                     $('#post_home').click(function () {
                                         if ($(this).prop("checked")) {
                                             $("#post_home_txt").show();
@@ -248,11 +280,11 @@
                                         }
                                     });
 
+                                    // ENVIAR POST
                                     $("#send").click(function (e) {
                                         e.preventDefault();
                                         postSend();
                                     });
-
                                 });
         </script>
     </body>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>MyCare</title>
+        <meta content="IE=edge" http-equiv="x-ua-compatible"/>
+        <meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="yes" name="apple-touch-fullscreen"/>
+        <link rel="stylesheet" href="css/include.css" />
+
+    </head>
+
+    <body>
+        <div id="main"> <!-- Main Container -->
+
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4>Tem certeza que deseja excluir este anúncio?</h4>
+                    <p class="post_title"></p>
+                </div>
+                <div class="modal-footer">
+                    <a id="excluir" href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Excluir</a>
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                </div>
+            </div>
+
+            <!-- Page Contents -->
+            <div id="content" class="main animated fadein">
+
+                <!-- Header -->
+                <div class="hero-header hero-small animated fadeindown m-b-20">
+                    <div class="section center grey lighten-4" style="padding-bottom:20px;margin-top:-30px">
+                        <i class="fa fa-map-marker m-10" style="font-size:32px"></i>
+                        <h4 class="m-0"><strong>Meus Anúncios</strong></h4>
+                        <div class="line"></div>
+                    </div>
+                </div>
+
+                <center>
+                    <a onclick="window.location.href = 'post_send.html'" class="waves-effect waves-light btn-large blue lighten-1 animated fadeinright delay-1">Criar Novo Anúncio</a>
+                </center>
+
+                <div id="nenhum" style="display:none;font-size:24px;padding:40px;text-align:center">
+                    Você ainda não criou nenhum anúncio.
+                </div>
+
+                <div id="ads" class="news" style="margin-top:10px">
+
+                    <div id="post_template" class="template" style="display:none">
+                        <div class="media-top-object animated fadeinright delay-2">
+                            <a href="#" class="media-left">
+                                <img class="go_read post_img" src="img/10.jpg" alt="">
+                                <div class="post_status" style="font-size:10px;margin-top:10px"></div>
+                            </a>
+                            <div class="media-body">
+                                <span class="news-channel small"><span class="post_date prettydate" style="display:inline !important">March 2016</span> <span style="display:none" class="post_type news-category accent-text">WORK</span></span>
+                                <h4 class="news-title">
+                                    <a href="#" class="go_read post_title">Absorbed in the dark</a>
+                                </h4>
+
+                                <p class="small">
+                                    <span class="post_txt">
+                                        his is dummy caption. It has been placed here solely to demonstrate the look and feel of finished, typeset text.
+                                    </span>
+                                    <span class="mypost-but">
+                                        <a href="#!" class="editar waves-effect waves-light btn blue lighten-1"><i class="fa fa-pencil"></i></a>
+                                        <a href="#!" class="fotos waves-effect waves-light btn blue lighten-1"><i class="fa fa-camera"></i></a>
+                                        <a href="#!" class="com waves-effect waves-light btn blue lighten-1"><i class="fa fa-comment"></i></a>
+                                        <a href="#!" class="excluir waves-effect waves-light btn red lighten-1" style="float:right"><i class="fa fa-trash"></i></a>
+                                    </span>
+                                </p>
+
+                            </div>
+                        </div>
+                    </div><!-- /template -->
+
+                </div>
+
+                <!-- Footer -->
+                <footer class="page-footer primary-color">
+                </footer>
+
+            </div> 
+            <!-- End of Page Contents -->
+
+            <!-- Menu Trigger -->
+            <div class="menu-trigger z-depth-2"> 
+                <div id="menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <nav id="menu" class="menu">
+            </nav> <!-- End of Menu -->
+
+        </div><!-- End of Main Container -->
+
+        <!-- PHONEGAP -->
+        <script src="cordova.js"></script>
+        <!-- JQ -->
+        <script src="js/jquery-1.12.2.js"></script>
+        <!-- JW -->
+        <script src="js/jw/app.js"></script>
+        <script src="js/jw/index.js"></script>
+        <!-- GENERAL -->
+        <script src="js/modernizr.js"></script>
+        <script src="js/jquery.swipebox.min.js"></script>   
+        <script src="js/jquery.smoothState.min.js"></script> 
+        <script src="js/materialize.min.js"></script>
+        <script src="js/swiper.min.js"></script>  
+        <script src="js/jquery.mixitup.min.js"></script>
+        <script src="js/masonry.min.js"></script>
+        <script src="js/chart.min.js"></script>
+        <!-- PAGE -->
+        <script src="js/jw/post.js"></script>
+        <script src="js/jw/page.post_my.js"></script>
+        <script src="js/prettydate.js"></script>
+
+        <script>
+                        $('body').on('click', '.go_read', function () {
+                            var id = $(this).closest(".template").attr("data-id");
+                            sessionStorage.post_id = id;
+                            window.location.href = "post_read.html";
+                        });
+
+                        $('body').on('click', '.excluir', function () {
+                            // save id
+                            var id = $(this).closest(".template").attr("data-id");
+                            sessionStorage.del_post_id = id;
+                            // open modal
+                            var title = $(this).closest(".template").attr("data-title");
+                            $("#modal1 .post_title").html(title);
+                            $("#modal1").openModal();
+                        });
+
+                        $('body').on('click', '#excluir', function () {
+                            postDel(sessionStorage.del_post_id);
+                        });
+
+                        $('body').on('click', '.editar', function () {
+                            // save id
+                            var id = $(this).closest(".template").attr("data-id");
+                            sessionStorage.edit_post_id = id;
+                            // empresa ou pessoa?
+                            var cnpj = $(this).closest(".template").attr("data-cnpj");
+                            if (cnpj) {
+                                window.location.href = "post_send_jur.html";
+                            }
+                            else {
+                                window.location.href = "post_send_fis.html";
+                            }
+                        });
+
+                        $('body').on('click', '.com', function () {
+                            // save id
+                            var id = $(this).closest(".template").attr("data-id");
+                            sessionStorage.edit_post_id = id;
+                            // save title
+                            var title = $(this).closest(".template").attr("data-title");
+                            sessionStorage.edit_post_title = title;
+                            // save com status
+                            var com = $(this).closest(".template").attr("data-com");
+                            sessionStorage.edit_post_com = com;
+                            //alert(id);
+                            sessionStorage.edit_post_id = id;
+                            window.location.href = "com_my.html";
+                        });
+
+                        $('body').on('click', '.fotos', function () {
+                            // save id
+                            var id = $(this).closest(".template").attr("data-id");
+                            sessionStorage.edit_post_id = id;
+                            // save title
+                            var title = $(this).closest(".template").attr("data-title");
+                            sessionStorage.edit_post_title = title;
+                            // save total pics
+                            var com = $(this).closest(".template").attr("data-pic");
+                            sessionStorage.edit_post_pic = com;
+                            //alert(id);
+                            sessionStorage.edit_post_id = id;
+                            window.location.href = "pic_my.html";
+                        });
+        </script>
+
+    </body>
+</html>

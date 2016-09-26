@@ -19,7 +19,7 @@
 
                 <!-- Header -->
                 <div class="hero-header hero-small m-b-20 animated fadeindown">
-                    <h1 class="hero-title primary-text" style="text-align:right;margin-right:20px;line-height:24px">
+                    <h1 class="hero-title primary-text jw-title-right">
                         <span id="categ_title"></span>
                         <span style="font-size:14px;"><br/>perto de você</span>
                     </h1>
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="col s4 p-10 center">
                                     <h4 class="m-0"><strong class="post_like"></strong></h4>
-                                    <p class="m-0 grey-text small"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Curtir</p>
+                                    <p class="m-0 grey-text small"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span class="post_like_txt">Curtir</span></p>
                                 </div>
                             </div>
 
@@ -108,6 +108,8 @@
 
         </div><!-- End of Main Container -->
 
+        <!-- PHONEGAP -->
+        <script src="cordova.js"></script>
         <!-- JQ -->
         <script src="js/jquery-1.12.2.js"></script>
         <!-- JW -->
@@ -154,7 +156,7 @@
                 $('body').on('click', '.go_read', function () {
                     var id = $(this).attr("data-id");
                     sessionStorage.post_id = id;
-                    window.location.href = "ad.read.html";
+                    window.location.href = "post_read.html";
                 });
             });
         </script>

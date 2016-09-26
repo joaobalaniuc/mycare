@@ -23,20 +23,31 @@
                 <div class="hero-header hero-small animated fadeindown">
                     <div class="section center grey lighten-4" style="padding-bottom:20px;margin-top:-30px">
                         <i class="ion-compose big"></i>
-                        <h4 class="m-0"><strong>Inserir Anúncio</strong></h4>
+                        <h4 class="m-0"><strong><span id="inserir">Inserir</span> Anúncio</strong></h4>
                         <div class="line"></div>
                         <p class="text-flow m-0">Conte-nos sobre o seu negócio...</p>
                     </div>
                 </div>
-
+                
+                <nav id="breadcrumb" style="display:none" class="primary-color">
+                    <div class="nav-wrapper">
+                        <div class="col s12 center">
+                            <a href="#!" data-go="post_my.html" class="breadcrumb">Meus Anúncios</a>
+                            <a href="#!" class="breadcrumb">Editar</a>
+                        </div>
+                    </div>
+                </nav>
 
                 <!-- Form Inputs --> 
                 <div class="form-inputs p-20">
                     <form id="post">
+
+                        <input type="hidden" name="post_id" value="" />
                         <input type="hidden" name="post_cnpj" value="1" />
+
                         <div>
                             <div class="input-field animated fadeinright">
-                                <input name="post_title" value="Nickford Pet Shop" type="text" class="validate">
+                                <input ff-key="teste" name="post_title" vvalue="Nickford Pet Shop" type="text" class="validate">
                                 <label>Nome da Empresa</label>
                             </div>
                         </div>
@@ -93,39 +104,43 @@
                             <input id="cidade" name="address_city" value="" type="text" class="validate address">
                             <label>Cidade</label>
                         </div>
-                        <div class="select input-field animated fadeinright delay-4">
-                            <input type="hidden" name="address_country" value="BR" />
-                            <select id="uf" name="address_state" class="address">
-                                <option value="">Estado</option>
-                                <option value="AC">Acre</option>
-                                <option value="AL">Alagoas</option>
-                                <option value="AP">Amapá</option>
-                                <option value="AM">Amazonas</option>
-                                <option value="BA">Bahia</option>
-                                <option value="CE">Ceará</option>
-                                <option value="DF">Distrito Federal</option>
-                                <option value="ES">Espirito Santo</option>
-                                <option value="GO">Goiás</option>
-                                <option value="MA">Maranhão</option>
-                                <option value="MS">Mato Grosso do Sul</option>
-                                <option value="MT">Mato Grosso</option>
-                                <option value="MG">Minas Gerais</option>
-                                <option value="PA">Pará</option>
-                                <option value="PB">Paraíba</option>
-                                <option value="PR">Paraná</option>
-                                <option value="PE">Pernambuco</option>
-                                <option value="PI">Piauí</option>
-                                <option value="RJ">Rio de Janeiro</option>
-                                <option value="RN">Rio Grande do Norte</option>
-                                <option value="RS">Rio Grande do Sul</option>
-                                <option value="RO">Rondônia</option>
-                                <option value="RR">Roraima</option>
-                                <option value="SC">Santa Catarina</option>
-                                <option value="SP">São Paulo</option>
-                                <option value="SE">Sergipe</option>
-                                <option value="TO">Tocantins</option>
-                            </select>
-                        </div>
+
+                        <input type="hidden" name="address_country" value="BR" />
+
+                        <label>Estado</label>
+                        <select id="uf" name="address_state" class="address browser-default">
+                            <option value="">Selecione...</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espirito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+
+                        <input name="post_lat" type="hidden" />
+                        <input name="post_lng" type="hidden" />
 
                         <!-- Map -->
                         <div id="iframe" style="margin-top:15px">
@@ -137,19 +152,19 @@
                             <div class="line"></div>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
-                            <input name="post_facebook" value="https://www.facebook.com/fisioterapia.ig/" type="text" class="validate">
+                            <input name="post_facebook" type="text" class="validate">
                             <label>Facebook</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
-                            <input name="post_instagram" value="https://www.facebook.com/fisioterapia.ig/" type="text" class="validate">
+                            <input name="post_instagram" type="text" class="validate">
                             <label>Instagram</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
-                            <input name="post_twitter" value="https://www.facebook.com/fisioterapia.ig/" type="text" class="validate">
+                            <input name="post_twitter" type="text" class="validate">
                             <label>Twitter</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
-                            <input name="post_site" value="https://www.facebook.com/fisioterapia.ig/" type="text" class="validate">
+                            <input name="post_site" type="text" class="validate">
                             <label>Site</label>
                         </div>
 
@@ -180,10 +195,14 @@
 
                         <div id="categ"></div>
 
-
-                        <a href="#" id="send" class="waves-effect waves-light blue lighten-2 btn-large block animated bouncein delay-6" style="margin-top:50px">
+                        <a href="#!" id="send" class="waves-effect waves-light blue lighten-2 btn-large block animated bouncein delay-6" style="margin-top:50px">
                             Enviar Anúncio
                         </a>
+
+                        <a href="#!" id="cancel" class="waves-effect waves-light grey btn-large block animated bouncein" style="margin-top:20px;">
+                            Cancelar
+                        </a>
+
                     </form>
 
 
@@ -193,7 +212,6 @@
 
                 <!-- Footer -->
                 <footer class="page-footer primary-color">
-
                 </footer>
 
             </div> 
@@ -216,6 +234,8 @@
 
         </div><!-- End of Main Container -->
 
+        <!-- PHONEGAP -->
+        <script src="cordova.js"></script>
         <!-- JQ -->
         <script src="js/jquery-1.12.2.js"></script>
         <!-- JW -->
@@ -233,14 +253,38 @@
         <!-- PAGE -->
         <script src="js/jw/categ.js"></script>
         <script src="js/jw/post.js"></script>
+        <script src="js/jw/page.post_read.js"></script>
 
         <script>
 
                                 $(document).ready(function () {
 
+                                    // CARREGAR CATEGORIAS
                                     sessionStorage.categ_type = "cnpj";
                                     categRead();
 
+                                    // EDITAR POST?
+                                    if (sessionStorage.edit_post_id > 0) {
+                                        postRead(sessionStorage.edit_post_id, postReadFormCb);
+                                        sessionStorage.edit_post_id = 0;
+                                        $("#send").html("SALVAR ALTERAÇÕES");
+                                        $("#inserir").html("Editar");
+                                        $("#breadcrumb").show();
+                                    }
+
+                                    // CANCELAR
+                                    $("#cancel").click(function () {
+                                        if ($("#post").serialize() !== sessionStorage.serialize) {
+                                            if (confirm("Descartar alterações efetuadas?")) {
+                                                window.history.back();
+                                            }
+                                        }
+                                        else {
+                                            window.history.back();
+                                        }
+                                    });
+
+                                    // ATEND. DOMICILIAR
                                     $('#post_home').click(function () {
                                         if ($(this).prop("checked")) {
                                             $("#post_home_txt").show();
@@ -248,6 +292,8 @@
                                             $("#post_home_txt").hide();
                                         }
                                     });
+
+                                    // ENVIAR POST
                                     $("#send").click(function (e) {
                                         e.preventDefault();
                                         postSend();

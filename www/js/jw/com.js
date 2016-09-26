@@ -1,3 +1,76 @@
+//==================================
+// REMOVER COMENTÁRIO
+//==================================
+function comDel(com_id) {
+
+    preloader();
+    $.ajax({
+        url: localStorage.server + "/com_del.php",
+        data: {
+            com_id: com_id
+        },
+        type: 'GET',
+        dataType: 'jsonp',
+        jsonp: 'callback',
+        timeout: localStorage.timeout
+    })
+            .always(function () {
+                preloader(false);
+            })
+
+            .fail(function () {
+                //myApp.alert('Desculpe, verifique sua conexão e tente novamente.', 'Erro');
+            })
+
+            .done(function (res) {
+
+                $("#com_" + com_id).remove();
+
+            });
+
+}
+
+//==================================
+// PERMITIR COMENTÁRIOS NO POST?
+//==================================
+function comStatus(post_id, status) {
+
+    preloader();
+    $.ajax({
+        url: localStorage.server + "/post_send.php",
+        data: {
+            post_id: post_id,
+            post_com: status
+        },
+        type: 'GET',
+        dataType: 'jsonp',
+        jsonp: 'callback',
+        timeout: localStorage.timeout
+    })
+            .always(function () {
+                preloader(false);
+            })
+
+            .fail(function () {
+                //myApp.alert('Desculpe, verifique sua conexão e tente novamente.', 'Erro');
+            })
+
+            .done(function (res) {
+                if (status > 0) {
+                    $("#status_0").show();
+                    $("#status_1").hide();
+                }
+                else {
+                    $("#status_0").hide();
+                    $("#status_1").show();
+                }
+            });
+
+}
+
+//==================================
+// ENVIAR COMENTÁRIO
+//==================================
 function comSend() {
 
     $("#modal1 .loading").show();
@@ -47,7 +120,41 @@ function comSend() {
             }); // after ajax
 }
 
-function comList() {
+//==================================
+// LISTAR COMENTÁRIOS
+//==================================
+function comList(post_id, cb, start_id) {
+
+    if (typeof start_id === "undefined" || start_id === "") {
+        start_id = 0;
+    }
+
+    $.ajax({
+        url: localStorage.server + "/com_list.php",
+        data: {
+            last_id: sessionStorage.com_last_id,
+            post_id: sessionStorage.post_id
+        },
+        type: 'GET',
+        dataType: 'jsonp',
+        jsonp: 'callback',
+        timeout: localStorage.timeout
+    })
+            .always(function () {
+
+            })
+
+            .fail(function () {
+                var r = {"fail": true};
+                cb(r);
+            })
+
+            .done(function (res) {
+                cb(res);
+            });
+}
+
+function comListx() {
 
     $('.loadmore').hide();
     $('#loading').fadeIn("fast");
@@ -118,18 +225,4 @@ function comList() {
                 } // res not null
 
             }); // after ajax
-}
-function addLoadMore() {
-
-    var count = $(".com").length;
-    if (typeof sessionStorage.com_total === "undefined" || sessionStorage.com_total === "null") {
-        sessionStorage.com_total = 0; // set in post.js => postRead();
-    }
-    console.log(count + "<" + sessionStorage.com_total);
-    if (count < sessionStorage.com_total) {
-        $(".loadmore").remove();
-        var loadmore = '<center class="loadmore"><a href="#" id="loadmore" class="loadmore waves-effect waves-light btn primary-color" style="font-size:12px;">Mais comentários</a></center>';
-        $("#com").append(loadmore);
-    }
-
 }

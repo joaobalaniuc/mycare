@@ -1,7 +1,6 @@
 //==============================================
 // GLOBAL
 //==============================================
-
 console.log(localStorage);
 console.log(sessionStorage);
 
@@ -17,26 +16,27 @@ if (!isApp) {
 
 $(document).ready(function () {
 
-    $("select").material_select();
+    $('.modal-trigger').leanModal({
+        complete: function () {
+            $('.lean-overlay').remove();
+        }
 
+    });
+    $("sselect").material_select();
     //==============================================
     // LINK VIA JQ
     //==============================================
     $('body').on('click', '[data-go]', function (e) {
         e.preventDefault();
         var href = $(this).attr("data-go");
-
         sessionStorage.categ_id = 0;
-
         window.location.href = href;
     });
-
 });
 
 //==============================================
 // LOAD NAVIGATION MENU
 //==============================================
-
 function loadMenu(getfunctions) {
     $.ajax({
         url: "ajax.menu.html"
@@ -58,8 +58,7 @@ loadMenu(true);
 //==============================================
 // LOADING
 //==============================================
-
-function preloader(txt, loaderNum) {
+function preloader(txt, loaderNum, fadeEffect) {
     if (typeof txt === "undefined") {
         txt = "";
     }
@@ -69,6 +68,9 @@ function preloader(txt, loaderNum) {
     }
     if (typeof loaderNum === "undefined") {
         loaderNum = 3;
+    }
+    if (typeof fadeEffect === "undefined") {
+        var fadeEffect = true;
     }
     var html = "";
     html += '<div id="preloader" class="ddark" style="display:none">';
@@ -84,13 +86,17 @@ function preloader(txt, loaderNum) {
     html += '</div>';
     html += '</div>';
     $('body').append(html);
-    $('#preloader').fadeIn("slow");
+    if (fadeEffect) {
+        $('#preloader').fadeIn("slow");
+    }
+    else {
+        $('#preloader').show();
+    }
 }
 
 //==============================================
 // FUNÇÕES GERAIS
 //==============================================
-
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -107,12 +113,41 @@ function addressUpdate() {
     var address = street + ", " + number + ", " + neigh + " - " + city + ", " + state;
     address = encodeURI(address);
     $("#iframe").html('<iframe width="100%" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=' + address + '&hl=es;z=14&amp;output=embed"></iframe>');
+
+    console.log("http://maps.googleapis.com/maps/api/geocode/xml?address=" + address + "&sensor=false");
+    $.ajax({
+        url: "http://maps.googleapis.com/maps/api/geocode/xml?address=" + address + "&sensor=false",
+        dataType: "xml",
+        beforeSend: function () {
+            console.log('Verificando Lat / Lng ...');
+        },
+        success: function (xml) {
+            console.log(xml);
+            $(xml).find('location').each(function () {
+
+                $(this).find('lat').each(function () {
+                    var lat = $(this).text();
+                    $("[name=post_lat]").val(lat);
+                    console.log("lat=" + lat);
+                });
+                $(this).find('lng').each(function () {
+                    var lng = $(this).text();
+                    $("[name=post_lng]").val(lng);
+                    console.log("lng=" + lng);
+                });
+
+            });
+
+
+        }
+    });
 }
 $(document).ready(function () {
     $(".address").change(function () {
         addressUpdate();
     });
 });
+
 //==============================================
 // ENDEREÇO ATRAVÉS DE CEP
 //==============================================
@@ -127,12 +162,12 @@ function limpa_formulário_cep() {
 
 function meu_callback(conteudo) {
     if (!("erro" in conteudo)) {
-        //Atualiza os campos com os valores.
+//Atualiza os campos com os valores.
 
-        //document.getElementById('rua').value = (conteudo.logradouro);
-        //document.getElementById('bairro').value = (conteudo.bairro);
-        //document.getElementById('cidade').value = (conteudo.localidade);
-        //document.getElementById('uf').value = (conteudo.uf);
+//document.getElementById('rua').value = (conteudo.logradouro);
+//document.getElementById('bairro').value = (conteudo.bairro);
+//document.getElementById('cidade').value = (conteudo.localidade);
+//document.getElementById('uf').value = (conteudo.uf);
 
         $("#rua").val(conteudo.logradouro).closest('div').find('label').addClass("active");
         $("#bairro").val(conteudo.bairro).closest('div').find('label').addClass("active");
@@ -146,7 +181,7 @@ function meu_callback(conteudo) {
         }
     } //end if.
     else {
-        //CEP não Encontrado.
+//CEP não Encontrado.
         limpa_formulário_cep();
         alert("CEP não encontrado.");
     }
@@ -154,19 +189,17 @@ function meu_callback(conteudo) {
 
 function pesquisacep(valor) {
 
-    //Nova variável "cep" somente com dígitos.
+//Nova variável "cep" somente com dígitos.
     var cep = valor.replace(/\D/g, '');
-
     //Verifica se campo cep possui valor informado.
     if (cep != "") {
 
-        //Expressão regular para validar o CEP.
+//Expressão regular para validar o CEP.
         var validacep = /^[0-9]{8}$/;
-
         //Valida o formato do CEP.
         if (validacep.test(cep)) {
 
-            //Preenche os campos com "..." enquanto consulta webservice.
+//Preenche os campos com "..." enquanto consulta webservice.
             document.getElementById('rua').value = "...";
             document.getElementById('bairro').value = "...";
             document.getElementById('cidade').value = "...";
@@ -175,25 +208,23 @@ function pesquisacep(valor) {
 
             //Cria um elemento javascript.
             var script = document.createElement('script');
-
             //Sincroniza com o callback.
             script.src = '//viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
-
             //Insere script no documento e carrega o conteúdo.
             document.body.appendChild(script);
-
         } //end if.
         else {
-            //cep é inválido.
+//cep é inválido.
             limpa_formulário_cep();
             alert("Formato de CEP inválido.");
         }
     } //end if.
     else {
-        //cep sem valor, limpa formulário.
+//cep sem valor, limpa formulário.
         limpa_formulário_cep();
     }
 }
+
 //==============================================
 // SET PRETTY DATE = REQUER prettydate.js
 //==============================================
@@ -223,4 +254,98 @@ function pretty() {
 
         }
     });
+}
+
+//==============================================
+// ALERT DIALOG
+//==============================================
+function alertx(content, title, button, cb) {
+    if (typeof button === "undefined" || button === "") {
+        button = "OK";
+    }
+    if (typeof title === "undefined" || title === "") {
+        title = localStorage.appname;
+    }
+    var html = "";
+    var id = getRandomInt(11111, 99999);
+    html += '<div id="modal' + id + '" class="modal">';
+    html += '<div class="modal-content">';
+    html += '<h4>' + title + '</h4>';
+    html += '<p>' + content + '</p>';
+    html += '</div>';
+    html += '<div class="modal-footer">';
+    html += '<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">' + button + '</a>';
+    html += '</div>';
+    html += '</div>';
+    $("#main").prepend(html);
+    $("#modal" + id).openModal({
+        complete: function () {
+            cb();
+        } // Callback for Modal close
+    });
+}
+
+//==============================================
+// FILL FORM WITH OBJECT DATA
+//==============================================
+function FF(data, form_elem) {
+
+    console.log("FF() :)");
+
+    console.log(data);
+
+    if (typeof form_elem === "undefined") {
+        form_elem = "form";
+        console.log(form_elem);
+    }
+
+    var $elem = $(form_elem);
+    var i = 0;
+    for (i = 0; i < data.length; i++) {
+        $.each(data[i], function (k, v) {
+            //console.log(k + "=" + v);
+            if (v !== null) {
+                var n = "[name=" + k + "]";
+                var input = "";
+                input += "textarea" + n + ",";
+                input += "select" + n + ",";
+                input += "[type=text]" + n + ",";
+                input += "[type=password]" + n + ",";
+                input += "[type=email]" + n + ",";
+                input += "[type=url]" + n + ",";
+                input += "[type=number]" + n + ",";
+                input += "[type=hidden]" + n + ",";
+                input += "[type=search]" + n;
+                //==========================
+                // INPUT VALUE
+                //==========================
+                $elem.find(input).val(v);
+                //==========================
+                // CHECKBOX
+                //==========================
+                //if (v === "1") {
+                $elem.find("[type=checkbox]" + n).prop("checked", "checked");
+                //}
+                //==========================
+                // CHILD ELEMENTS
+                //==========================
+                $elem.find("[ff-child]" + n).each(function (i) {
+                    var child = $(this).attr("ff-child");
+                    $(child).show();
+                });
+                //==========================
+                // RELATIVE NAME
+                //==========================
+                $elem.find("[ff-name]" + n).each(function (i) {
+                    var name = $(this).attr("ff-name");
+                });
+                // bug fix = materializecss labels update
+                $elem.find(input).each(function (i, element) {
+                    if ($(element).val().length > 0) {
+                        $(this).siblings("label, i").addClass("active");
+                    }
+                });
+            } // not null
+        }); // each
+    } // for
 }

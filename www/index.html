@@ -7,8 +7,9 @@ Entre <HEAD>:
 * Rem = Todos os estilos
 
 Fim de <BODY>:
-* Add após jQuery = <script src="js/app.js"></script>
-* Add após jQuery = <script src="js/jw.js"></script>
+* Add após jQuery=
+    <script src="js/jw/app.js"></script>
+    <script src="js/jw/index.js"></script>
 * Rem = <script src="js/functions.js"></script>
 
 Geral:
@@ -148,7 +149,7 @@ functions.js:
                         </div>
 
                     </div>
-                    
+
                     <div data-id="7" data-title="Veterinários" class="go_list shop-banner-full float-none animated fadeinup delay-3">
 
                         <img src="img/banner4b.jpg" alt="">
@@ -196,7 +197,9 @@ functions.js:
             </nav> <!-- End of Menu -->
 
         </div><!-- End of Main Container -->
-
+        
+        <!-- PHONEGAP -->
+        <script src="cordova.js"></script>
         <!-- JQ -->
         <script src="js/jquery-1.12.2.js"></script>
         <!-- JW -->
@@ -217,12 +220,22 @@ functions.js:
         -->
 
         <script>
+            //preloader();
+            $(document).ready(function () {
+                if (typeof localStorage.user_id === "undefined") {
+                    window.location.href = "login.html";
+                    return;
+                }
+                else {
+                    //preloader(false);
+                }
+            });
             $('body').on('click', '.go_list', function () {
                 var id = $(this).attr("data-id");
                 var title = $(this).attr("data-title");
                 sessionStorage.categ_id = id;
                 sessionStorage.categ_title = title;
-                window.location.href = "ad.list.html";
+                window.location.href = "post_list.html";
             });
         </script>
 

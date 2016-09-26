@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>MyCare</title>
+        <meta content="IE=edge" http-equiv="x-ua-compatible"/>
+        <meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="yes" name="apple-touch-fullscreen"/>
+        <link rel="stylesheet" href="css/include.css" />
+    </head>
+
+    <body>
+        <div id="main"> <!-- Main Container -->
+
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4>Tem certeza que deseja excluir este comentário?</h4>
+                    <p class="post_title"></p>
+                </div>
+                <div class="modal-footer">
+                    <a id="excluir" href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Excluir</a>
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                </div>
+            </div>
+
+            <!-- Page Contents -->
+            <div id="content" class="main animated fadein">
+
+                <!-- Header -->
+                <div class="relative bg-4 autoflow">
+                    <div class="opacity-overlay"></div>
+                    <div class="hero-header hero-small animated fadeindown">
+                        <h1 class="hero-title white-text">Comentários</h1>
+                    </div>
+
+                    <div class="media-top-object author-bio animated fadeinright">
+                        <!--<img src="img/user.jpg" alt="" class="media-left avatar big">-->
+                        <div class="media-body">
+                            <h4 class="com_title white-text">Meu Lindo Pet Shop</h4>
+                            <span class="small white-text"><span style="display:inline-block" class="com_total">300</span> comentários</span>
+                            <a id="status_0" class="waves-effect waves-light btn grey block animated bouncein delay-1" href="#!">Desabilitar comentários</a>
+                            <a id="status_1" style="display:none" class="waves-effect waves-light btn primary-color block animated bouncein delay-1" href="#!">Habilitar comentários</a>
+                        </div>
+                    </div>
+                </div>
+
+                <nav class="primary-color m-b-20">
+                    <div class="nav-wrapper">
+                        <div class="col s12 center">
+                            <a href="#!" data-go="post_my.html" class="breadcrumb">Meus Anúncios</a>
+                            <a href="#!" class="breadcrumb">Editar</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <div id="nenhum" style="display:none;font-size:24px;padding:40px;text-align:center">
+                    Não há comentários para este anúncio.
+                </div>
+
+                <div id="com" class="timeline">
+
+                    <div id="com_template" style="display:none;padding-left:20px !important" class="template media-top-object p-10 animated fadeinright delay-1">
+                        <div class="dot primary-color"></div>
+                        <div class="media-left">
+                            <img src="img/user2.jpg" alt="" class="media-left avatar" />
+                        </div>
+                        <div class="media-body">
+                            <span><strong class="com_user">Julie Davis</strong></span>
+                            <span class="com_txt small grey-text">Sent you some photos.</span>
+                            <span style="font-size:12px;float:right">
+                                <span class="com_date prettydate" style="display:inline-block;color:#9F9F9F;"></span>
+                                <span style="display:inline-block"> | <a href="#!" class="excluir" style="color:#E53935">excluir</a></span>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Footer -->
+                <footer class="page-footer primary-color">
+                </footer>
+
+            </div> 
+            <!-- End of Page Contents -->
+
+            <!-- Menu Trigger -->
+            <div class="menu-trigger z-depth-2"> 
+                <div id="menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <nav id="menu" class="menu">
+            </nav> <!-- End of Menu -->
+
+        </div><!-- End of Main Container -->
+
+        <!-- PHONEGAP -->
+        <script src="cordova.js"></script>
+        <!-- JQ -->
+        <script src="js/jquery-1.12.2.js"></script>
+        <!-- JW -->
+        <script src="js/jw/app.js"></script>
+        <script src="js/jw/index.js"></script>
+        <!-- GENERAL -->
+        <script src="js/modernizr.js"></script>
+        <script src="js/jquery.swipebox.min.js"></script>   
+        <script src="js/jquery.smoothState.min.js"></script> 
+        <script src="js/materialize.min.js"></script>
+        <script src="js/swiper.min.js"></script>  
+        <script src="js/jquery.mixitup.min.js"></script>
+        <script src="js/masonry.min.js"></script>
+        <script src="js/chart.min.js"></script>
+        <!-- PAGE -->
+        <script src="js/jw/com.js"></script>
+        <script src="js/jw/page.com_my.js"></script>
+        <script src="js/prettydate.js"></script>
+
+        <script>
+
+            $('body').on('click', '.excluir', function () {
+                // save id
+                var id = $(this).closest(".template").attr("data-id");
+                sessionStorage.del_post_id = id;
+                // open modal
+                var title = $(this).closest(".template").attr("data-title");
+                $("#modal1 .post_title").html(title);
+                $("#modal1").openModal();
+            });
+
+            $('body').on('click', '#excluir', function () {
+                comDel(sessionStorage.del_post_id);
+            });
+
+            //==============================
+            // HABILITAR/DES. COMENTÁRIOS
+            //==============================
+            $('body').on('click', '#status_0', function () {
+                comStatus(sessionStorage.edit_post_id, 0);
+            });
+            $('body').on('click', '#status_1', function () {
+                comStatus(sessionStorage.edit_post_id, 1);
+            });
+
+        </script>
+    </body>
+</html>

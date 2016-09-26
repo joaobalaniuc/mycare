@@ -36,6 +36,7 @@ function categRead() {
                         }
                     });
                     $("#categ").append(html);
+                    //FFm("#post", res);
 
                 } // res not null
             }); // after ajax

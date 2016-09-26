@@ -1,7 +1,18 @@
 /* JW */
+.ellips {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 div.select {
     border: 1px solid #a9a9a9;
     border-radius: 3px;
+}
+.jw-title-right {
+    text-align:right !important;
+    margin-right:20px !important;
+    line-height:24px !important;
 }
 [type=text].select-dropdown {
     border:none !important;font-size:14px !important;
@@ -30,6 +41,46 @@ div#preloader .loader_txt {
 div#preloader.dark .loader_txt {
     color:#fff;
 }
+input.invalid, input.error{
+    color:#FF1744 !important;
+    border-bottom:1px solid #F44336;box-shadow:0 1px 0 0 #F44336
+}
+label.invalid:after, div.error{
+    /*
+    div.error = jquery validation plugin
+    label:after = materialize css
+    */
+    position:absolute !important;
+    top:-25px !important;
+    right:0;
+    color:#fff !important;padding:5px;
+    border-radius: 25px;
+    background:#00C853;
+}
+div.error {
+    font-size:10px;
+    top:-15px !important;
+}
+
+input.invalid+label:after, div.error{
+    background:#FF1744;
+}
+/* JW => MY POST PAGE */
+.mypost-but {
+    margin-top:10px;
+}
+.mypost-but a {
+    font-size:10px;
+    margin:1px;
+    padding:10px;
+    padding-top:0px;
+}
+.mypost-but a i {
+    font-size:16px;
+    vertical-align:top;
+    color:#fff;
+}
+
 
 /*------------------------------------------------------------------
 Project: Eclipse

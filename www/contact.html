@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>MyCare - Mobile Template</title>
+        <meta content="IE=edge" http-equiv="x-ua-compatible"/>
+        <meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="yes" name="apple-touch-fullscreen"/>
+        <link rel="stylesheet" href="css/include.css" />
+    </head>
+
+    <body>
+        <div id="main"> <!-- Main Container -->
+
+            <!-- Page Contents -->
+            <div id="content" class="main animated fadein">
+
+                <!-- Header -->
+                <div class="hero-header hero-small m-b-20 animated fadeindown">
+                    <h1 class="hero-title primary-text" style="text-align:right;margin-right:30px">
+                        Fale com MyCare
+                    </h1>
+                </div>
+
+                <!-- Map --
+                <iframe class="animated fadein" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5599.196928323742!2d12.325518833381638!3d45.43759504323885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477eb1c522b9ff8b%3A0x99152494aa933290!2sCampo+San+Polo+Birraria+La+Corte!5e0!3m2!1sit!2sit!4v1446157055047" style="border: none; width: 100%; height:350px;"></iframe>
+                -->
+                <!-- Form Inputs --> 
+                <div class="form-inputs p-20">
+
+                    <!--
+                    <div class="select input-field animated fadeinright delay-4">
+                    -->
+                    <label>Assunto</label>
+                    <select id="subject" name="subject" class="browser-default">
+                        <option value="">Selecione...</option>
+                        <option value="Duv">Dúvida</option>
+                        <option value="Rec">Reclamação</option>
+                        <option value="Bug">Relatar um Bug</option>
+                        <option value="Sug">Sugestão</option>
+                    </select>
+                    <!--
+                </div>
+                    -->
+
+                    <div class="input-field animated fadeinright delay-5">
+                        <textarea id="msg" name="msg" class="materialize-textarea"></textarea> 
+                        <label for="msg">Escreva sua mensagem</label>
+                    </div>
+
+                    <p class="remember animated bouncein delay-6">
+                        <input type="checkbox" id="test5" />
+                        <label for="test5">Desejo receber promoções</label>
+                    </p>
+
+                    <a class="waves-effect waves-light btn-large primary-color block animated bouncein delay-6" href="index.html">Enviar</a>
+                </div>
+                <!-- End of Form -->
+
+                <!-- Footer -->
+                <footer class="page-footer primary-color">
+
+                </footer>
+
+            </div> 
+            <!-- End of Page Contents -->
+
+            <!-- Menu Trigger -->
+            <div class="menu-trigger z-depth-2"> 
+                <div id="menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <nav id="menu" class="menu">
+
+            </nav> <!-- End of Menu -->
+
+        </div><!-- End of Main Container -->
+        
+        <!-- PHONEGAP -->
+        <script src="cordova.js"></script>
+        <!-- JQ -->
+        <script src="js/jquery-1.12.2.js"></script>
+        <!-- JW -->
+        <script src="js/jw/app.js"></script>
+        <script src="js/jw/index.js"></script>
+        <!-- GENERAL -->
+        <script src="js/modernizr.js"></script>
+        <script src="js/jquery.swipebox.min.js"></script>   
+        <script src="js/jquery.smoothState.min.js"></script> 
+        <script src="js/materialize.min.js"></script>
+        <script src="js/swiper.min.js"></script>  
+        <script src="js/jquery.mixitup.min.js"></script>
+        <script src="js/masonry.min.js"></script>
+        <script src="js/chart.min.js"></script>
+        <!-- PAGE -->
+    </body>
+</html>

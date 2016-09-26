@@ -4,11 +4,15 @@
 function start() {
 
     // App config
-    var version = '1.0.0';
+    localStorage.appname = "MyCare";
+    localStorage.version = "1.0.0";
 
     // Server
     localStorage.server = "http://localhost/mycare/server/";
-    localStorage.server = "http://10.0.0.35/mycare/server/";
+    //localStorage.server = "http://10.0.0.35/mycare/server/";
+    
+    // Ajax timeout
+    localStorage.timeout = 5000; // ajax
 }
 
 var app = {
@@ -41,7 +45,7 @@ var app = {
 
         // SPLASHSCREEN (CONFIG.XML BUGFIX)
         setTimeout(function () {
-            navigator.splashscreen.hide();
+            //navigator.splashscreen.hide();
 
             if (window.StatusBar) {
                 /*StatusBar.overlaysWebView(false);

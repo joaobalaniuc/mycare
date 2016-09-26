@@ -1,0 +1,210 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>MyCare</title>
+        <meta content="IE=edge" http-equiv="x-ua-compatible"/>
+        <meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="yes" name="apple-touch-fullscreen"/>
+        <link rel="stylesheet" href="css/include.css" />
+
+        <style type="text/css">
+            .olPopup{
+            }
+            .olFramedCloudPopupContent{
+                width:100% !important;
+                hheight:auto !important;
+                left:0 !important;
+                padding:10px !important;
+                text-align:center;
+                background:blue;
+            }
+            .olFramedCloudPopupContent .img {
+                height:100px;
+                background-size: cover;
+                background-size: 100% 100%;
+            }
+            .olFramedCloudPopupContent strong{
+                font-weight:bold !important;
+                display:block !important;
+                margin-top:10px;
+                font-size:18px !important;
+                background:red;
+            }
+            .olFramedCloudPopupContent .obs{
+                font-size:12px;
+                display:none;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <div id="main"> <!-- Main Container -->
+
+            <!-- Page Contents -->
+            <div id="content" class="main animated fadein">
+
+                <div id="mapdiv"></div>
+
+            </div> 
+            <!-- End of Page Contents -->
+
+            <!-- Menu Trigger -->
+            <div class="menu-trigger z-depth-2"> 
+                <div id="menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <nav id="menu" class="menu">
+
+            </nav> <!-- End of Menu -->
+
+        </div><!-- End of Main Container -->
+
+        <!-- PHONEGAP -->
+        <script src="cordova.js"></script>
+        <!-- JQ -->
+        <script src="js/jquery-1.12.2.js"></script>
+        <!-- JW -->
+        <script src="js/jw/app.js"></script>
+        <script src="js/jw/index.js"></script>
+        <!-- GENERAL -->
+        <script src="js/modernizr.js"></script>
+        <script src="js/jquery.swipebox.min.js"></script>   
+        <script src="js/jquery.smoothState.min.js"></script> 
+        <script src="js/materialize.min.js"></script>
+        <script src="js/swiper.min.js"></script>  
+        <script src="js/jquery.mixitup.min.js"></script>
+        <script src="js/masonry.min.js"></script>
+        <script src="js/chart.min.js"></script>
+        <!-- PAGE -->
+        <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+
+        <script>
+            $(document).ready(function () {
+
+                var markers = [
+                    [-40.8080153, -21.0093884, "teste1", "img/map-marker.gif"],
+                    [-40.8070153, -21.0083884, "teste2", "img/map-marker.gif"],
+                    [-40.8060153, -21.0073884, "teste3", "img/map-marker.gif"]
+                ];
+
+                $.ajax({
+                    url: localStorage.server + "/map.php",
+                    data: {
+                        user_email: localStorage.user_email,
+                        user_pass: localStorage.user_pass
+                    },
+                    type: 'GET',
+                    dataType: 'jsonp',
+                    jsonp: 'callback',
+                    timeout: localStorage.timeout
+                })
+                        .always(function () {
+                            //preloader(false);
+                        })
+
+                        .fail(function () {
+                            alert("err");
+                            //myApp.alert('Desculpe, verifique sua conexão e tente novamente.', 'Erro');
+                        })
+
+                        .done(function (res) {
+                            if (res !== null) {
+                                console.log(res);
+                                mapShow(res);
+
+                            } // res not null
+                        }); // after ajax
+            });
+
+            function mapShow(markers) {
+
+                map = new OpenLayers.Map("mapdiv");
+                map.addLayer(new OpenLayers.Layer.OSM());
+
+                epsg4326 = new OpenLayers.Projection("EPSG:4326"); //WGS 1984 projection
+                projectTo = map.getProjectionObject(); //The map projection (Spherical Mercator)
+
+                var lonLat = new OpenLayers.LonLat(-40.8080153, -21.0093884).transform(epsg4326, projectTo);
+
+
+                var zoom = 8;
+                map.setCenter(lonLat, zoom);
+
+                var vectorLayer = new OpenLayers.Layer.Vector("Overlay");
+
+                // Define markers as "features" of the vector layer:
+                for (var i = 0; i < markers.length; i++) {
+
+                    var lon = markers[i]["post_lng"];
+                    var lat = markers[i]["post_lat"];
+                    var txt = markers[i]["post_title"];
+                    var img = markers[i]["post_img"];
+                    var icon = markers[i]["post_icon"];
+                    var id = markers[i]["post_id"];
+                    var phone = markers[i]["post_phone"];
+
+                    icon = "/img/map-marker.gif";
+                    img = "img/simula1.jpg";
+
+                    txt = "<div class='img' style='background-image:url(" + img + ")' style='width:100%'></div><strong>" + txt + "</strong>";
+
+                    var feature = new OpenLayers.Feature.Vector(
+                            new OpenLayers.Geometry.Point(lon, lat).transform(epsg4326, projectTo),
+                            {description: txt},
+                    {externalGraphic: localStorage.server + icon, graphicHeight: 50, graphicWidth: 50, graphicXOffset: -25, graphicYOffset: -50}
+                    );
+                    vectorLayer.addFeatures(feature);
+                }
+
+                map.addLayer(vectorLayer);
+
+
+                //Add a selector control to the vectorLayer with popup functions
+                var controls = {
+                    selector: new OpenLayers.Control.SelectFeature(vectorLayer, {onSelect: createPopup, onUnselect: destroyPopup})
+                };
+
+                function createPopup(feature) {
+                    feature.popup = new OpenLayers.Popup.FramedCloud("pop",
+                            feature.geometry.getBounds().getCenterLonLat(),
+                            null,
+                            '<div class="markerContent">' + feature.attributes.description + '</div>',
+                            null,
+                            true,
+                            function () {
+                                controls['selector'].unselectAll();
+                            }
+                    );
+                    //feature.popup.closeOnMove = true;
+                    map.addPopup(feature.popup);
+                }
+
+                function destroyPopup(feature) {
+                    feature.popup.destroy();
+                    feature.popup = null;
+                }
+
+                map.addControl(controls['selector']);
+                controls['selector'].activate();
+
+                $("#OpenLayers_Control_Attribution_7").hide();
+                $("#OpenLayers_Control_Zoom_5")
+                        .css("position", "absolute")
+                        .css("right", "8px")
+                        .css("left", "auto");
+            }
+
+
+
+        </script>
+    </body>
+</html>

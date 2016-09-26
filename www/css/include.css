@@ -3,8 +3,11 @@
 @import url("../bootstrap-3.3.7-dist/css/bootstrap-theme.min.css");
 */
 /* Defaults */
+
 @import url("keyframes.css");
-@import url("materialize.min.css");
+/*@import url("materialize.min.css");*/
+@import url("https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css");
+@import url("http://fonts.googleapis.com/icon?family=Material+Icons");
 @import url("swiper.css");
 @import url("swipebox.min.css");
 @import url("style.css");
