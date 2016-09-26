@@ -3,12 +3,15 @@
 //--------------------------------------------
 function start() {
 
+    alert("start");
+    
     // App config
     localStorage.appname = "MyCare";
     localStorage.version = "1.0.0";
 
     // Server
-    localStorage.server = "http://localhost/mycare/server/";
+    localStorage.server = "http://192.168.0.100/mycare/server/";
+    //localStorage.server = "http://localhost/mycare/server/";
     //localStorage.server = "http://10.0.0.35/mycare/server/";
     
     // Ajax timeout
