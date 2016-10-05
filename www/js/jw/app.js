@@ -51,7 +51,6 @@ var app = {
 
         // CURRENT FILE
         var fn = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
-        alert(fn);
         app.ready(fn);
     },
     // Update DOM on a Received Event
