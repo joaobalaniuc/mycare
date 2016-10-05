@@ -43,49 +43,38 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
-        console.log("ready0");
+
         app.receivedEvent('deviceready');
 
-        // onSuccess Callback
-        // This method accepts a Position object, which contains the
-        // current GPS coordinates
-        //
-        var onSuccess = function (position) {
-            alert('Latitude: ' + position.coords.latitude + '\n' +
-                    'Longitude: ' + position.coords.longitude + '\n' +
-                    'Altitude: ' + position.coords.altitude + '\n' +
-                    'Accuracy: ' + position.coords.accuracy + '\n' +
-                    'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
-                    'Heading: ' + position.coords.heading + '\n' +
-                    'Speed: ' + position.coords.speed + '\n' +
-                    'Timestamp: ' + position.timestamp + '\n');
-        };
-        // onError Callback receives a PositionError object
-        //
-        function onError(error) {
-            alert('code: ' + error.code + '\n' +
-                    'message: ' + error.message + '\n');
+        // GEOLOCATION
+        geo();
+
+        // CURRENT FILE
+        var fn = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
+        app.ready(fn);
+    },
+    // Update DOM on a Received Event
+    ready: function (fn) {
+        alert(fn);
+        switch (fn) {
+
+            case "index.html":
+                start();
+                // SPLASHSCREEN (CONFIG.XML BUGFIX)
+                setTimeout(function () {
+                    navigator.splashscreen.hide();
+                    if (window.StatusBar) {
+                        /*StatusBar.overlaysWebView(false);
+                         StatusBar.backgroundColorByHexString("#3f51b5");
+                         StatusBar.styleLightContent();*/
+                    }
+                }, 500);
+                break;
+
+            case "contact.html":
+                break;
         }
-        navigator.geolocation.getCurrentPosition(onSuccess, onError);
-
-        //alert("ready");
-
-        // SPLASHSCREEN (CONFIG.XML BUGFIX)
-        setTimeout(function () {
-            navigator.splashscreen.hide();
-
-            if (window.StatusBar) {
-                /*StatusBar.overlaysWebView(false);
-                 StatusBar.backgroundColorByHexString("#3f51b5");
-                 StatusBar.styleLightContent();*/
-            }
-
-        }, 500);
-
-        start();
-        console.log("ready1");
-    }
-    ,
+    },
     // Update DOM on a Received Event
     receivedEvent: function (id) {
         /*var parentElement = document.getElementById(id);
@@ -96,3 +85,24 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+
+
+function geo() {
+    var onSuccess = function (position) {
+        sessionStorage.lat = position.coords.latitude;
+        sessionStorage.lng = position.coords.longitude;
+        alert('Latitude: ' + position.coords.latitude + '\n' +
+                'Longitude: ' + position.coords.longitude + '\n' +
+                'Altitude: ' + position.coords.altitude + '\n' +
+                'Accuracy: ' + position.coords.accuracy + '\n' +
+                'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
+                'Heading: ' + position.coords.heading + '\n' +
+                'Speed: ' + position.coords.speed + '\n' +
+                'Timestamp: ' + position.timestamp + '\n');
+    };
+    function onError(error) {
+        alert('code: ' + error.code + '\n' +
+                'message: ' + error.message + '\n');
+    }
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+}
