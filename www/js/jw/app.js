@@ -51,13 +51,12 @@ var app = {
 
         // CURRENT FILE
         var fn = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
-        app.ready(fn);
+        this.ready(fn);
     },
     // Update DOM on a Received Event
     ready: function (fn) {
-        //alert(fn);
+        alert(fn);
         switch (fn) {
-
             case "index.html":
                 start();
                 // SPLASHSCREEN (CONFIG.XML BUGFIX)
