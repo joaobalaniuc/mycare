@@ -36,8 +36,19 @@ function postSend() {
                         return;
                     }
                     if (res.success) {
+
                         sessionStorage.post_id = res.success;
-                        window.location.href = "post_read.html";
+                        // APÓS EDITAR
+                        if (sessionStorage.edit_post_id > 0) {
+                            window.location.href = "post_read.html";
+                        }
+                        // APÓS INSERIR
+                        else {
+                            sessionStorage.edit_post_id = sessionStorage.post_id;
+                            sessionStorage.edit_post_title = $("[name=post_title]").val();
+                            sessionStorage.edit_post_address = $("[name=address_neigh]").val() + " - " + $("[name=address_city]").val();
+                            window.location.href = "pic_my.html";
+                        }
                     }
 
                 } // res not null
@@ -119,6 +130,13 @@ function postList(last_id) {
                                 $(this).find(".post_like").css("color", "blue");
                                 $(this).find(".post_like_txt").css("color", "blue").html("Curtiu");
                             }
+                            if (val["img_fn"] != null) {
+                                $(this).find(".img_fn").attr("src", localStorage.server + "/app/pic/img/" + val["img_fn"]);
+                            }
+                            if (val["user_fb"] != null) {
+                                $(this).find(".avatar").attr("src", "http://graph.facebook.com/" + val["user_fb"] + "/picture?width=100&height=100");
+                            }
+                            console.log(val["img_fn"]);
                             $(this).find(".post_address").html(val["address_neigh"] + " - " + val["address_city"] + " <div style='float:right'>5km</div>");
                             $(this).find(".post_title").html("#" + val["post_id"] + " " + val["post_title"]);
                             $(this).find(".post_txt").html(val["post_title"]);

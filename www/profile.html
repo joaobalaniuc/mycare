@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>MyCare</title>
+        <meta content="IE=edge" http-equiv="x-ua-compatible"/>
+        <meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="yes" name="apple-touch-fullscreen"/>
+        <link rel="stylesheet" href="css/include.css" />
+
+    </head>
+
+    <body>
+        <div id="main"> <!-- Main Container -->
+
+            <!-- Page Contents -->
+            <div id="content" class="main animated fadein">
+
+                <!-- Hero Header -->
+                <div class="hero-header hero-big" style="padding-top:50vh !important;background:url(img/green3.jpg) no-repeat center;background-size:cover">
+                    <!--<div class="opacity-overlay"></div>-->
+                    <div class="about animated fadeinright delay-1">
+                        <img class="avatar" src="img/anonymous-user_1.png" alt="" />
+                        <h2 class="user_first_name white-text m-0"></h2>
+                        <p class="user_email white-text m-0">joaowill@outlook.com</p>
+                        <a id="fb_ass" class="waves-effect waves-light btn blue darken-2 m-20" href="#!">
+                            <i style="font-size:18px" class="ion-social-facebook m-10 white-text"></i> 
+                            Associar Facebook
+                        </a>
+                        <a id="fb_des" style="display:none" class="waves-effect waves-light btn grey darken-2 m-20" href="#!">
+                            <i style="font-size:18px" class="ion-social-facebook m-10 white-text"></i> 
+                            Desassociar Facebook
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Profile Contents -->
+                <ul class="tabs border-top animated fadeinup delay-2">
+                    <li class="tab col s3"><a class="active" href="#dados">Meus Dados</a></li>
+                    <li class="tab col s3"><a href="#senha">Senha</a></li>
+                </ul>
+
+                <div id="dados">
+                    <div class="form-inputs p-20">
+                        <form id="userForm">
+
+                            <div class="input-field animated fadeinright">
+                                <input name="user_first_name" type="text" class="validate">
+                                <label>Seu Nome</label>
+                            </div>
+
+                            <div class="input-field animated fadeinright">
+                                <input name="user_last_name" type="text" class="validate">
+                                <label>Sobrenome</label>
+                            </div>
+
+                            <div class="input-field animated fadeinright">
+                                <input disabled="disabled" name="user_email" type="text" class="validate">
+                                <label>E-mail</label>
+                            </div>
+
+                            <div class="animated fadeinright">
+                                <label>Sexo</label>
+                                <select name="user_genre" class="browser-default">
+                                    <option value="">Selecione...</option>
+                                    <option value="m">Masculino</option>
+                                    <option value="f">Feminino</option>
+                                </select>
+                            </div>
+
+                            <a href="#!" id="userSubmit" class="waves-effect waves-light btn-large block animated bouncein" style="margin-top:20px">
+                                Salvar Alterações
+                            </a>
+
+                        </form>
+                    </div>
+                </div> <!-- dados -->
+
+                <div id="senha">
+                    <div class="form-inputs p-20">
+                        <form id="passForm">
+
+                            <div class="input-field animated fadeinright">
+                                <input name="user_pass" id="user_pass" type="password" class="validate">
+                                <label>Senha atual</label>
+                            </div>
+
+                            <div class="input-field animated fadeinright">
+                                <input name="user_new_pass" id="user_new_pass" type="password" class="validate">
+                                <label>Nova senha</label>
+                            </div>
+
+                            <div class="input-field animated fadeinright">
+                                <input name="user_new_pass_" id="user_new_pass_" type="password" class="validate">
+                                <label>Redigite a nova senha</label>
+                            </div>
+
+                            <a href="#!" id="passSubmit" class="waves-effect waves-light btn-large block animated bouncein" style="margin-top:20px">
+                                Alterar Senha
+                            </a>
+
+                        </form>
+                    </div>
+                </div> <!-- senha -->
+
+                <!-- Footer -->
+                <footer class="page-footer primary-color">
+                </footer>
+
+            </div> 
+            <!-- End of Page Contents -->
+
+            <!-- Menu Trigger -->
+            <div class="menu-trigger z-depth-2"> 
+                <div id="menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <nav id="menu" class="menu">
+            </nav> <!-- End of Menu -->
+
+        </div><!-- End of Main Container -->
+
+        <!-- PHONEGAP -->
+        <script src="cordova.js"></script>
+        <!-- JQ -->
+        <script src="js/jquery-1.12.2.js"></script>
+        <!-- JW -->
+        <script src="js/jw/app.js"></script>
+        <script src="js/jw/index.js"></script>
+        <!-- GENERAL -->
+        <script src="js/modernizr.js"></script>
+        <script src="js/jquery.swipebox.min.js"></script>   
+        <script src="js/jquery.smoothState.min.js"></script> 
+        <script src="js/materialize.min.js"></script>
+        <script src="js/swiper.min.js"></script>  
+        <script src="js/jquery.mixitup.min.js"></script>
+        <script src="js/masonry.min.js"></script>
+        <script src="js/chart.min.js"></script>
+        <!-- PAGE -->
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/jw/user.js"></script>
+        <script src="js/jw/page.profile.js"></script>
+
+        <script>
+
+            $(document).ready(function () {
+
+                $("[name=user_email]").val(localStorage.user_email);
+
+                userInfo(localStorage.user_email, userInfoCb);
+
+                //================================
+                // DADOS
+                //================================
+                $("#userSubmit").click(function (e) {
+                    e.preventDefault();
+                    if ($("#userForm").valid()) {
+                        userUpdate();
+                    }
+                    else {
+                        alertx("Preencha todos os campos corretamente");
+                    }
+                });
+                $("#userForm").validate({
+                    rules: {
+                        user_first_name: {
+                            required: true,
+                            minlength: 3
+                        },
+                        user_last_name: {
+                            required: true,
+                            minlength: 3
+                        },
+                        user_genre: {
+                            required: true
+                        }
+                    },
+                    errorElement: 'div',
+                    errorPlacement: function (error, element) {
+                        var placement = $(element).data('error');
+                        if (placement) {
+                            $(placement).append(error)
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    }
+                });
+
+                //================================
+                // SENHA
+                //================================
+                $("#passSubmit").click(function (e) {
+                    e.preventDefault();
+                    if ($("#passForm").valid()) {
+                        userPass();
+                    }
+                });
+                $("#passForm").validate({
+                    rules: {
+                        user_pass: {
+                            required: true
+                        },
+                        user_new_pass: {
+                            required: true,
+                            minlength: 5
+                        },
+                        user_new_pass_: {
+                            required: true,
+                            minlength: 5,
+                            equalTo: "#user_new_pass"
+                        }
+                    },
+                    // For custom messages
+                    messages: {
+                        user_new_pass: "Mínimo de 5 caracteres",
+                        user_new_pass_: "As senhas não coincidem"
+                    },
+                    errorElement: 'div',
+                    errorPlacement: function (error, element) {
+                        var placement = $(element).data('error');
+                        if (placement) {
+                            $(placement).append(error)
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    }
+                });
+            });
+
+
+
+        </script>
+
+    </body>
+</html>

@@ -50,7 +50,7 @@
             <div id="content" class="main animated fadein">
 
                 <div class="news-main animated fadein delay-1">
-                    <img alt="" src="img/3.jpg"> 
+                    <img id="img_fn" alt="" src="img/grey.jpg"> 
                     <a href="#">
                         <div class="opacity-overlay-black">
                         </div>
@@ -70,10 +70,12 @@
                         <h4 class="m-0"><strong id="post_view"></strong></h4>
                         <p class="m-0 grey-text small"><i class="fa fa-eye" aria-hidden="true"></i> Visitas</p>
                     </div>
-                    <div class="col s4 p-10 center">
-                        <h4 class="m-0"><strong id="post_com"></strong></h4>
-                        <p class="m-0 grey-text small"><i class="fa fa-comment-o" aria-hidden="true"></i> Comentar</p>
-                    </div>
+                    <a href="#com_hash">
+                        <div class="col s4 p-10 center">
+                            <h4 class="m-0"><strong id="post_com"></strong></h4>
+                            <p class="m-0 grey-text small"><i class="fa fa-comment-o" aria-hidden="true"></i> Comentar</p>
+                        </div>
+                    </a>
                     <div id="like_do" class="col s4 p-10 center">
                         <center id="like_loading" style="display:none">
                             <img src="img/loader7.gif" style="width:48px;" />
@@ -85,87 +87,123 @@
                     </div>
                 </div>
 
-                <div class="animated article fadeinup delay-1 border-top">
-                    <div class="p-20">
+                <!-- Profile Contents -->
+                <ul class="tabs border-top animated fadeinup delay-2">
+                    <li id="sobreButton" class="tab col s3"><a class="active" href="#sobre">Sobre</a></li>
+                    <li id="fotosButton" class="tab col s3"><a href="#fotos">Fotos</a></li>
+                </ul>
 
-                        <!-- Contents -->
-                        <p class="text-flow"><span class="dropcap" id="post_txt_"></span><span id="post_txt"></span></p>
+                <div id="sobre">
+                    <div class="animated article fadeinup delay-1 border-top">
+                        <div class="p-20">
 
-                        <p class="remember" style="display:none" id="post_home">
-                            <input type="checkbox" checked="checked" />
-                            <label>Atendemos a domicílio</label>
-                        </p>
-                        <blockquote class="primary-border" id="post_home_txt" style="margin-top:-10px;display:none">"The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog."</blockquote>
+                            <!-- Contents -->
+                            <p class="text-flow"><span class="dropcap" id="post_txt_"></span><span id="post_txt"></span></p>
 
-                        <!-- Slider --       
-                        <div class="swiper-container swiper-slider m-b-20">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="img/2.jpg" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="img/3.jpg" alt="">
-                                </div>
-                            </div>
-                        <!-- Add Pagination --
-                        <div class="swiper-pagination"></div>
-                    </div>
-                        <!-- End of Slider -->
+                            <p class="remember" style="display:none" id="post_home">
+                                <input type="checkbox" checked="checked" />
+                                <label>Atendemos a domicílio</label>
+                            </p>
+                            <blockquote class="primary-border" id="post_home_txt" style="margin-top:-10px;display:none">"The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog."</blockquote>
 
-                        <p class="text-flow"><b>Serviços:</b> <span id="categ"></span></p>
-
-                        <p class="text-flow" id="post_address_"><b>Endereço:</b> <span id="post_address"></span></p>
-
-                        <div id="iframe"></div>
-
-
-                        <!-- Share -->
-                        <div class="share center-align" style="margin-top:20px">
-                            <h5 style="font-weight:bold">Entre em contato</h5>
-                            <span>
-                                <i style="font-size:50px !important" class="fa fa-facebook-official p-10 blue-text text-darken-4"></i>
-                                <i style="font-size:50px !important" class="fa fa-twitter-square p-10 blue-text"></i>
-                                <i style="font-size:50px !important" class="fa fa-instagram p-10 red-text"></i>
-                                <i style="font-size:50px !important" class="fa fa-phone-square p-10 green-text"></i>
-                                <i style="font-size:50px !important" class="fa fa-envelope-square p-10 orange-text"></i>
-                                <i style="font-size:50px !important" class="fa fa-external-link-square p-10 cyan-text "></i>
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Comments -->
-                    <div id="post_div">
-                        <div class="comments grey lighten-4">
-                            <h5 id="post_com_title"></h5>
-
-                            <div id="com">
-
-                                <div style="display:none" id="com_template" class="media-top-object animated fadeinright">
-                                    <img src="img/user4.jpg" alt="" class="media-left avatar">
-                                    <div class="media-body">
-                                        <span class="com_user">Luke Noel</span>
-                                        <span class="com_txt small">Ótimo trabalho!</span>
+                            <!-- Slider --       
+                            <div class="swiper-container swiper-slider m-b-20">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="img/2.jpg" alt="">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="img/3.jpg" alt="">
                                     </div>
                                 </div>
+                            <!-- Add Pagination --
+                            <div class="swiper-pagination"></div>
+                        </div>
+                            <!-- End of Slider -->
 
+                            <p class="text-flow"><b>Serviços:</b> <span id="categ"></span></p>
+
+                            <p class="text-flow" id="post_address_"><b>Endereço:</b> <span id="post_address"></span></p>
+
+                            <div id="iframe"></div>
+                            <a id="geo" href="#!" class="primary-color waves-effect waves-light btn block animated bouncein" style="font-size:12px;margin-top:-5px">
+                                <i style="font-size:16px !important" class="fa fa-car"></i>
+                                &nbsp; Como chegar
+                            </a>
+
+
+                            <!-- Share -->
+                            <div class="share center-align" style="margin-top:35px">
+                                <h5 style="font-weight:bold;margin-bottom:10px">Entre em contato</h5>
+                                <span>
+                                    <i onclick="javascript:cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');" style="font-size:50px !important" class="fa fa-facebook-official p-10 blue-text text-darken-4"></i>
+                                    <i style="font-size:50px !important" class="fa fa-twitter-square p-10 blue-text"></i>
+                                    <i style="font-size:50px !important" class="fa fa-instagram p-10 red-text"></i>
+                                    <i style="font-size:50px !important" class="fa fa-phone-square p-10 green-text"></i>
+                                    <i style="font-size:50px !important" class="fa fa-envelope-square p-10 orange-text"></i>
+                                    <i style="font-size:50px !important" class="fa fa-external-link-square p-10 cyan-text "></i>
+                                </span>
                             </div>
-                            <center id="comLoading">
-                                <div class="preloader-wrapper small active">
-                                    <div class="spinner-layer spinner-green-only">
-                                        <div class="circle-clipper left">
-                                            <div class="circle"></div>
-                                        </div><div class="gap-patch">
-                                            <div class="circle"></div>
-                                        </div><div class="circle-clipper right">
-                                            <div class="circle"></div>
-                                        </div>
+                        </div>
+
+                    </div>
+
+
+                </div> <!-- sobre -->
+
+                <div id="fotos">
+
+                    <div id="fotos_loading">
+                        <center>
+                            <img src="img/loader7.gif" alt="Loading…" style="width:128px" />
+                        </center>
+                    </div>
+
+                    <div style="display:none" class="grid mm-t-20">
+                        <!--
+                        <div class="grid-item">
+                            <a href="img/5.jpg" class="swipebox no-smoothState" title="This is dummy caption.">
+                                <img src="img/5.jpg" alt="image">
+                            </a>
+                        </div>
+                        -->
+                    </div>
+                    <div class="clr"></div>
+                </div> <!-- fotos -->
+
+                <!-- Comments -->
+                <div id="post_div">
+                    <div class="comments grey lighten-4">
+                        <h5 id="post_com_title"></h5>
+
+                        <div id="com">
+
+                            <div style="display:none" id="com_template" class="media-top-object animated fadeinright">
+                                <img src="img/anonymous-user_1.png" alt="" class="media-left avatar">
+                                <div class="media-body">
+                                    <div class="com_date prettydate" style="float:right;font-size:10px;color:#666">date</div>
+                                    <span class="com_user">Luke Noel</span>
+                                    <span class="com_txt small">Ótimo trabalho!</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <center id="comLoading">
+                            <div class="preloader-wrapper small active">
+                                <div class="spinner-layer spinner-green-only">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div><div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div><div class="circle-clipper right">
+                                        <div class="circle"></div>
                                     </div>
                                 </div>
-                            </center>
-                            <center style="margin-top:15px">
-                                <a href="#modal1" class="waves-effect waves-light btn blue accent-2 modal-trigger" style="font-size:12px;">Enviar comentário</a>
-                            </center>
-                        </div>
+                            </div>
+                        </center>
+                        <center id="com_hash" style="margin-top:15px">
+                            <a href="#modal1" class="waves-effect waves-light btn blue accent-2 modal-trigger" style="font-size:12px;">Enviar comentário</a>
+                        </center>
                     </div>
                 </div>
 
@@ -214,84 +252,101 @@
         <!-- BASE TO PAGE -->
         <script src="js/jw/post.js"></script>
         <script src="js/jw/com.js"></script>
+        <script src="js/prettydate.js"></script>
 
         <script>
 
 
-            $(document).ready(function () {
+                                        $(document).ready(function () {
 
-                if (sessionStorage.post_id > 0) {
-                    // post data
-                    preloader("", 7);
-                    postRead(sessionStorage.post_id, postReadCb);
-                    // comment list
-                    $('#comLoading').fadeIn("fast"); // hide in comListCb()
-                    sessionStorage.com_last_id = 0; // util for comListCb()
-                    comList(sessionStorage.post_id, comListCb, 0);
-                }
+                                            $("#geo").click(function () {
+                                                launchnavigator.navigate([50.279306, -5.163158], {
+                                                    start: "50.342847, -4.749904"
+                                                });
+                                            });
 
-                $("body").on("click", "#loadmore", function (e) {
-                    e.preventDefault();
-                    // comment list
-                    $(".loadmore").remove();
-                    $('#comLoading').fadeIn("fast");
-                    comList(sessionStorage.post_id, comListCb);
-                });
+                                            $("#fotosButton").click(function () {
+                                                setTimeout(function () {
+                                                    $("#fotos_loading").hide();
+                                                    $('.grid').show().masonry({
+                                                        itemSelector: '.grid-item'
+                                                    });
+                                                }, 500);
+                                            });
 
-                $("#like_do").click(function () {
+                                            if (sessionStorage.post_id > 0) {
+                                                // post data
+                                                preloader("", 7);
+                                                postRead(sessionStorage.post_id, postReadCb);
+                                                // comment list
+                                                $('#comLoading').fadeIn("fast"); // hide in comListCb()
+                                                sessionStorage.com_last_id = 0; // util for comListCb()
+                                                comList(sessionStorage.post_id, comListCb, 0);
+                                            }
 
-                    $("#like_but").hide();
-                    $("#like_loading").show();
-
-                    // RUN AJAX
-                    $.ajax({
-                        url: localStorage.server + "/post_like.php",
-                        data: {
-                            post_id: sessionStorage.post_id
-                        },
-                        type: 'GET',
-                        dataType: 'jsonp',
-                        jsonp: 'callback',
-                        timeout: 5000
-                    })
-                            .always(function () {
-                                $("#like_loading").hide();
-                                $("#like_but").show();
-                            })
-
-                            .fail(function () {
-
-                            })
-
-                            .done(function (res) {
-                                if (res !== null) {
-                                    console.log(res);
-                                    if (res.error) {
-                                        return;
-                                    }
-                                    if (res.success) {
-                                        $("#post_like").html(res.success);
-                                        if (res.like > 0) {
-                                            $("#post_like").css("color", "blue");
-                                            $("#post_like_txt").css("color", "blue").html("Curtiu");
-                                        }
-                                        else {
-                                            $("#post_like").css("color", "");
-                                            $("#post_like_txt").css("color", "").html("Curtir");
-                                        }
-                                    }
+                                            $("body").on("click", "#loadmore", function (e) {
+                                                e.preventDefault();
+                                                // comment list
+                                                $(".loadmore").remove();
+                                                $('#comLoading').fadeIn("fast");
+                                                comList(sessionStorage.post_id, comListCb);
+                                            });
 
 
-                                } // res not null
-                            }); // after ajax
-                });
+                                            $("#like_do").click(function () {
 
-                $("#newcom").submit(function (e) {
-                    $(this).hide();
-                    comSend();
-                    return false;
-                });
-            });
+                                                $("#like_but").hide();
+                                                $("#like_loading").show();
+
+                                                // RUN AJAX
+                                                $.ajax({
+                                                    url: localStorage.server + "/post_like.php",
+                                                    data: {
+                                                        post_id: sessionStorage.post_id
+                                                    },
+                                                    type: 'GET',
+                                                    dataType: 'jsonp',
+                                                    jsonp: 'callback',
+                                                    timeout: 5000
+                                                })
+                                                        .always(function () {
+                                                            $("#like_loading").hide();
+                                                            $("#like_but").show();
+                                                        })
+
+                                                        .fail(function () {
+
+                                                        })
+
+                                                        .done(function (res) {
+                                                            if (res !== null) {
+                                                                console.log(res);
+                                                                if (res.error) {
+                                                                    return;
+                                                                }
+                                                                if (res.success) {
+                                                                    $("#post_like").html(res.success);
+                                                                    if (res.like > 0) {
+                                                                        $("#post_like").css("color", "blue");
+                                                                        $("#post_like_txt").css("color", "blue").html("Curtiu");
+                                                                    }
+                                                                    else {
+                                                                        $("#post_like").css("color", "");
+                                                                        $("#post_like_txt").css("color", "").html("Curtir");
+                                                                    }
+                                                                }
+
+
+                                                            } // res not null
+                                                        }); // after ajax
+                                            });
+
+                                            $("#newcom").submit(function (e) {
+                                                $(this).hide();
+                                                comSend();
+                                                return false;
+                                            });
+                                        });
         </script>
     </body>
 </html>

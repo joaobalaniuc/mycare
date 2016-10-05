@@ -92,8 +92,44 @@ function userLogin() {
                         localStorage.user_email = res.email;
                         localStorage.user_pass = res.pass;
                         window.location.href = "index.html";
-
                     }
+
+                } // res not null
+            }); // after ajax
+}
+
+function userInfo(user_email, cb) {
+
+    // PRELOADER
+    preloader();
+
+    // RUN AJAX
+    $.ajax({
+        url: localStorage.server + "/user_info.php",
+        data: {
+            user_email: user_email
+        },
+        type: 'GET',
+        dataType: 'jsonp',
+        jsonp: 'callback',
+        timeout: localStorage.timeout
+    })
+            .always(function () {
+                preloader(false);
+            })
+
+            .fail(function () {
+                alertx("Ocorreu um erro interno. Tente novamente mais tarde.", "Desculpe...");
+            })
+
+            .done(function (res) {
+                if (res !== null) {
+                    console.log(res);
+                    if (res.error) {
+                        alertx(res.error, "Ops!");
+                        return;
+                    }
+                    cb(res);
 
                 } // res not null
             }); // after ajax

@@ -9,7 +9,7 @@
         <meta content="yes" name="apple-mobile-web-app-capable"/>
         <meta content="yes" name="apple-touch-fullscreen"/>
         <link rel="stylesheet" href="css/include.css" />
-        
+
         <style type="text/css">
             html,
             body {
@@ -45,11 +45,13 @@
                         <h1 class="hero-title white-text">Minhas Fotos</h1>
                     </div>
 
-                    <div class="media-top-object author-bio animated fadeinright">
+                    <div class="media-top-object author-bio animated fadeinright" style="margin-top:20px">
                         <!--<img src="img/user.jpg" alt="" class="media-left avatar big">-->
                         <div class="media-body">
-                            <h4 class="com_title white-text ellips">Meu Lindo Pet Shop</h4>
-                            <span class="small white-text"><span style="display:inline-block" class="pic_total">300</span> fotos</span>
+                            <h4 class="post_title white-text ellips">Meu Lindo Pet Shop</h4>
+                            <!--
+                            <span class="small white-text"><span style="display:inline-block" class="post_address"></span></span>
+                            -->
                         </div>
                     </div>
                 </div>
@@ -152,16 +154,17 @@
 
 
         <script>
-            $(".com_title").html(sessionStorage.edit_post_title);
-            $(".pic_total").html(sessionStorage.edit_post_pic);
-            
+            $(".post_title").html(sessionStorage.edit_post_title);
+            //$(".post_address").html(sessionStorage.edit_post_address);
+
             $(document).ready(function () {
                 var url = localStorage.server + "/app/pic/?post_id=" + sessionStorage.edit_post_id;
                 $("#foo").attr("src", url);
                 $("#foo").hide();
                 console.log(url);
+                //sessionStorage.edit_post_id = 0;
             });
-            
+
             $('#foo').load(function () {
                 $('#loading').fadeOut("fast", function () {
                     $("#foo").fadeIn("slow");

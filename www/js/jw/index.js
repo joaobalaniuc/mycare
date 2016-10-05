@@ -280,7 +280,9 @@ function alertx(content, title, button, cb) {
     $("#main").prepend(html);
     $("#modal" + id).openModal({
         complete: function () {
-            cb();
+            if (isFunction(cb)) {
+                cb();
+            }
         } // Callback for Modal close
     });
 }
@@ -348,4 +350,9 @@ function FF(data, form_elem) {
             } // not null
         }); // each
     } // for
+}
+
+function isFunction(functionToCheck) {
+    var getType = {};
+    return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
 }

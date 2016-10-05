@@ -7,9 +7,12 @@ function postReadCb(res) {
 
     var cat = res["categ"];
     var post = res["post"];
+    var img = res["img"];
 
+    console.log(cat);
     console.log(post);
-    
+    console.log(img);
+
     if (post[0]["post_com"] === "0") {
         $("#post_div").hide();
     }
@@ -28,6 +31,11 @@ function postReadCb(res) {
     if (like == null)
         like = 0;
 
+    var img_fn = post[0]["img_fn"];
+    if (img_fn != null) {
+        $("#img_fn").attr("src", localStorage.server + "/app/pic/img/" + img_fn);
+    }
+
     $("#post_view").html(view);
     $("#post_com").html(com);
     $("#post_like").html(like);
@@ -39,8 +47,13 @@ function postReadCb(res) {
     $("#post_view").html(post[0]["post_view"]);
     var txt = post[0]["post_txt"];
     if (txt !== null) {
-        $("#post_txt_").html(txt.substr(0, 1));
-        $("#post_txt").html(txt.substr(1));
+        if (txt.len > 32) {
+            $("#post_txt_").html(txt.substr(0, 1));
+            $("#post_txt").html(txt.substr(1));
+        }
+        else {
+            $("#post_txt").html(txt);
+        }
     }
     if (post[0]["post_home"] == 1) {
         $("#post_home").show();
@@ -84,6 +97,25 @@ function postReadCb(res) {
                 virG = ", ";
             }
         });
+    }
+
+    if (img[0]) {
+        $.each(img, function (k, v) {
+            if (v["img_fn"]) {
+                var url = localStorage.server + "/app/pic/img/" + v["img_fn"];
+                var grid = "";
+                grid += '<div class="grid-item">';
+                grid += '<a href="' + url + '" class="swipebox no-smoothState" title="' + v["img_fn"] + '">';
+                grid += '<img src="' + url + '" alt="image">';
+                grid += '</a>';
+                grid += '</div>';
+                $(".grid").append(grid);
+            }
+        });
+    }
+    else {
+        $(".tabs").hide();
+        $("#fotos").hide();
     }
 
     sessionStorage.com_total = post[0]["post_total_com"];
@@ -150,8 +182,13 @@ function comListCb(res) {
 
             $(this).find(".com_user").html(val["user_first_name"]);
             $(this).find(".com_txt").html(val["com_txt"]);
-
+            if (val["user_fb"] != null) {
+                $(this).find(".avatar").attr("src", "http://graph.facebook.com/" + val["user_fb"] + "/picture?width=100&height=100");
+            }
+            $(this).find(".com_date").html(val["com_date"]);
         }).show();
+
+        pretty();
 
         sessionStorage.com_last_id = val["com_id"];
         console.log(sessionStorage.com_last_id);
