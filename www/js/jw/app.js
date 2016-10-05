@@ -46,33 +46,20 @@ var app = {
 
         app.receivedEvent('deviceready');
 
+        start();
+
         // GEOLOCATION
         geo();
 
-        // CURRENT FILE
-        var fn = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
-        this.ready(fn);
-    },
-    // Update DOM on a Received Event
-    ready: function (fn) {
-        alert(fn);
-        switch (fn) {
-            case "index.html":
-                start();
-                // SPLASHSCREEN (CONFIG.XML BUGFIX)
-                setTimeout(function () {
-                    navigator.splashscreen.hide();
-                    if (window.StatusBar) {
-                        /*StatusBar.overlaysWebView(false);
-                         StatusBar.backgroundColorByHexString("#3f51b5");
-                         StatusBar.styleLightContent();*/
-                    }
-                }, 500);
-                break;
-
-            case "contact.html":
-                break;
-        }
+        // SPLASHSCREEN (CONFIG.XML BUGFIX)
+        setTimeout(function () {
+            navigator.splashscreen.hide();
+            if (window.StatusBar) {
+                /*StatusBar.overlaysWebView(false);
+                 StatusBar.backgroundColorByHexString("#3f51b5");
+                 StatusBar.styleLightContent();*/
+            }
+        }, 500);
     },
     // Update DOM on a Received Event
     receivedEvent: function (id) {
@@ -91,13 +78,13 @@ function geo() {
         sessionStorage.lat = position.coords.latitude;
         sessionStorage.lng = position.coords.longitude;
         /*alert('Latitude: ' + position.coords.latitude + '\n' +
-                'Longitude: ' + position.coords.longitude + '\n' +
-                'Altitude: ' + position.coords.altitude + '\n' +
-                'Accuracy: ' + position.coords.accuracy + '\n' +
-                'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
-                'Heading: ' + position.coords.heading + '\n' +
-                'Speed: ' + position.coords.speed + '\n' +
-                'Timestamp: ' + position.timestamp + '\n');*/
+         'Longitude: ' + position.coords.longitude + '\n' +
+         'Altitude: ' + position.coords.altitude + '\n' +
+         'Accuracy: ' + position.coords.accuracy + '\n' +
+         'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
+         'Heading: ' + position.coords.heading + '\n' +
+         'Speed: ' + position.coords.speed + '\n' +
+         'Timestamp: ' + position.timestamp + '\n');*/
     };
     function onError(error) {
         alert('code: ' + error.code + '\n' +
