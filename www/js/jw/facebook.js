@@ -22,7 +22,7 @@ var fb = {
         }, function (err) {
             alert('an error occured while trying to login. please try again. Err:' + err);
         });
-    }
+    },
     /*,
      getUserInfo: function () {
      //facebookConnectPlugin.api(localStorage.fb_id + "/?fields=id,email,first_name,last_name,gender,picture,birthday", ["public_profile", "user_birthday"],
@@ -41,32 +41,32 @@ var fb = {
      alert("Failed: " + error);
      });
      },
-     getLoginStatusX: function () {
-     
-     facebookConnectPlugin.getLoginStatus(
-     function (response) {
-     
-     alert("fb.getLoginStatusX() = " + JSON.stringify(response));
-     
-     localStorage.fb_status = response.status;
-     
-     if (response.status === 'connected') {
-     var uid = response.authResponse.userID;
-     var accessToken = response.authResponse.accessToken;
-     localStorage.fb_id = result.authResponse.userID;
-     localStorage.fb_token = result.authResponse.accessToken;
-     alert("AUTH OK");
-     //return "OK MESMO";
-     } else if (response.status === 'not_authorized') {
-     alert("NOT AUTH");
-     } else {
-     alert("NOG LOGGED");
-     }
-     },
-     function (error) {
-     alert("Failed: " + error);
-     });
-     },
+     */
+    getLoginStatusX: function () {
+
+        facebookConnectPlugin.getLoginStatus(
+                function (response) {
+
+                    alert("fb.getLoginStatusX() = " + JSON.stringify(response));
+                    localStorage.fb_status = response.status;
+                    if (response.status === 'connected') {
+                        var uid = response.authResponse.userID;
+                        var accessToken = response.authResponse.accessToken;
+                        localStorage.fb_id = result.authResponse.userID;
+                        localStorage.fb_token = result.authResponse.accessToken;
+                        alert("AUTH OK");
+                        //return "OK MESMO";
+                    } else if (response.status === 'not_authorized') {
+                        alert("NOT AUTH");
+                    } else {
+                        alert("NOG LOGGED");
+                    }
+                },
+                function (error) {
+                    alert("Failed: " + error);
+                });
+
+    }/*,
      getLoginStatus: function () {
      
      facebookConnectPlugin.getLoginStatus(function (response) {
