@@ -87,15 +87,15 @@ var fb = {
      alert("NOG LOGGED");
      }
      });
-     },
-     logout: function () {
-     facebookConnectPlugin.logout(
-     function () {
-     alert("logout ok");
-     },
-     function () {
-     alert("logout error");
-     });
-     }
-     */
+     }*/,
+    logout: function () {
+        facebookConnectPlugin.logout(
+                function () {
+                    alert("logout ok");
+                },
+                function () {
+                    alert("logout error");
+                });
+    }
+
 };
