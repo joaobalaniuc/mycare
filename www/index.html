@@ -48,6 +48,11 @@ functions.js:
                                 <div class="slider-bottom-right valign-wrapper">
                                     <div class="valign center-align">
                                         <h2><strong>MyCare</strong></h2>
+
+                                        <a href="#!" id="teste">
+                                            Teste
+                                        </a>
+
                                         <p>Tudo que seu pet precisa,<br/>em um só lugar</p>
                                     </div>
                                 </div>
@@ -197,7 +202,7 @@ functions.js:
             </nav> <!-- End of Menu -->
 
         </div><!-- End of Main Container -->
-        
+
         <!-- PHONEGAP -->
         <script src="cordova.js"></script>
         <!-- JQ -->
@@ -219,10 +224,16 @@ functions.js:
         <script src="js/functions.js"></script>
         -->
 
+        <script src="js/jw/facebook.js"></script>
+
         <script>
             //alert("index");
             //preloader();
             $(document).ready(function () {
+
+                $("#teste").click(function () {
+                    fb.login();
+                });
                 if (typeof localStorage.user_id === "undefined") {
                     window.location.href = "login.html";
                     return;
