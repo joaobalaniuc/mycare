@@ -11,7 +11,9 @@ app.initialize();
 
 // DEV?
 if (!isApp) {
-    start();
+    if (typeof sessionStorage.start === "undefined") {
+        start();
+    }
 }
 
 $(document).ready(function () {

@@ -3,7 +3,7 @@
 //--------------------------------------------
 function start() {
 
-    //alert("start");
+    sessionStorage.start = 1;
 
     // App config
     localStorage.appname = "MyCare";

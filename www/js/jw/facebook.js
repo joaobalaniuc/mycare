@@ -53,10 +53,10 @@ var fb = {
     logout: function () {
         facebookConnectPlugin.logout(
                 function () {
-                    kons("logout ok");
+                    alert("logout ok");
                 },
                 function () {
-                    kons("logout error");
+                    alert("logout error");
                 });
     }
 };

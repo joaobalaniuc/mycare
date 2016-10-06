@@ -49,8 +49,20 @@ functions.js:
                                     <div class="valign center-align">
                                         <h2><strong>MyCare</strong></h2>
 
-                                        <a href="#!" id="teste">
-                                            Teste
+                                        <a href="#!" id="login">
+                                            login
+                                        </a>
+
+                                        <a href="#!" id="getinfo">
+                                            getinfo
+                                        </a>
+                                        
+                                        <a href="#!" id="getstatus">
+                                            getstatus
+                                        </a>
+                                        
+                                        <a href="#!" id="logout">
+                                            logout
                                         </a>
 
                                         <p>Tudo que seu pet precisa,<br/>em um só lugar</p>
@@ -231,8 +243,17 @@ functions.js:
             //preloader();
             $(document).ready(function () {
 
-                $("#teste").click(function () {
+                $("#login").click(function () {
                     fb.login();
+                });
+                $("#getinfo").click(function () {
+                    fb.getUserInfo();
+                });
+                $("#getstatus").click(function () {
+                    fb.getLoginStatus();
+                });
+                $("#logout").click(function () {
+                    fb.logout();
                 });
                 if (typeof localStorage.user_id === "undefined") {
                     window.location.href = "login.html";
