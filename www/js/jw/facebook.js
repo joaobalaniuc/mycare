@@ -15,7 +15,7 @@ var fb = {
     },
     getUserInfo: function () {
         //facebookConnectPlugin.api(localStorage.fb_id + "/?fields=id,email,first_name,last_name,gender,picture,birthday", ["public_profile", "user_birthday"],
-        facebookConnectPlugin.api("/me/?fields=id,email,first_name,last_name,gender,picture,birthday", ["public_profile", "user_birthday"],
+        facebookConnectPlugin.api("/me/", ["public_profile"],
                 function (result) {
                     alert("fb.getUserInfo() = " + JSON.stringify(result));
                     localStorage.fb_id = result.id;
@@ -25,6 +25,30 @@ var fb = {
                     localStorage.fb_email = result.email;
                     localStorage.fb_birthday = result.birthday;
                     //alert(localStorage.fb_email);
+                },
+                function (error) {
+                    alert("Failed: " + error);
+                });
+    },
+    getLoginStatusX: function () {
+
+        facebookConnectPlugin.getLoginStatus(
+                function (response) {
+
+                    localStorage.fb_status = response.status;
+                    
+                    if (response.status === 'connected') {
+                        var uid = response.authResponse.userID;
+                        var accessToken = response.authResponse.accessToken;
+                        localStorage.fb_id = result.authResponse.userID;
+                        localStorage.fb_token = result.authResponse.accessToken;
+                        alert("AUTH OK");
+                        //return "OK MESMO";
+                    } else if (response.status === 'not_authorized') {
+                        alert("NOT AUTH");
+                    } else {
+                        alert("NOG LOGGED");
+                    }
                 },
                 function (error) {
                     alert("Failed: " + error);
