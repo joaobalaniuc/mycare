@@ -14,7 +14,8 @@ var fb = {
         });
     },
     getUserInfo: function () {
-        facebookConnectPlugin.api(localStorage.fb_id + "/?fields=id,email,first_name,last_name,gender,picture,birthday", ["public_profile", "user_birthday"],
+        //facebookConnectPlugin.api(localStorage.fb_id + "/?fields=id,email,first_name,last_name,gender,picture,birthday", ["public_profile", "user_birthday"],
+        facebookConnectPlugin.api("/me/?fields=id,email,first_name,last_name,gender,picture,birthday", ["public_profile", "user_birthday"],
                 function (result) {
                     alert("fb.getUserInfo() = " + JSON.stringify(result));
                     localStorage.fb_id = result.id;
@@ -33,7 +34,7 @@ var fb = {
 
         facebookConnectPlugin.getLoginStatus(function (response) {
 
-            alert("fb.getLoginStatus() = ");
+            //alert("fb.getLoginStatus() = ");
             localStorage.fb_status = response.status;
 
             if (response.status === 'connected') {
@@ -41,12 +42,12 @@ var fb = {
                 var accessToken = response.authResponse.accessToken;
                 localStorage.fb_id = result.authResponse.userID;
                 localStorage.fb_token = result.authResponse.accessToken;
-                //alert("AUTH OK");
+                alert("AUTH OK");
                 //return "OK MESMO";
             } else if (response.status === 'not_authorized') {
-                //alert("NOT AUTH");
+                alert("NOT AUTH");
             } else {
-                //alert("NOG LOGGED");
+                alert("NOG LOGGED");
             }
         });
     },
