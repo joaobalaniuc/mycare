@@ -4,9 +4,10 @@ function userInfoCb(res) {
     $(".user_first_name").html(res[0].user_first_name);
     $(".user_email").html(res[0].user_email);
 
-    var fb = res[0].user_fb;
+    var fb = res[0].user_fb_pic;
     if (fb != null) {
-        $(".avatar").attr("src", "http://graph.facebook.com/" + fb + "/picture?width=100&height=100");
+        //$(".avatar").attr("src", "http://graph.facebook.com/" + fb + "/picture?width=100&height=100");
+        $(".avatar").attr("src", fb);
         $("#fb_ass").hide();
         $("#fb_des").show();
     }
