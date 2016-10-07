@@ -14,7 +14,7 @@ var fb = {
             localStorage.fb_token = result.authResponse.accessToken;
 
             //facebookConnectPlugin.api("/me?fields=id,birthday,gender,first_name,middle_name,age_range,last_name,name,picture.width(400),email", [],
-            facebookConnectPlugin.api("/me?fields=id,email,birthday,gender,first_name,middle_name,last_name", [],
+            facebookConnectPlugin.api("/me?fields=id,email,birthday,gender,first_name,middle_name,last_name", ["email"],
                     function (result) {
                         alert("/me = " + JSON.stringify(result));
                         alert(result.email);
