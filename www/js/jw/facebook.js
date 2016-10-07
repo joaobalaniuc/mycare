@@ -5,20 +5,22 @@
 var fb = {
     login: function () {
 
+        alert("login");
+
         facebookConnectPlugin.login(['email', 'public_profile', 'user_birthday'], function (result) {
 
-            /*alert("fb.login() = " + JSON.stringify(result));
-             localStorage.fb_id = result.authResponse.userID;
+            alert("fb.login() = " + JSON.stringify(result));
+            /*localStorage.fb_id = result.authResponse.userID;
              localStorage.fb_status = 'connected';*/
 
             localStorage.fb_token = result.authResponse.accessToken;
 
             //facebookConnectPlugin.api("/me?fields=id,birthday,gender,first_name,middle_name,age_range,last_name,name,picture.width(400),email", [],
-            facebookConnectPlugin.api("/me?fields=id,email,birthday,gender,first_name,middle_name,last_name,picture.width(200)", ["email"],
+            facebookConnectPlugin.api("/me?fields=id,email,birthday,gender,first_name,middle_name,last_name,picture.width(400)", [],
                     function (result) {
 
                         alert("/me = " + JSON.stringify(result));
-                        alert(result.picture.data.url);
+                        //alert(result.picture.data.url);
                         return;
 
                         if (typeof result.email !== "undefined") {
