@@ -5,11 +5,11 @@
 var fb = {
     login: function () {
 
-        alert("login");
+        //alert("login");
 
         facebookConnectPlugin.login(['email', 'public_profile', 'user_birthday'], function (result) {
 
-            alert("fb.login() = " + JSON.stringify(result));
+            //alert("fb.login() = " + JSON.stringify(result));
             /*localStorage.fb_id = result.authResponse.userID;
              localStorage.fb_status = 'connected';*/
 
@@ -19,9 +19,8 @@ var fb = {
             facebookConnectPlugin.api("/me?fields=id,email,birthday,gender,first_name,middle_name,last_name,picture.width(400)", [],
                     function (result) {
 
-                        alert("/me = " + JSON.stringify(result));
-                        //alert(result.picture.data.url);
-                        return;
+                        //alert("/me = " + JSON.stringify(result));
+                        alert(result.picture.data.url);
 
                         if (typeof result.email !== "undefined") {
                             var email = result.email;
