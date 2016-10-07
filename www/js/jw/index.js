@@ -130,11 +130,13 @@ function addressUpdate() {
                 $(this).find('lat').each(function () {
                     var lat = $(this).text();
                     $("[name=post_lat]").val(lat);
+                    $("[name=address_lat]").val(lat);
                     console.log("lat=" + lat);
                 });
                 $(this).find('lng').each(function () {
                     var lng = $(this).text();
                     $("[name=post_lng]").val(lng);
+                    $("[name=address_lng]").val(lng);
                     console.log("lng=" + lng);
                 });
 
