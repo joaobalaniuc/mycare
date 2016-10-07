@@ -20,7 +20,7 @@ var fb = {
                     function (result) {
 
                         //alert("/me = " + JSON.stringify(result));
-                        alert(result.picture.data.url);
+                        //alert(result.picture.data.url);
 
                         if (typeof result.email !== "undefined") {
                             var email = result.email;
