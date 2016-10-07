@@ -40,7 +40,7 @@ function postReadCb(res) {
     $("#post_com").html(com);
     $("#post_like").html(like);
     $("[name=post_id]").val(post[0]["post_id"]);
-    $("#post_title").html(post[0]["post_title"]);
+    $(".post_title").html(post[0]["post_title"]);
     $("#post_neigh_city").html(post[0]["address_neigh"] + " - " + post[0]["address_city"]);
     if (post[0]["post_view"] === null)
         post[0]["post_view"] = 0;
