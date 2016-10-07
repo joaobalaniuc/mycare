@@ -41,7 +41,6 @@ function userSend() {
                         localStorage.user_email = res.email;
                         localStorage.user_pass = res.pass;
                         window.location.href = "index.html";
-
                     }
 
                 } // res not null

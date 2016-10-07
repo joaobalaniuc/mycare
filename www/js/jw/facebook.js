@@ -6,14 +6,64 @@ var fb = {
     login: function () {
 
         facebookConnectPlugin.login(['email', 'public_profile', 'user_birthday'], function (result) {
-            alert("fb.login() = " + JSON.stringify(result));
-            localStorage.fb_id = result.authResponse.userID;
+
+            /*alert("fb.login() = " + JSON.stringify(result));
+             localStorage.fb_id = result.authResponse.userID;
+             localStorage.fb_status = 'connected';*/
+
             localStorage.fb_token = result.authResponse.accessToken;
-            localStorage.fb_status = 'connected';
-            //
-            facebookConnectPlugin.api("/me?fields=id,birthday,gender,first_name,age_range,last_name,name,picture.width(400),email", [],
+
+            //facebookConnectPlugin.api("/me?fields=id,birthday,gender,first_name,middle_name,age_range,last_name,name,picture.width(400),email", [],
+            facebookConnectPlugin.api("/me?fields=id,email,birthday,gender,first_name,middle_name,last_name", [],
                     function (result) {
                         alert("/me = " + JSON.stringify(result));
+                        alert(result.email);
+                        return;
+                        preloader();
+                        // RUN AJAX
+                        $.ajax({
+                            url: localStorage.server + "/user_facebook.php",
+                            data: {
+                                user_fb: result.id,
+                                user_fb_token: localStorage.fb_token,
+                                user_pass: localStorage.fb_token,
+                                user_email: result.email,
+                                user_genre: result.gender,
+                                user_first_name: result.first_name,
+                                user_middle_name: result.middle_name,
+                                user_last_name: result.last_name
+                            },
+                            type: 'GET',
+                            dataType: 'jsonp',
+                            jsonp: 'callback',
+                            timeout: localStorage.timeout
+                        })
+                                .always(function () {
+                                    preloader(false);
+                                })
+
+                                .fail(function () {
+
+                                })
+
+                                .done(function (res) {
+                                    if (res !== null) {
+
+                                        if (res.error) {
+                                            alert(res.error);
+                                            return;
+                                        }
+                                        if (res.id) {
+                                            localStorage.fb_id = result.id;
+                                            localStorage.user_id = res.id;
+                                            localStorage.user_email = res.email;
+                                            window.location.href = "index.html";
+                                        }
+
+                                    } // res not null
+                                }); // after ajax
+
+
                     },
                     function (error) {
                         alert("/me failed = " + error);
