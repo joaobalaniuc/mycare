@@ -10,9 +10,9 @@ function start() {
     localStorage.version = "1.0.0";
 
     // Server
-    localStorage.server = "http://192.168.0.100/mycare/server/";
+    //localStorage.server = "http://192.168.0.100/mycare/server/";
     //localStorage.server = "http://localhost/mycare/server/";
-    //localStorage.server = "http://10.0.0.35/mycare/server/";
+    localStorage.server = "http://10.0.0.35/mycare/server/";
 
     // Ajax timeout
     localStorage.timeout = 5000; // ajax
