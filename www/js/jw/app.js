@@ -6,7 +6,7 @@ function start() {
     sessionStorage.start = 1;
 
     // App config
-    localStorage.appname = "MyCare";
+    localStorage.appname = "Help Animal";
     localStorage.version = "1.0.0";
 
     // Server

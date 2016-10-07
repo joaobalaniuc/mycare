@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>MyCare</title>
+        <title>PROFILE</title>
         <meta content="IE=edge" http-equiv="x-ua-compatible"/>
         <meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport"/>
         <meta content="yes" name="apple-mobile-web-app-capable"/>
@@ -25,11 +25,11 @@
                         <img class="avatar" src="img/anonymous-user_1.png" alt="" />
                         <h2 class="user_first_name white-text m-0"></h2>
                         <p class="user_email white-text m-0">joaowill@outlook.com</p>
-                        <a id="fb_ass" class="waves-effect waves-light btn blue darken-2 m-20" href="#!">
+                        <a id="fb_ass" class="waves-effect waves-light btn blue darken-2 m-20" href="#!" onclick="javascript:fb.login()">
                             <i style="font-size:18px" class="ion-social-facebook m-10 white-text"></i> 
                             Associar Facebook
                         </a>
-                        <a id="fb_des" style="display:none" class="waves-effect waves-light btn grey darken-2 m-20" href="#!">
+                        <a id="fb_des" style="display:none" class="waves-effect waves-light btn grey darken-2 m-20" href="#!" onclick="javascript:fb.logout()">
                             <i style="font-size:18px" class="ion-social-facebook m-10 white-text"></i> 
                             Desassociar Facebook
                         </a>
@@ -58,7 +58,7 @@
 
                             <div class="input-field animated fadeinright">
                                 <input disabled="disabled" name="user_email" type="text" class="validate">
-                                <label>E-mail</label>
+                                <label>E-mail ou ID</label>
                             </div>
 
                             <div class="animated fadeinright">
@@ -151,89 +151,89 @@
 
         <script>
 
-            $(document).ready(function () {
+                            $(document).ready(function () {
 
-                $("[name=user_email]").val(localStorage.user_email);
+                                $("[name=user_email]").val(localStorage.user_email);
 
-                userInfo(localStorage.user_email, userInfoCb);
+                                userInfo(localStorage.user_email, userInfoCb);
 
-                //================================
-                // DADOS
-                //================================
-                $("#userSubmit").click(function (e) {
-                    e.preventDefault();
-                    if ($("#userForm").valid()) {
-                        userUpdate();
-                    }
-                    else {
-                        alertx("Preencha todos os campos corretamente");
-                    }
-                });
-                $("#userForm").validate({
-                    rules: {
-                        user_first_name: {
-                            required: true,
-                            minlength: 3
-                        },
-                        user_last_name: {
-                            required: true,
-                            minlength: 3
-                        },
-                        user_genre: {
-                            required: true
-                        }
-                    },
-                    errorElement: 'div',
-                    errorPlacement: function (error, element) {
-                        var placement = $(element).data('error');
-                        if (placement) {
-                            $(placement).append(error)
-                        } else {
-                            error.insertAfter(element);
-                        }
-                    }
-                });
+                                //================================
+                                // DADOS
+                                //================================
+                                $("#userSubmit").click(function (e) {
+                                    e.preventDefault();
+                                    if ($("#userForm").valid()) {
+                                        userUpdate();
+                                    }
+                                    else {
+                                        alertx("Preencha todos os campos corretamente");
+                                    }
+                                });
+                                $("#userForm").validate({
+                                    rules: {
+                                        user_first_name: {
+                                            required: true,
+                                            minlength: 3
+                                        },
+                                        user_last_name: {
+                                            required: true,
+                                            minlength: 3
+                                        },
+                                        user_genre: {
+                                            required: true
+                                        }
+                                    },
+                                    errorElement: 'div',
+                                    errorPlacement: function (error, element) {
+                                        var placement = $(element).data('error');
+                                        if (placement) {
+                                            $(placement).append(error)
+                                        } else {
+                                            error.insertAfter(element);
+                                        }
+                                    }
+                                });
 
-                //================================
-                // SENHA
-                //================================
-                $("#passSubmit").click(function (e) {
-                    e.preventDefault();
-                    if ($("#passForm").valid()) {
-                        userPass();
-                    }
-                });
-                $("#passForm").validate({
-                    rules: {
-                        user_pass: {
-                            required: true
-                        },
-                        user_new_pass: {
-                            required: true,
-                            minlength: 5
-                        },
-                        user_new_pass_: {
-                            required: true,
-                            minlength: 5,
-                            equalTo: "#user_new_pass"
-                        }
-                    },
-                    // For custom messages
-                    messages: {
-                        user_new_pass: "Mínimo de 5 caracteres",
-                        user_new_pass_: "As senhas não coincidem"
-                    },
-                    errorElement: 'div',
-                    errorPlacement: function (error, element) {
-                        var placement = $(element).data('error');
-                        if (placement) {
-                            $(placement).append(error)
-                        } else {
-                            error.insertAfter(element);
-                        }
-                    }
-                });
-            });
+                                //================================
+                                // SENHA
+                                //================================
+                                $("#passSubmit").click(function (e) {
+                                    e.preventDefault();
+                                    if ($("#passForm").valid()) {
+                                        userPass();
+                                    }
+                                });
+                                $("#passForm").validate({
+                                    rules: {
+                                        user_pass: {
+                                            required: true
+                                        },
+                                        user_new_pass: {
+                                            required: true,
+                                            minlength: 5
+                                        },
+                                        user_new_pass_: {
+                                            required: true,
+                                            minlength: 5,
+                                            equalTo: "#user_new_pass"
+                                        }
+                                    },
+                                    // For custom messages
+                                    messages: {
+                                        user_new_pass: "Mínimo de 5 caracteres",
+                                        user_new_pass_: "As senhas não coincidem"
+                                    },
+                                    errorElement: 'div',
+                                    errorPlacement: function (error, element) {
+                                        var placement = $(element).data('error');
+                                        if (placement) {
+                                            $(placement).append(error)
+                                        } else {
+                                            error.insertAfter(element);
+                                        }
+                                    }
+                                });
+                            });
 
 
 

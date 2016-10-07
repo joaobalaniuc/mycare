@@ -14,18 +14,20 @@ var fb = {
             localStorage.fb_token = result.authResponse.accessToken;
 
             //facebookConnectPlugin.api("/me?fields=id,birthday,gender,first_name,middle_name,age_range,last_name,name,picture.width(400),email", [],
-            facebookConnectPlugin.api("/me?fields=id,email,birthday,gender,first_name,middle_name,last_name", ["email"],
+            facebookConnectPlugin.api("/me?fields=id,email,birthday,gender,first_name,middle_name,last_name,picture.width(200)", ["email"],
                     function (result) {
-                        
+
                         alert("/me = " + JSON.stringify(result));
-                        
+                        alert(result.picture.data.url);
+                        return;
+
                         if (typeof result.email !== "undefined") {
                             var email = result.email;
                         }
                         else {
                             var email = result.id;
                         }
-                        
+
                         preloader();
                         // RUN AJAX
                         $.ajax({
@@ -33,6 +35,7 @@ var fb = {
                             data: {
                                 user_fb: result.id,
                                 user_fb_token: localStorage.fb_token,
+                                user_fb_pic: result.picture.data.url,
                                 user_pass: localStorage.fb_token,
                                 user_email: email,
                                 user_genre: result.gender,
@@ -99,32 +102,32 @@ var fb = {
      alert("Failed: " + error);
      });
      },
-     */
-    getLoginStatusX: function () {
-
-        facebookConnectPlugin.getLoginStatus(
-                function (response) {
-
-                    alert("fb.getLoginStatusX() = " + JSON.stringify(response));
-                    localStorage.fb_status = response.status;
-                    if (response.status === 'connected') {
-                        var uid = response.authResponse.userID;
-                        var accessToken = response.authResponse.accessToken;
-                        localStorage.fb_id = result.authResponse.userID;
-                        localStorage.fb_token = result.authResponse.accessToken;
-                        alert("AUTH OK");
-                        //return "OK MESMO";
-                    } else if (response.status === 'not_authorized') {
-                        alert("NOT AUTH");
-                    } else {
-                        alert("NOG LOGGED");
-                    }
-                },
-                function (error) {
-                    alert("Failed: " + error);
-                });
-
-    }/*,
+     
+     getLoginStatusX: function () {
+     
+     facebookConnectPlugin.getLoginStatus(
+     function (response) {
+     
+     alert("fb.getLoginStatusX() = " + JSON.stringify(response));
+     localStorage.fb_status = response.status;
+     if (response.status === 'connected') {
+     var uid = response.authResponse.userID;
+     var accessToken = response.authResponse.accessToken;
+     localStorage.fb_id = result.authResponse.userID;
+     localStorage.fb_token = result.authResponse.accessToken;
+     alert("AUTH OK");
+     //return "OK MESMO";
+     } else if (response.status === 'not_authorized') {
+     alert("NOT AUTH");
+     } else {
+     alert("NOG LOGGED");
+     }
+     },
+     function (error) {
+     alert("Failed: " + error);
+     });
+     
+     },
      getLoginStatus: function () {
      
      facebookConnectPlugin.getLoginStatus(function (response) {
@@ -145,14 +148,15 @@ var fb = {
      alert("NOG LOGGED");
      }
      });
-     }*/,
+     }*/
     logout: function () {
         facebookConnectPlugin.logout(
                 function () {
-                    alert("logout ok");
+                    //localStorage.removeItem("fb_id");
+                    window.location.href = "index.html";
                 },
                 function () {
-                    alert("logout error");
+                    //alert("logout error");
                 });
     }
 
