@@ -32,7 +32,10 @@ $(document).ready(function () {
         e.preventDefault();
         var href = $(this).attr("data-go");
         sessionStorage.categ_id = 0;
-        window.location.href = href;
+        $("body").fadeOut("fast", function() {
+            window.location.href = href;
+        });
+        
     });
 });
 

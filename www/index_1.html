@@ -39,38 +39,46 @@ functions.js:
             <!-- Page Contents -->
             <div id="content" class="main animated fadein">
 
-                <!-- Slider -->         
-                <div class="swiper-container swiper-slider">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="img/promo1.jpg" alt="">
-                            <!--<div class="opacity-overlay"></div>
-                            <div class="bottom center">
-                                <h4 class="white-text m-0"><strong>Eclipse is There!</strong></h4>
-                                <p class="text-flow white-text m-0">A mobile focused template</p>
-                            </div>-->
+                <div class="bg-3">
+                    <div class="oopacity-overlay"></div>
+                    <!-- Slider -->         
+                    <div class="swiper-container swiper-slider slider-sliced">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="slider-bottom-right valign-wrapper">
+                                    <div class="valign center-align">
+                                        <h2><strong>Help Animal</strong></h2>
+                                        <p>Tudo que um animal precisa,<br/>em um só lugar</p>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="swiper-slide">
-                            <img src="img/promo2.jpg" alt="">
-                            <!--<div class="opacity-overlay"></div>
-                            <div class="bottom left-align">
-                                <h4 class="white-text m-0"><strong>Eclipse is There!</strong></h4>
-                                <p class="text-flow white-text m-0">A mobile focused template</p>
-                            </div>-->
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="img/promo3.jpg" alt="">
-                            <!--<div class="opacity-overlay"></div>
-                            <div class="bottom right-align">
-                                <h4 class="white-text m-0"><strong>Eclipse is There!</strong></h4>
-                                <p class="text-flow white-text m-0">A mobile focused template</p>
-                            </div>-->
-                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"></div>
                     </div>
-                    <!-- Add Pagination -->
-                    <div class="swiper-pagination"></div>
+                    <!-- End of Slider -->
                 </div>
-                <!-- End of Slider -->
+
+                <!-- Intro --
+                <div class="section center grey lighten-5">
+                    <i class="ion-alert-circled big"></i>
+                    <h4 class="m-0"><strong>Emergência?</strong></h4>
+                    <div class="line"></div>
+                    <button type="button" class="btn orange waves-effect waves-light">
+                        <i class="ion-search" style="font-size:16px"></i>
+                        Veterinário mais próximo
+                    </button>
+                </div>
+                -->
+
+                <!-- Filters -->
+                <div class="section center grey lighten-5" style="padding-bottom:20px;margin-top:-20px">
+                    <i class="ion-happy-outline big"></i>
+                    <h4 class="m-0"><strong>Anúncios</strong></h4>
+                    <div class="line"></div>
+                    <p class="text-flow m-0">O que você está procurando?</p>
+                </div>
 
                 <!-- Shop -->
                 <div style="text-shadow:2px 2px 5px #000">
@@ -220,17 +228,9 @@ functions.js:
                     window.location.href = "login.html";
                     return;
                 }
-
-                // Swiper Sliders
-                var swiper = new Swiper('.swiper-slider', {
-                    pagination: '.swiper-pagination',
-                    paginationClickable: true,
-                    nextButton: '.swiper-button-next',
-                    prevButton: '.swiper-button-prev',
-                    autoplay: false,
-                    loop: true
-                });
-
+                else {
+                    //preloader(false);
+                }
             });
             $('body').on('click', '.go_list', function () {
                 var id = $(this).attr("data-id");

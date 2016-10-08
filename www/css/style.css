@@ -240,6 +240,7 @@ h1.title.big {
 }
 .primary-color {
     background-color: #62ca9c !important;
+    background-color: #ff0036 !important;
 }
 .primary-border {
     border-color: #62ca9c !important;
@@ -784,9 +785,11 @@ nav ul li {
     -moz-transition: visibility 0s 0.45s;
     transition: visibility 0s 0.45s;
     /*background: -webkit-linear-gradient(135deg,#263d1a,#16becf);
-    background: linear-gradient(135deg,#263d1a,#16becf);*/
-    background: -webkit-linear-gradient(135deg,#bcd861,#16becf);
-    background: linear-gradient(135deg,#bcd861,#16becf);
+    background: linear-gradient(135deg,#263d1a,#16becf);
+    /*background: -webkit-linear-gradient(135deg,#bcd861,#16becf);
+    background: linear-gradient(135deg,#bcd861,#16becf);*/
+    /*background:url(../img/bg1.jpg);
+    background-size: auto 100% ;*/
 }
 .menu .menu-navigation {
     height: 100%;

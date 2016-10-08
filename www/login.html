@@ -44,15 +44,15 @@
                         <a id="userFb" class="waves-effect waves-light btn-large light-blue darken-4 block m-20 animated bouncein delay-5" href="#">
                             <i class="ion-social-facebook left"></i> Entrar com Facebook
                         </a> 
-                        <span class="block white-text">Não tem uma conta? <a class="accent-text" href="signup.html">Criar Conta</a></span>
-                        <span class="block white-text">Esqueceu sua senha? <a class="accent-text" href="forgot.html">Recuperar</a></span>
+                        <span class="block white-text">Não tem uma conta? <a class="accent-text" data-go="signup.html" href="#!">Criar Conta</a></span>
+                        <span class="block white-text">Esqueceu sua senha? <a class="accent-text" data-go="forgot.html" href="#!">Recuperar</a></span>
                     </div>
                 </div>
 
             </div> 
             <!-- End of Page Contents -->
 
-            <!-- Menu Trigger -->
+            <!-- Menu Trigger --
             <div class="menu-trigger z-depth-2"> 
                 <div id="menu-icon">
                     <span></span>
@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            <!-- Menu -->
+            <!-- Menu --
             <nav id="menu" class="menu">
 
             </nav> <!-- End of Menu -->
@@ -92,19 +92,24 @@
 
         <script>
             $(document).ready(function () {
+
+                if (localStorage.user_id > 0) {
+                    //window.location.href = "index.html";
+                    return;
+                }
                 localStorage.removeItem("user_id");
                 localStorage.removeItem("user_email");
                 localStorage.removeItem("user_pass");
-                
+
                 $("#userFb").click(function () {
                     fb.login();
                 });
                 $("#userLogin").click(function (e) {
-                e.preventDefault();
-                userLogin();
+                    e.preventDefault();
+                    userLogin();
+                });
             });
-            });
-            
+
         </script>
     </body>
 </html>
