@@ -2,9 +2,6 @@ function userSend() {
     // DATA TO SEND
     var data_form = $("#userForm").serialize();
     var data_user = {
-        user_id: localStorage.user_id,
-        user_email: localStorage.user_email,
-        user_pass: localStorage.user_pass,
         //
     };
     var data_user = $.param(data_user); // serialize
@@ -41,7 +38,7 @@ function userSend() {
                     if (res.id) {
                         localStorage.user_id = res.id;
                         localStorage.user_email = res.email;
-                        localStorage.user_pass = res.pass;
+                        localStorage.user_pass = $("#user_pass").val();
                         window.location.href = "index.html";
                     }
 

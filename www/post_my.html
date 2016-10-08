@@ -39,7 +39,9 @@
                 </div>
 
                 <center>
-                    <a onclick="window.location.href = 'post_send.html'" class="waves-effect waves-light btn-large animated fadeinright delay-1 brown darken-1">Criar Novo Anúncio</a>
+                    <a href="#!" data-go="post_send.html" class="waves-effect waves-light btn-large animated fadeinright delay-1 brown darken-1">
+                        Criar Novo Anúncio
+                    </a>
                 </center>
 
                 <div id="nenhum" style="display:none;font-size:24px;padding:40px;text-align:center">
@@ -123,69 +125,69 @@
         <script src="js/prettydate.js"></script>
 
         <script>
-                        $('body').on('click', '.go_read', function () {
-                            var id = $(this).closest(".template").attr("data-id");
-                            sessionStorage.post_id = id;
-                            window.location.href = "post_read.html";
-                        });
+            $('body').on('click', '.go_read', function () {
+                var id = $(this).closest(".template").attr("data-id");
+                sessionStorage.post_id = id;
+                window.location.href = "post_read.html";
+            });
 
-                        $('body').on('click', '.excluir', function () {
-                            // save id
-                            var id = $(this).closest(".template").attr("data-id");
-                            sessionStorage.del_post_id = id;
-                            // open modal
-                            var title = $(this).closest(".template").attr("data-title");
-                            $("#modal1 .post_title").html(title);
-                            $("#modal1").openModal();
-                        });
+            $('body').on('click', '.excluir', function () {
+                // save id
+                var id = $(this).closest(".template").attr("data-id");
+                sessionStorage.del_post_id = id;
+                // open modal
+                var title = $(this).closest(".template").attr("data-title");
+                $("#modal1 .post_title").html(title);
+                $("#modal1").openModal();
+            });
 
-                        $('body').on('click', '#excluir', function () {
-                            postDel(sessionStorage.del_post_id);
-                        });
+            $('body').on('click', '#excluir', function () {
+                postDel(sessionStorage.del_post_id);
+            });
 
-                        $('body').on('click', '.editar', function () {
-                            // save id
-                            var id = $(this).closest(".template").attr("data-id");
-                            sessionStorage.edit_post_id = id;
-                            // empresa ou pessoa?
-                            var cnpj = $(this).closest(".template").attr("data-cnpj");
-                            if (cnpj) {
-                                window.location.href = "post_send_jur.html";
-                            }
-                            else {
-                                window.location.href = "post_send_fis.html";
-                            }
-                        });
+            $('body').on('click', '.editar', function () {
+                // save id
+                var id = $(this).closest(".template").attr("data-id");
+                sessionStorage.edit_post_id = id;
+                // empresa ou pessoa?
+                var cnpj = $(this).closest(".template").attr("data-cnpj");
+                if (cnpj) {
+                    window.location.href = "post_send_jur.html";
+                }
+                else {
+                    window.location.href = "post_send_fis.html";
+                }
+            });
 
-                        $('body').on('click', '.com', function () {
-                            // save id
-                            var id = $(this).closest(".template").attr("data-id");
-                            sessionStorage.edit_post_id = id;
-                            // save title
-                            var title = $(this).closest(".template").attr("data-title");
-                            sessionStorage.edit_post_title = title;
-                            // save com status
-                            var com = $(this).closest(".template").attr("data-com");
-                            sessionStorage.edit_post_com = com;
-                            //alert(id);
-                            sessionStorage.edit_post_id = id;
-                            window.location.href = "com_my.html";
-                        });
+            $('body').on('click', '.com', function () {
+                // save id
+                var id = $(this).closest(".template").attr("data-id");
+                sessionStorage.edit_post_id = id;
+                // save title
+                var title = $(this).closest(".template").attr("data-title");
+                sessionStorage.edit_post_title = title;
+                // save com status
+                var com = $(this).closest(".template").attr("data-com");
+                sessionStorage.edit_post_com = com;
+                //alert(id);
+                sessionStorage.edit_post_id = id;
+                window.location.href = "com_my.html";
+            });
 
-                        $('body').on('click', '.fotos', function () {
-                            // save id
-                            var id = $(this).closest(".template").attr("data-id");
-                            sessionStorage.edit_post_id = id;
-                            // save title
-                            var title = $(this).closest(".template").attr("data-title");
-                            sessionStorage.edit_post_title = title;
-                            // save total pics
-                            var com = $(this).closest(".template").attr("data-pic");
-                            sessionStorage.edit_post_pic = com;
-                            //alert(id);
-                            sessionStorage.edit_post_id = id;
-                            window.location.href = "pic_my.html";
-                        });
+            $('body').on('click', '.fotos', function () {
+                // save id
+                var id = $(this).closest(".template").attr("data-id");
+                sessionStorage.edit_post_id = id;
+                // save title
+                var title = $(this).closest(".template").attr("data-title");
+                sessionStorage.edit_post_title = title;
+                // save total pics
+                var com = $(this).closest(".template").attr("data-pic");
+                sessionStorage.edit_post_pic = com;
+                //alert(id);
+                sessionStorage.edit_post_id = id;
+                window.location.href = "pic_my.html";
+            });
         </script>
 
     </body>
