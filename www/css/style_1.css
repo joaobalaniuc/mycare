@@ -239,20 +239,20 @@ h1.title.big {
     color: #1f1f1f !important;
 }
 .primary-color {
-    background-color: #ff003c !important;
+    background-color: #62ca9c !important;
     background-color: #ff0036 !important;
 }
 .primary-border {
-    border-color: #ff003c !important;
+    border-color: #62ca9c !important;
 }
 .accent-text {
-    color: #ff003c !important;
+    color: #62ca9c !important;
 }
 .accent-color {
-    background-color: #ff003c !important;
+    background-color: #62ca9c !important;
 }
 .accent-border {
-    border-color: #ff003c !important;
+    border-color: #62ca9c !important;
 }
 
 /* 3. Utility
@@ -1048,7 +1048,7 @@ nav ul li {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 /* Sliders */
 .swiper-pagination-bullet-active {
-    background: #ff003c;
+    background: #62ca9c;
 }
 .swiper-button-next, 
 .swiper-container-rtl .swiper-button-prev {
@@ -1246,7 +1246,7 @@ nav ul li {
     line-height: 26px;
 }
 .author-bio .btn:hover {
-    background-color: #ff003c !important;
+    background-color: #62ca9c !important;
     color: #fff !important;
 }
 .author-bio .opacity-overlay {
@@ -1259,11 +1259,11 @@ nav ul li {
     opacity: 0.6;
 }
 .tabs .tab a.active {
-    color: #ff003c;
+    color: #62ca9c;
     opacity: 1;
 }
 .tabs .indicator {
-    background-color: #ff003c;
+    background-color: #62ca9c;
 }
 /* Social Share */
 .project-social-share {
@@ -1342,7 +1342,7 @@ input[type=datetime-local]:focus:not([readonly]),
 input[type=tel]:focus:not([readonly]), 
 input[type=number]:focus:not([readonly]), 
 textarea.materialize-textarea:focus:not([readonly]) {
-    border: 1px solid #ff003c;
+    border: 1px solid #62ca9c;
     box-shadow: none;
     color: initial;
 }
@@ -1397,8 +1397,8 @@ textarea.materialize-textarea:focus:not([readonly])+label {
     text-align: center;
 }
 [type="radio"]:checked+label:after {
-    border: 2px solid #ff003c;
-    background-color: #ff003c;
+    border: 2px solid #62ca9c;
+    background-color: #62ca9c;
 }
 textarea.materialize-textarea {
     min-height: 88px;
@@ -1447,9 +1447,9 @@ textarea.materialize-textarea+label {
     -webkit-transition: all 0.3s ease-in
 }
 .controls button.active {
-    background: #ff003c;
+    background: #62ca9c;
     color: #fff;
-    border-color: #ff003c;
+    border-color: #62ca9c;
 }
 .controls label {
     margin-right: 8px;
@@ -1902,8 +1902,8 @@ ul.faq {
     margin-bottom: 8px;
 }
 .sizes .size:hover {
-    border: 1px solid #ff003c;
-    background-color: #ff003c;
+    border: 1px solid #62ca9c;
+    background-color: #62ca9c;
     color: #fff;
 }
 .rating {
