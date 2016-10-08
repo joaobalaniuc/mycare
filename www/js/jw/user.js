@@ -2,8 +2,10 @@ function userSend() {
     // DATA TO SEND
     var data_form = $("#userForm").serialize();
     var data_user = {
-        //user_email: "...",
-        //query: "insert"
+        user_id: localStorage.user_id,
+        user_email: localStorage.user_email,
+        user_pass: localStorage.user_pass,
+        //
     };
     var data_user = $.param(data_user); // serialize
     var data = data_form + "&" + data_user;

@@ -13,6 +13,10 @@ preloader();
 $.ajax({
     url: localStorage.server + "/com_list.php",
     data: {
+        user_id: localStorage.user_id,
+        user_email: localStorage.user_email,
+        user_pass: localStorage.user_pass,
+        //
         all: true,
         post_id: sessionStorage.edit_post_id
     },
@@ -58,7 +62,9 @@ $.ajax({
                         $(this).find(".com_txt").html(val["com_txt"]);
                         $(this).find(".com_date").html(val["com_date"]);
                         $(this).find(".com_user").html(val["user_first_name"] + " " + val["user_last_name"]);
-
+                        if (val["user_fb_pic"] !== null) {
+                            $(this).find(".avatar").html(val["user_fb_pic"]);
+                        }
                         var rand = getRandomInt(1, 7);
                         $(this).find(".post_img").attr("src", "img/simula" + rand + ".jpg");
 

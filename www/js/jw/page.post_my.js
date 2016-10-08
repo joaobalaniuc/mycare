@@ -2,7 +2,10 @@ preloader();
 $.ajax({
     url: localStorage.server + "/post_my.php",
     data: {
-        //no_view: true
+        user_id: localStorage.user_id,
+        user_email: localStorage.user_email,
+        user_pass: localStorage.user_pass
+                //no_view: true
     },
     type: 'GET',
     dataType: 'jsonp',

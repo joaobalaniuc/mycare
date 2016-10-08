@@ -67,6 +67,10 @@ function postList(last_id) {
     $.ajax({
         url: localStorage.server + "/post_list.php",
         data: {
+            user_id: localStorage.user_id,
+            user_email: localStorage.user_email,
+            user_pass: localStorage.user_pass,
+            //
             last_id: sessionStorage.last_id,
             categ_id: sessionStorage.categ_id
         },
@@ -178,6 +182,10 @@ function postRead(post_id, cb) {
     $.ajax({
         url: localStorage.server + "/post_read.php",
         data: {
+            user_id: localStorage.user_id,
+            user_email: localStorage.user_email,
+            user_pass: localStorage.user_pass,
+            //
             post_id: post_id
         },
         type: 'GET',
@@ -205,6 +213,10 @@ function postDel(post_id) {
     $.ajax({
         url: localStorage.server + "/post_del.php",
         data: {
+            user_id: localStorage.user_id,
+            user_email: localStorage.user_email,
+            user_pass: localStorage.user_pass,
+            //
             post_id: post_id
         },
         type: 'GET',
