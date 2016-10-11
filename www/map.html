@@ -96,9 +96,12 @@
                  sessionStorage.lng = -40.292573;
                  mapAjax();*/
 
-                geo(function () {
-                    mapAjax();
-                });
+                /*geo(function () {
+                 mapAjax();
+                 });*/
+
+                mapAjax();
+                geo();
 
                 /*
                  var markers = [
@@ -149,27 +152,33 @@
                 epsg4326 = new OpenLayers.Projection("EPSG:4326"); //WGS 1984 projection
                 projectTo = map.getProjectionObject(); //The map projection (Spherical Mercator)
 
-                var lonLat = new OpenLayers.LonLat(sessionStorage.lng, sessionStorage.lat).transform(epsg4326, projectTo);
+                if (typeof sessionStorage.lng !== "undefined") {
+                    var zoom = 16;
+                    var lonLat = new OpenLayers.LonLat(sessionStorage.lng, sessionStorage.lat).transform(epsg4326, projectTo);
+                }
+                else {
+                    var zoom = 10;
+                    var lonLat = new OpenLayers.LonLat(-40.32119, -20.2821881).transform(epsg4326, projectTo);
+                }
 
-
-                var zoom = 16;
                 map.setCenter(lonLat, zoom);
-
                 var vectorLayer = new OpenLayers.Layer.Vector("Overlay");
 
                 //--------------------------
                 // USER'S POSITION
                 //--------------------------
-                var lon = sessionStorage.lng;
-                var lat = sessionStorage.lat;
-                var icon = "/img/map_marker.gif";
+                if (typeof sessionStorage.lng !== "undefined") {
+                    var lon = sessionStorage.lng;
+                    var lat = sessionStorage.lat;
+                    var icon = "/img/map_marker.gif";
 
-                var feature = new OpenLayers.Feature.Vector(
-                        new OpenLayers.Geometry.Point(lon, lat).transform(epsg4326, projectTo),
-                        {description: ""},
-                {externalGraphic: localStorage.server + icon, graphicHeight: 50, graphicWidth: 50, graphicXOffset: -25, graphicYOffset: -50}
-                );
-                vectorLayer.addFeatures(feature);
+                    var feature = new OpenLayers.Feature.Vector(
+                            new OpenLayers.Geometry.Point(lon, lat).transform(epsg4326, projectTo),
+                            {description: ""},
+                    {externalGraphic: localStorage.server + icon, graphicHeight: 50, graphicWidth: 50, graphicXOffset: -25, graphicYOffset: -50}
+                    );
+                    vectorLayer.addFeatures(feature);
+                }
 
                 //--------------------------
                 // ADS POSITIONS

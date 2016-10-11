@@ -84,7 +84,7 @@ function geo(cb) {
          'Speed: ' + position.coords.speed + '\n' +
          'Timestamp: ' + position.timestamp + '\n');*/
 
-        alert(sessionStorage.lat + "x" + sessionStorage.lng);
+        //alert(sessionStorage.lat + "x" + sessionStorage.lng);
 
         if (isFunction(cb)) { // isfunction = index.js
             cb();
