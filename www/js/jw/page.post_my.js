@@ -54,10 +54,10 @@ $.ajax({
                         if (val["post_status"] == "0") {
                             var post_status = "<span class='red-text'><img src='img/ico-block.gif' style='width:16px;display:inline-block;vertical-align:text-bottom' /> BLOQUEADO</span>";
                         }
-                        $(this).find(".post_title").html(val["post_id"] + " " + val["post_title"]);
+                        $(this).find(".post_title").html(val["post_title"]);
                         $(this).find(".post_txt").html(val["post_txt"]);
                         $(this).find(".post_date").html(val["post_date"]);
-                        $(this).find(".post_status").html(post_status);
+                        $(this).find(".post_status").html(post_status + " <br/><span style='color:#ccc'>#" + val["post_id"] + "</span>");
 
                         var rand = getRandomInt(1, 7);
                         $(this).find(".post_img").attr("src", "img/simula" + rand + ".jpg");

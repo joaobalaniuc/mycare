@@ -9,6 +9,20 @@
         <meta content="yes" name="apple-mobile-web-app-capable"/>
         <meta content="yes" name="apple-touch-fullscreen"/>
         <link rel="stylesheet" href="css/include.css" />
+        <style type="text/css">
+            .share a {
+                display:inline-block;
+                margin:5px;
+            }
+            .share a i {
+                font-size:50px !important;
+                margin:0;
+            }
+            .share a span {
+                display:block;
+                font-size:12px;
+            }
+        </style>
     </head>
 
     <body>
@@ -96,20 +110,46 @@
                             <div id="iframe"></div>
                             <a id="geo" href="#!" class="primary-color waves-effect waves-light btn block animated bouncein" style="font-size:12px;margin-top:-5px">
                                 <i style="font-size:16px !important" class="fa fa-car"></i>
-                                &nbsp; Como chegar
+                                &nbsp; Como chegar aqui
                             </a>
 
 
                             <!-- Share -->
                             <div class="share center-align" style="margin-top:35px">
-                                <h5 style="font-weight:bold;margin-bottom:10px">Entre em contato</h5>
+                                <h5 style="margin-bottom:10px">Entre em contato com<br/><span class="post_title" style="font-weight:bold;"></span></h5>
                                 <span>
-                                    <i onclick="javascript:cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');" style="font-size:50px !important" class="fa fa-facebook-official p-10 blue-text text-darken-4"></i>
-                                    <i style="font-size:50px !important" class="fa fa-twitter-square p-10 blue-text"></i>
-                                    <i style="font-size:50px !important" class="fa fa-instagram p-10 red-text"></i>
-                                    <i style="font-size:50px !important" class="fa fa-phone-square p-10 green-text"></i>
-                                    <i style="font-size:50px !important" class="fa fa-envelope-square p-10 orange-text"></i>
-                                    <i style="font-size:50px !important" class="fa fa-external-link-square p-10 cyan-text "></i>
+                                    <a href="#!" class="phone green-text">
+                                        <i class="fa fa-phone-square"></i>
+                                        <span>Telefonar</span>
+                                    </a>
+                                    <a href="#!" class="whatsapp green-text text-accent-4">
+                                        <i class="fa fa-whatsapp"></i>
+                                        <span>WhatsApp</span>
+                                    </a>
+                                    <a href="#!" class="email orange-text">
+                                        <i class="fa fa-envelope-square"></i>
+                                        <span>Enviar E-mail</span>
+                                    </a>
+                                    <a href="#!" class="site cyan-text">
+                                        <i class="fa fa-external-link-square"></i>
+                                        <span>Visitar Site</span>
+                                    </a>
+                                    <a href="#!" class="facebook blue-text text-darken-4">
+                                        <i class="fa fa-facebook-official"></i>
+                                        <span>Facebook</span>
+                                    </a>
+                                    <a href="#!" class="twitter blue-text">
+                                        <i class="fa fa-twitter-square"></i>
+                                        <span>Twitter</span>
+                                    </a>
+                                    <a href="#!" class="instagram red-text">
+                                        <i class="fa fa-instagram"></i>
+                                        <span>Instagram</span>
+                                    </a>
+                                    <a href="#!" class="linkedin light-blue-text text-darken-2">
+                                        <i class="fa fa-linkedin-square"></i>
+                                        <span>Linkedin</span>
+                                    </a>
                                 </span>
                             </div>
                         </div>
@@ -253,107 +293,112 @@
         <script>
 
 
-                                        $(document).ready(function () {
+            $(document).ready(function () {
 
-                                            geo();
+                geo();
 
-                                            $("#geo").click(function () {
+                $("#geo").click(function () {
 
-                                                launchnavigator.navigate([sessionStorage.post_lat, sessionStorage.post_lng], {
-                                                    start: sessionStorage.lat + "," + sessionStorage.lng
-                                                });
+                    launchnavigator.navigate([sessionStorage.post_lat, sessionStorage.post_lng], {
+                        start: sessionStorage.lat + "," + sessionStorage.lng
+                    });
 
-                                            });
+                });
 
-                                            $("#fotosButton").click(function () {
-                                                setTimeout(function () {
-                                                    $("#fotos_loading").hide();
-                                                    $('.grid').show().masonry({
-                                                        itemSelector: '.grid-item'
-                                                    });
-                                                }, 500);
-                                            });
+                $("#fotosButton").click(function () {
+                    setTimeout(function () {
+                        $("#fotos_loading").hide();
+                        $('.grid').show().masonry({
+                            itemSelector: '.grid-item'
+                        });
+                    }, 500);
+                });
 
-                                            if (sessionStorage.post_id > 0) {
-                                                // post data
-                                                preloader("", 7);
-                                                postRead(sessionStorage.post_id, postReadCb);
-                                                // comment list
-                                                $('#comLoading').fadeIn("fast"); // hide in comListCb()
-                                                sessionStorage.com_last_id = 0; // util for comListCb()
-                                                comList(sessionStorage.post_id, comListCb, 0);
-                                            }
+                if (sessionStorage.post_id > 0) {
+                    // post data
+                    preloader("", 7);
+                    postRead(sessionStorage.post_id, postReadCb);
+                    // comment list
+                    $('#comLoading').fadeIn("fast"); // hide in comListCb()
+                    sessionStorage.com_last_id = 0; // util for comListCb()
+                    comList(sessionStorage.post_id, comListCb, 0);
+                }
 
-                                            $("body").on("click", "#loadmore", function (e) {
-                                                e.preventDefault();
-                                                // comment list
-                                                $(".loadmore").remove();
-                                                $('#comLoading').fadeIn("fast");
-                                                comList(sessionStorage.post_id, comListCb);
-                                            });
+                $("body").on("click", "[data-url]", function () {
+                    var url = $(this).attr("data-url");
+                    cordova.InAppBrowser.open(url, '_blank', 'location=yes');
+                });
 
-                                            $("#like_do").click(function () {
+                $("body").on("click", "#loadmore", function (e) {
+                    e.preventDefault();
+                    // comment list
+                    $(".loadmore").remove();
+                    $('#comLoading').fadeIn("fast");
+                    comList(sessionStorage.post_id, comListCb);
+                });
 
-                                                $("#like_but").hide();
-                                                $("#like_loading").show();
+                $("#like_do").click(function () {
 
-                                                // RUN AJAX
-                                                $.ajax({
-                                                    url: localStorage.server + "/post_like.php",
-                                                    data: {
-                                                        user_id: localStorage.user_id,
-                                                        user_email: localStorage.user_email,
-                                                        user_pass: localStorage.user_pass,
-                                                        //
-                                                        post_id: sessionStorage.post_id
-                                                    },
-                                                    type: 'GET',
-                                                    dataType: 'jsonp',
-                                                    jsonp: 'callback',
-                                                    timeout: 5000
-                                                })
-                                                        .always(function () {
-                                                            $("#like_loading").hide();
-                                                            $("#like_but").show();
-                                                        })
+                    $("#like_but").hide();
+                    $("#like_loading").show();
 
-                                                        .fail(function () {
-                                                            
-                                                        })
+                    // RUN AJAX
+                    $.ajax({
+                        url: localStorage.server + "/post_like.php",
+                        data: {
+                            user_id: localStorage.user_id,
+                            user_email: localStorage.user_email,
+                            user_pass: localStorage.user_pass,
+                            //
+                            post_id: sessionStorage.post_id
+                        },
+                        type: 'GET',
+                        dataType: 'jsonp',
+                        jsonp: 'callback',
+                        timeout: 5000
+                    })
+                            .always(function () {
+                                $("#like_loading").hide();
+                                $("#like_but").show();
+                            })
 
-                                                        .done(function (res) {
+                            .fail(function () {
 
-                                                            console.log(res);
-                                                            if (res !== null) {
+                            })
 
-                                                                if (res.error) {
-                                                                    return;
-                                                                }
-                                                                if (res.success) {
-                                                                    $("#post_like").html(res.success);
-                                                                    if (res.like > 0) {
-                                                                        $("#post_like").css("color", "blue");
-                                                                        $("#post_like_txt").css("color", "blue").html("Curtiu");
-                                                                    }
-                                                                    else {
-                                                                        $("#post_like").css("color", "");
-                                                                        $("#post_like_txt").css("color", "").html("Curtir");
-                                                                    }
-                                                                }
+                            .done(function (res) {
+
+                                console.log(res);
+                                if (res !== null) {
+
+                                    if (res.error) {
+                                        return;
+                                    }
+                                    if (res.success) {
+                                        $("#post_like").html(res.success);
+                                        if (res.like > 0) {
+                                            $("#post_like").css("color", "blue");
+                                            $("#post_like_txt").css("color", "blue").html("Curtiu");
+                                        }
+                                        else {
+                                            $("#post_like").css("color", "");
+                                            $("#post_like_txt").css("color", "").html("Curtir");
+                                        }
+                                    }
 
 
-                                                            } // res not null
-                                                        }); // after ajax
-                                            });
+                                } // res not null
+                            }); // after ajax
+                });
 
-                                            $("#newcom").submit(function (e) {
-                                                e.preventDefault();
-                                                $(this).hide();
-                                                comSend();
-                                                return false;
-                                            });
+                $("#newcom").submit(function (e) {
+                    e.preventDefault();
+                    $(this).hide();
+                    comSend();
+                    return false;
+                });
 
-                                        });
+            });
         </script>
     </body>
 </html>

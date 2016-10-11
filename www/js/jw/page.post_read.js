@@ -127,6 +127,37 @@ function postReadCb(res) {
         $("#fotos").hide();
     }
 
+    //==============================
+    // URL CONTACT
+    //==============================
+    if (post[0]["post_facebook"] !== null && post[0]["post_facebook"] != "") {
+        $(".facebook").attr("data-url", post[0]["post_facebook"]).show();
+    }
+    if (post[0]["post_twitter"] !== null && post[0]["post_twitter"] != "") {
+        $(".twitter").attr("data-url", post[0]["post_twitter"]).show();
+    }
+    if (post[0]["post_instagram"] !== null && post[0]["post_instagram"] != "") {
+        $(".instagram").attr("data-url", post[0]["post_instagram"]).show();
+    }
+    if (post[0]["post_twitter"] !== null && post[0]["post_twitter"] != "") {
+        $(".twitter").attr("data-url", post[0]["post_twitter"]).show();
+    }
+    if (post[0]["post_linkedin"] !== null && post[0]["post_linkedin"] != "") {
+        $(".linkedin").attr("data-url", post[0]["post_linkedin"]);
+    }
+    if (post[0]["post_site"] !== null && post[0]["post_site"] != "") {
+        $(".site").attr("data-url", post[0]["post_site"]).show();
+    }
+    if (post[0]["post_email"] !== null && post[0]["post_email"] != "") {
+        $(".email").attr("href", "mailto:" + post[0]["post_email"]).show();
+    }
+    if (post[0]["post_phone"] !== null && post[0]["post_phone"] != "") {
+        $(".phone").attr("href", "tel:0" + post[0]["post_phone"]).show();
+    }
+    if (post[0]["post_phone2"] !== null && post[0]["post_phone2"] != "") {
+        $(".whatsapp").attr("href", "whatsapp://send?abid=+55" + post[0]["post_phone2"]).show();
+    }
+
     sessionStorage.com_total = post[0]["post_total_com"];
 
     $(".loadmore").remove();
