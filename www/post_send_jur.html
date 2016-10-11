@@ -57,12 +57,12 @@
                         </div>
 
                         <div class="input-field animated fadeinright delay-3">
-                            <input name="post_phone" type="text">
+                            <input pattern="[0-9]" name="post_phone" type="text">
                             <label>Telefone</label>
                         </div>
 
                         <div class="input-field animated fadeinright delay-4">
-                            <input name="post_phone2" type="text">
+                            <input pattern="[0-9]" name="post_phone2" type="text">
                             <label>WhatsApp</label>
                         </div>
 
@@ -83,7 +83,7 @@
                         </div>
 
                         <div class="input-field animated fadeinright delay-4">
-                            <input id="cep" name="address_zipcode" value="" type="text" class="addess" maxlength="9" onblur="pesquisacep(this.value);">
+                            <input pattern="[0-9]" id="cep" name="address_zipcode" value="" type="text" class="addess" maxlength="9" onblur="pesquisacep(this.value);">
                             <label>CEP</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
@@ -91,7 +91,7 @@
                             <label>Logradouro</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
-                            <input name="address_number" value="" type="text" class="address">
+                            <input pattern="[0-9]" name="address_number" value="" type="text" class="address">
                             <label>Número</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
