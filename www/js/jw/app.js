@@ -10,8 +10,9 @@ function start() {
     localStorage.version = "1.0.0";
 
     // Server
-    localStorage.server = "http://192.168.0.100/mycare/server/"; // casa
+    //localStorage.server = "http://192.168.0.100/mycare/server/"; // casa
     //localStorage.server = "http://10.0.0.35/mycare/server/"; // allware
+    localStorage.server = "http://feirafree.com.br/mycare/"; // casa
     localStorage.server_img = "/app/pic/img/";
 
     // Ajax timeout
