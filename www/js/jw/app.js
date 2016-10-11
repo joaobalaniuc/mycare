@@ -49,9 +49,6 @@ var app = {
 
         start();
 
-        // GEOLOCATION
-        geo();
-
         // SPLASHSCREEN (CONFIG.XML BUGFIX)
         setTimeout(function () {
             navigator.splashscreen.hide();

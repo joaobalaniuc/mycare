@@ -212,14 +212,16 @@ functions.js:
         <script src="js/functions.js"></script>
         -->
         <script>
-            //alert("index");
-            //preloader();
+            
             $(document).ready(function () {
 
                 if (typeof localStorage.user_id === "undefined") {
                     window.location.href = "login.html";
                     return;
                 }
+
+                // GEOLOCATION
+                geo();
 
                 // Swiper Sliders
                 var swiper = new Swiper('.swiper-slider', {
