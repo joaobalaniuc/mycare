@@ -72,10 +72,6 @@ var app = {
 
 function geo(cb) {
 
-    if (isFunction(cb)) { // isfunction = index.js
-        cb();
-    }
-
     var onSuccess = function (position) {
         sessionStorage.lat = position.coords.latitude;
         sessionStorage.lng = position.coords.longitude;
@@ -87,6 +83,8 @@ function geo(cb) {
          'Heading: ' + position.coords.heading + '\n' +
          'Speed: ' + position.coords.speed + '\n' +
          'Timestamp: ' + position.timestamp + '\n');*/
+
+        alert(sessionStorage.lat + "x"sessionStorage.lng);
 
         if (isFunction(cb)) { // isfunction = index.js
             cb();
