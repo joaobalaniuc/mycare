@@ -155,7 +155,7 @@ function postReadCb(res) {
         $(".phone").attr("href", "tel:0" + post[0]["post_phone"]).show();
     }
     if (post[0]["post_phone2"] !== null && post[0]["post_phone2"] != "") {
-        $(".whatsapp").attr("href", "whatsapp://send?abid=+55" + post[0]["post_phone2"]).show();
+        $(".whatsapp").attr("href", "whatsapp://send?abid=55" + post[0]["post_phone2"]).show();
     }
 
     sessionStorage.com_total = post[0]["post_total_com"];
