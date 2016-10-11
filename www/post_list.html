@@ -9,6 +9,18 @@
         <meta content="yes" name="apple-mobile-web-app-capable"/>
         <meta content="yes" name="apple-touch-fullscreen"/>
         <link rel="stylesheet" href="css/include.css" />
+
+        <style type="text/css">
+            .img_bg {
+                box-shadow: 0px 4px 10px -5px #333;
+                background-image:url(img/grey.jpg);
+                background-repeat:no-repeat;
+                background-position:center;
+                background-size:cover;
+                height:200px;
+            }
+            .icons i {font-size:16px !important;}
+        </style>
     </head>
 
     <body>
@@ -42,14 +54,14 @@
 
                     <div id="card_template" class="card animated article fadeInRight " style="display:none;box-shadow: 0px 4px 10px -5px #ccc;">
                         <div class="go_read header-hover" style="text-shadow: 1px 1px #000;margin-top:-5px;background:url(img/transb30.png)">
-                            <img class="avatar" src="img/anonymous-user_1.png" alt="">
+                            <img class="avatar" src="img/user.png" alt="">
                             <div class="details">
                                 <span class="post_user">Jassie North</span>
                                 <span class="small post_date prettydate">5km</span>
                             </div>
                         </div>
-                        <div class="go_read image" style="box-shadow: 0px 4px 10px -5px #333;">
-                            <img class="img_fn" src="img/grey.jpg" alt="">
+                        <div class="go_read img_bg image">
+                            <!--<img class="img_fn" src="img/grey.jpg" alt="">-->
                             <div class="opacity-overlay-top"></div>
                         </div>
                         <div class="p-10" style="margin-top:-10px;mmargin-bottom:-10px !important">
@@ -57,18 +69,24 @@
                             <h4 class="go_read post_title p-10" style="margin-top:10px !important;padding-top:15px;font-size:20px;margin:0;margin-bottom:-10px;lletter-spacing:0.05em;font-weight:bold">Enjoy with my whole heart</h4>
                             <p class="go_read post_address p-10" style="padding-top:0 !important;font-size:12px"></p>
 
-                            <div class="row m-0 border-top">
-                                <div class="col s4 p-10 center ">
-                                    <h4 class="m-0"><strong class="post_view"></strong></h4>
-                                    <p class="m-0 grey-text small"><i class="fa fa-eye" aria-hidden="true"></i> Ver</p>
+                            <div class="row icons m-0 border-top">
+                                <div class="col s4 pp-10 center">
+                                    <h4 class="m-0"><i class="fa fa fa-eye"></i> <strong class="post_view"></strong></h4>
+                                    <!--
+                                    <p class="m-0 grey-text small"><i class="fa fa-eye" aria-hidden="true"></i> Viram</p>
+                                    -->
                                 </div>
-                                <div class="col s4 p-10 center">
-                                    <h4 class="m-0"><strong class="post_com"></strong></h4>
-                                    <p class="m-0 grey-text small"><i class="fa fa-comment-o" aria-hidden="true"></i> Comentar</p>
+                                <div class="col s4 pp-10 center">
+                                    <h4 class="m-0"><i class="fa fa fa-comment-o"></i> <strong class="post_com"></strong></h4>
+                                    <!--
+                                    <p class="m-0 grey-text small"><i class="fa fa-comment-o" aria-hidden="true"></i> Comentaram</p>
+                                    -->
                                 </div>
-                                <div class="col s4 p-10 center">
-                                    <h4 class="m-0"><strong class="post_like"></strong></h4>
-                                    <p class="m-0 grey-text small"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span class="post_like_txt">Curtir</span></p>
+                                <div class="col s4 pp-10 center">
+                                    <h4 class="m-0"><i class="fa fa-thumbs-o-up"></i> <strong class="post_like"></strong></h4>
+                                    <!--
+                                    <p class="m-0 grey-text small"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span class="post_like_txt">Curtiram</span></p>
+                                    -->
                                 </div>
                             </div>
 
@@ -131,7 +149,7 @@
         <script>
 
             $(document).ready(function () {
-                
+
                 sessionStorage.last_id = 0;
 
                 if (typeof sessionStorage.categ_title === "undefined") {
@@ -148,7 +166,7 @@
                 win.scroll(function () {
                     // End of the document reached?
                     if ($(document).height() - win.height() == win.scrollTop()) {
-                        
+
                         postList();
                     }
                 });

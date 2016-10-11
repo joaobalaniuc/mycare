@@ -102,3 +102,12 @@ function userUpdate() {
                 } // res not null
             }); // after ajax
 }
+
+function userLogout() {
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("user_email");
+    localStorage.removeItem("user_pass");
+    localStorage.removeItem("fb_id");
+    sessionStorage.removeItem("start");
+    window.location.href = "index.html";
+}

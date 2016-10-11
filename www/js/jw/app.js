@@ -10,9 +10,9 @@ function start() {
     localStorage.version = "1.0.0";
 
     // Server
-    localStorage.server = "http://192.168.0.100/mycare/server/";
-    //localStorage.server = "http://localhost/mycare/server/";
-    //localStorage.server = "http://10.0.0.35/mycare/server/";
+    localStorage.server = "http://192.168.0.100/mycare/server/"; // casa
+    //localStorage.server = "http://10.0.0.35/mycare/server/"; // allware
+    localStorage.server_img = "/app/pic/img/";
 
     // Ajax timeout
     localStorage.timeout = 5000; // ajax
@@ -72,8 +72,12 @@ var app = {
     }
 };
 
+function geo(cb) {
 
-function geo() {
+    if (isFunction(cb)) { // isfunction = index.js
+        cb();
+    }
+
     var onSuccess = function (position) {
         sessionStorage.lat = position.coords.latitude;
         sessionStorage.lng = position.coords.longitude;
@@ -85,6 +89,11 @@ function geo() {
          'Heading: ' + position.coords.heading + '\n' +
          'Speed: ' + position.coords.speed + '\n' +
          'Timestamp: ' + position.timestamp + '\n');*/
+
+        if (isFunction(cb)) { // isfunction = index.js
+            cb();
+        }
+
     };
     function onError(error) {
         alert('code: ' + error.code + '\n' +

@@ -32,10 +32,10 @@ $(document).ready(function () {
         e.preventDefault();
         var href = $(this).attr("data-go");
         sessionStorage.categ_id = 0;
-        $("body").fadeOut("fast", function() {
+        $("body").fadeOut("fast", function () {
             window.location.href = href;
         });
-        
+
     });
 });
 
@@ -47,6 +47,8 @@ function loadMenu(getfunctions) {
         url: "ajax.menu.html"
     }).done(function (data) {
         $('#menu').html(data);
+        var rand = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+        $('#menu-bg').css("background-image", "url(img/bg" + rand + ".jpg)");
         if (typeof getfunctions !== "undefined") {
             $.getScript("js/functions.js", function (data, textStatus, jqxhr) {
             });
@@ -115,7 +117,8 @@ function addressUpdate() {
     var neigh = $("[name=address_neigh]").val();
     var city = $("[name=address_city]").val();
     var state = $("[name=address_state]").val();
-    var address = street + ", " + number + ", " + neigh + " - " + city + ", " + state;
+    var country = $("[name=address_country]").val();
+    var address = street + ", " + number + ", " + neigh + " - " + city + ", " + state + ", " + country;
     address = encodeURI(address);
     $("#iframe").html('<iframe width="100%" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=' + address + '&hl=es;z=14&amp;output=embed"></iframe>');
 

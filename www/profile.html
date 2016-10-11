@@ -29,7 +29,7 @@
                             <i style="font-size:18px" class="ion-social-facebook m-10 white-text"></i> 
                             Associar Facebook
                         </a>
-                        <a id="fb_des" style="display:none" class="waves-effect waves-light btn grey darken-2 m-20" href="#!" onclick="javascript:fb.logout()">
+                        <a id="fb_des" style="display:none" class="waves-effect waves-light btn grey darken-2 m-20" href="#!">
                             <i style="font-size:18px" class="ion-social-facebook m-10 white-text"></i> 
                             Desassociar Facebook
                         </a>
@@ -73,7 +73,7 @@
                             <a href="#!" id="userSubmit" class="waves-effect waves-light btn-large block animated bouncein brown darken-1" style="margin-top:20px">
                                 Salvar Alterações
                             </a>
-                            
+
                             <a href="#!" id="userLogout" class="waves-effect waves-light btn-large block animated bouncein grey darken-1" style="margin-top:20px">
                                 Logout
                             </a>
@@ -161,6 +161,10 @@
                                 $("[name=user_email]").val(localStorage.user_email);
 
                                 userInfo(localStorage.user_email, userInfoCb);
+
+                                $("#userLogout").click(function () {
+                                    userLogout();
+                                });
 
                                 //================================
                                 // DADOS

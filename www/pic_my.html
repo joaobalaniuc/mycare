@@ -11,19 +11,18 @@
         <link rel="stylesheet" href="css/include.css" />
 
         <style type="text/css">
-            html,
-            body {
-                overflow: hidden !important;
-                position: relative !important;
-                height: 100% !important;
+            .but {
+                padding:0;padding-left:5px;padding-right:5px;
+                width:45%;
             }
+            .but i {font-size:14px;}
         </style>
     </head>
 
     <body style="overflow-y:hidden !important">
         <div id="main"> <!-- Main Container -->
 
-            <!-- Modal Structure -->
+            <!-- Modal Structure --
             <div id="modal1" class="modal">
                 <div class="modal-content">
                     <h4>Tem certeza que deseja excluir esta foto?</h4>
@@ -34,20 +33,22 @@
                     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
                 </div>
             </div>
-
+            -->
+            
             <!-- Page Contents -->
             <div id="content" class="main animated fadein">
 
                 <!-- Header -->
-                <div class="relative bg-4 autoflow">
+                <div id="cover" class="relative bg-4 autoflow" style="background-image:url(img/grey.jpg)">
                     <div class="opacity-overlay"></div>
                     <div class="hero-header hero-small animated fadeindown">
-                        <h1 class="hero-title white-text">Minhas Fotos</h1>
+                        <!--<h1 class="hero-title white-text">Minhas Fotos</h1>-->
                     </div>
 
                     <div class="media-top-object author-bio animated fadeinright" style="margin-top:20px">
                         <!--<img src="img/user.jpg" alt="" class="media-left avatar big">-->
                         <div class="media-body">
+                            <span style="color:#fff">Fotos de</span>
                             <h4 class="post_title white-text ellips">Meu Lindo Pet Shop</h4>
                             <!--
                             <span class="small white-text"><span style="display:inline-block" class="post_address"></span></span>
@@ -109,8 +110,16 @@
                     </div>
                 </center>
 
-                <iframe id="foo" style="width:100%;height:70vh;border:0;padding:0;margin:0">
+                <iframe id="foo" style="border:0;width:100%;height:60px;">
                 </iframe>
+
+                <!-- Gallery -->
+
+                <div class="grid" style="margin-top:0px;">
+
+                </div>
+
+                <div class="clr"></div>
 
 
 
@@ -151,6 +160,7 @@
         <script src="js/chart.min.js"></script>
         <!-- PAGE -->
         <script src="js/prettydate.js"></script>
+        <script src="js/jw/pic.js"></script>
 
 
         <script>
@@ -158,18 +168,41 @@
             //$(".post_address").html(sessionStorage.edit_post_address);
 
             $(document).ready(function () {
-                var url = localStorage.server + "/app/pic/?post_id=" + sessionStorage.edit_post_id;
+                var url = localStorage.server + "/app/pic/?post_id=" + sessionStorage.edit_post_id + "&user_id=" + localStorage.user_id + "&user_email=" + localStorage.user_email + "&user_pass=" + localStorage.user_pass;
                 $("#foo").attr("src", url);
                 $("#foo").hide();
                 console.log(url);
                 //sessionStorage.edit_post_id = 0;
             });
 
+            $('body').on('click', '.del', function () {
+                var id = $(this).closest(".grid-item").attr("data-id");
+                if (confirm("Tem certeza que deseja excluir esta imagem?")) {
+                    picDel(id);
+                }
+            });
+
+
+            $('body').on('click', '.cover', function () {
+                if ($(this).hasClass("disabled")) {
+                }
+                else {
+                    var id = $(this).closest(".grid-item").attr("data-id");
+                    if (confirm("Definir esta imagem como capa do anúncio?")) {
+                        picCover(sessionStorage.edit_post_id, id);
+                    }
+                }
+            });
+
+            //picList(sessionStorage.edit_post_id, picListCb);
+
             $('#foo').load(function () {
+                picList(sessionStorage.edit_post_id, picListCb);
                 $('#loading').fadeOut("fast", function () {
                     $("#foo").fadeIn("slow");
                 });
             });
+
 
         </script>
     </body>

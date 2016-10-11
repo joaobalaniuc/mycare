@@ -135,23 +135,31 @@ function postList(last_id) {
                                 $(this).find(".post_like_txt").css("color", "blue").html("Curtiu");
                             }
                             if (val["img_fn"] != null) {
-                                $(this).find(".img_fn").attr("src", localStorage.server + "/app/pic/img/" + val["img_fn"]);
+
+                                $(this).find(".img_bg").css("background-image", "url(" + localStorage.server + localStorage.server_img + val["img_fn"] + ")");
                             }
                             if (val["user_fb"] != null) {
                                 $(this).find(".avatar").attr("src", "http://graph.facebook.com/" + val["user_fb"] + "/picture?width=100&height=100");
                             }
-                            console.log(val["img_fn"]);
+
+                            if (val["user_last_name"] != null) {
+                                var lastname = val["user_last_name"];
+                            }
+                            else
+                                var lastname = "";
+
                             $(this).find(".post_address").html(val["address_neigh"] + " - " + val["address_city"] + " <div style='float:right'>5km</div>");
                             $(this).find(".post_title").html("#" + val["post_id"] + " " + val["post_title"]);
                             $(this).find(".post_txt").html(val["post_title"]);
-                            $(this).find(".post_user").html(val["user_first_name"] + " " + val["user_last_name"]);
+                            $(this).find(".post_user").html(val["user_first_name"] + " " + lastname);
                             $(this).find(".post_date").html(val["post_date"]);
                             $(this).find(".go_read").attr("data-id", val["post_id"]);
                             $(this).find(".post_view").html(view);
                             $(this).find(".post_com").html(com);
                             $(this).find(".post_like").html(like);
-                            var rand = getRandomInt(1, 7);
-                            $(this).find(".post_img").attr("src", "img/simula" + rand + ".jpg");
+
+                            //var rand = getRandomInt(1, 7);
+
                         }).show();
 
                         if (i > 7)

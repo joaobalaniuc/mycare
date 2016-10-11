@@ -28,7 +28,7 @@
                         <p class="text-flow m-0">Conte-nos sobre o seu negócio...</p>
                     </div>
                 </div>
-                
+
                 <nav id="breadcrumb" style="display:none" class="primary-color">
                     <div class="nav-wrapper">
                         <div class="col s12 center">
@@ -47,7 +47,7 @@
 
                         <div>
                             <div class="input-field animated fadeinright">
-                                <input name="post_title" vvalue="Nickford Pet Shop" type="text" class="validate">
+                                <input name="post_title" type="text">
                                 <label>Nome da Empresa</label>
                             </div>
                         </div>
@@ -58,89 +58,94 @@
                         </div>
 
                         <div class="input-field animated fadeinright delay-3">
-                            <input name="post_phone" value="2833334444" type="text">
-                            <label>Telefone Fixo</label>
+                            <input name="post_phone" type="text">
+                            <label>Telefone fixo</label>
                         </div>
 
                         <div class="input-field animated fadeinright delay-4">
-                            <input name="post_phone2" value="28999652165" type="text" class="validate">
+                            <input name="post_phone2" type="text">
                             <label>Celular</label>
                         </div>
 
                         <div class="input-field animated fadeinright delay-5">
-                            <input name="post_email" value="contato@nickford.com.br" type="email" class="validate">
+                            <input name="post_email" type="email">
                             <label>E-mail</label>
+                        </div>
+
+                        <div class="input-field animated fadeinright delay-4">
+                            <input name="post_site" type="text" class="validate">
+                            <label>Site</label>
                         </div>
 
                         <div class="section center" style="margin-bottom:-40px;">
                             <i class="fa fa-hospital-o" aria-hidden="true" style="font-size:30px"></i>
                             <h4 class="m-10"><strong>Endereço</strong></h4>
                             <div class="line"></div>
-                            <!--<p class="text-flow m-0 center">Deixe em branco caso só atendam a domicílio</p>-->
                         </div>
-                        
+
                         <div class="input-field animated fadeinright delay-4">
-                            <input id="cep" name="address_zipcode" value="" type="text" class="validate addess" maxlength="9" onblur="pesquisacep(this.value);">
+                            <input id="cep" name="address_zipcode" value="" type="text" class="addess" maxlength="9" onblur="pesquisacep(this.value);">
                             <label>CEP</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
-                            <input id="rua" name="address_street" value="" type="text" class="validate address">
+                            <input id="rua" name="address_street" value="" type="text" class="address">
                             <label>Logradouro</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
-                            <input name="address_number" value="" type="text" class="validate address">
+                            <input name="address_number" value="" type="text" class="address">
                             <label>Número</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
-                            <input name="address_ref" value="" type="text" class="validate">
+                            <input name="address_ref" value="" type="text">
                             <label>Complemento (opcional)</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
-                            <input id="bairro" name="address_neigh" value="" type="text" class="validate address">
+                            <input id="bairro" name="address_neigh" value="" type="text" class="address">
                             <label>Bairro</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
-                            <input id="cidade" name="address_city" value="" type="text" class="validate address">
+                            <input id="cidade" name="address_city" value="" type="text" class="address">
                             <label>Cidade</label>
                         </div>
 
                         <input type="hidden" name="address_country" value="BR" />
 
-                        <label>Estado</label>
-                        <select id="uf" name="address_state" class="address browser-default">
-                            <option value="">Selecione...</option>
-                            <option value="AC">Acre</option>
-                            <option value="AL">Alagoas</option>
-                            <option value="AP">Amapá</option>
-                            <option value="AM">Amazonas</option>
-                            <option value="BA">Bahia</option>
-                            <option value="CE">Ceará</option>
-                            <option value="DF">Distrito Federal</option>
-                            <option value="ES">Espirito Santo</option>
-                            <option value="GO">Goiás</option>
-                            <option value="MA">Maranhão</option>
-                            <option value="MS">Mato Grosso do Sul</option>
-                            <option value="MT">Mato Grosso</option>
-                            <option value="MG">Minas Gerais</option>
-                            <option value="PA">Pará</option>
-                            <option value="PB">Paraíba</option>
-                            <option value="PR">Paraná</option>
-                            <option value="PE">Pernambuco</option>
-                            <option value="PI">Piauí</option>
-                            <option value="RJ">Rio de Janeiro</option>
-                            <option value="RN">Rio Grande do Norte</option>
-                            <option value="RS">Rio Grande do Sul</option>
-                            <option value="RO">Rondônia</option>
-                            <option value="RR">Roraima</option>
-                            <option value="SC">Santa Catarina</option>
-                            <option value="SP">São Paulo</option>
-                            <option value="SE">Sergipe</option>
-                            <option value="TO">Tocantins</option>
-                        </select>
 
-                        <input name="post_lat" type="hidden" />
-                        <input name="post_lng" type="hidden" />
+                        <div class="animated fadeinright delay-4">
+                            <label>Estado</label>
+                            <select id="uf" name="address_state" class="address browser-default">
+                                <option value="">Selecione...</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espirito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
                         
+
                         <input name="address_lat" type="hidden" />
                         <input name="address_lng" type="hidden" />
 
@@ -154,20 +159,20 @@
                             <div class="line"></div>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
-                            <input name="post_facebook" type="text" class="validate">
+                            <input name="post_facebook" type="text">
                             <label>Facebook</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
-                            <input name="post_instagram" type="text" class="validate">
+                            <input name="post_instagram" type="text">
                             <label>Instagram</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
-                            <input name="post_twitter" type="text" class="validate">
+                            <input name="post_twitter" type="text">
                             <label>Twitter</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
-                            <input name="post_site" type="text" class="validate">
-                            <label>Site</label>
+                            <input name="post_linkedin" type="text">
+                            <label>Linkedin</label>
                         </div>
 
 
@@ -253,8 +258,11 @@
         <script src="js/masonry.min.js"></script>
         <script src="js/chart.min.js"></script>
         <!-- PAGE -->
+        <script src="js/jquery.mask.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
         <script src="js/jw/categ.js"></script>
         <script src="js/jw/post.js"></script>
+        <script src="js/jw/page.post_send.js"></script>
         <script src="js/jw/page.post_read.js"></script>
 
         <script>
@@ -264,42 +272,9 @@
                                     // CARREGAR CATEGORIAS
                                     sessionStorage.categ_type = "cnpj";
                                     categRead();
+                                    
+                                    $('select').material_select();
 
-                                    // EDITAR POST?
-                                    if (sessionStorage.edit_post_id > 0) {
-                                        postRead(sessionStorage.edit_post_id, postReadFormCb);
-                                        sessionStorage.edit_post_id = 0;
-                                        $("#send").html("SALVAR ALTERAÇÕES");
-                                        $("#inserir").html("Editar");
-                                        $("#breadcrumb").show();
-                                    }
-
-                                    // CANCELAR
-                                    $("#cancel").click(function () {
-                                        if ($("#post").serialize() !== sessionStorage.serialize) {
-                                            if (confirm("Descartar alterações efetuadas?")) {
-                                                window.history.back();
-                                            }
-                                        }
-                                        else {
-                                            window.history.back();
-                                        }
-                                    });
-
-                                    // ATEND. DOMICILIAR
-                                    $('#post_home').click(function () {
-                                        if ($(this).prop("checked")) {
-                                            $("#post_home_txt").show();
-                                        } else {
-                                            $("#post_home_txt").hide();
-                                        }
-                                    });
-
-                                    // ENVIAR POST
-                                    $("#send").click(function (e) {
-                                        e.preventDefault();
-                                        postSend();
-                                    });
                                 });
         </script>
     </body>

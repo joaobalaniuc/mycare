@@ -18,7 +18,7 @@
                 left:0 !important;
                 padding:10px !important;
                 text-align:center;
-                background:blue;
+                bbackground:blue;
             }
             .olFramedCloudPopupContent .img {
                 height:100px;
@@ -30,7 +30,7 @@
                 display:block !important;
                 margin-top:10px;
                 font-size:18px !important;
-                background:red;
+                bbackground:red;
             }
             .olFramedCloudPopupContent .obs{
                 font-size:12px;
@@ -90,15 +90,31 @@
         <script>
             $(document).ready(function () {
 
-                var markers = [
-                    [-40.8080153, -21.0093884, "teste1", "img/map-marker.gif"],
-                    [-40.8070153, -21.0083884, "teste2", "img/map-marker.gif"],
-                    [-40.8060153, -21.0073884, "teste3", "img/map-marker.gif"]
-                ];
+                preloader();
+
+                /*sessionStorage.lat = -20.299387;
+                 sessionStorage.lng = -40.292573;
+                 mapAjax();*/
+
+                geo(function () {
+                    mapAjax();
+                });
+
+                /*
+                 var markers = [
+                 [-40.8080153, -21.0093884, "teste1", "img/map-marker.gif"],
+                 [-40.8070153, -21.0083884, "teste2", "img/map-marker.gif"],
+                 [-40.8060153, -21.0073884, "teste3", "img/map-marker.gif"]
+                 ];
+                 */
+            });
+
+            function mapAjax() {
 
                 $.ajax({
                     url: localStorage.server + "/map.php",
                     data: {
+                        user_id: localStorage.user_id,
                         user_email: localStorage.user_email,
                         user_pass: localStorage.user_pass
                     },
@@ -108,7 +124,7 @@
                     timeout: localStorage.timeout
                 })
                         .always(function () {
-                            //preloader(false);
+                            preloader(false);
                         })
 
                         .fail(function () {
@@ -123,7 +139,7 @@
 
                             } // res not null
                         }); // after ajax
-            });
+            } // mapAJax()
 
             function mapShow(markers) {
 
@@ -133,29 +149,53 @@
                 epsg4326 = new OpenLayers.Projection("EPSG:4326"); //WGS 1984 projection
                 projectTo = map.getProjectionObject(); //The map projection (Spherical Mercator)
 
-                var lonLat = new OpenLayers.LonLat(-40.8080153, -21.0093884).transform(epsg4326, projectTo);
+                var lonLat = new OpenLayers.LonLat(sessionStorage.lng, sessionStorage.lat).transform(epsg4326, projectTo);
 
 
-                var zoom = 8;
+                var zoom = 16;
                 map.setCenter(lonLat, zoom);
 
                 var vectorLayer = new OpenLayers.Layer.Vector("Overlay");
 
+                //--------------------------
+                // USER'S POSITION
+                //--------------------------
+                var lon = sessionStorage.lng;
+                var lat = sessionStorage.lat;
+                var icon = "/img/map_marker.gif";
+
+                var feature = new OpenLayers.Feature.Vector(
+                        new OpenLayers.Geometry.Point(lon, lat).transform(epsg4326, projectTo),
+                        {description: ""},
+                {externalGraphic: localStorage.server + icon, graphicHeight: 50, graphicWidth: 50, graphicXOffset: -25, graphicYOffset: -50}
+                );
+                vectorLayer.addFeatures(feature);
+
+                //--------------------------
+                // ADS POSITIONS
+                //--------------------------
                 // Define markers as "features" of the vector layer:
                 for (var i = 0; i < markers.length; i++) {
 
-                    var lon = markers[i]["post_lng"];
-                    var lat = markers[i]["post_lat"];
+                    var lon = markers[i]["address_lng"];
+                    var lat = markers[i]["address_lat"];
                     var txt = markers[i]["post_title"];
-                    var img = markers[i]["post_img"];
+                    var img = markers[i]["img_fn"];
                     var icon = markers[i]["post_icon"];
                     var id = markers[i]["post_id"];
                     var phone = markers[i]["post_phone"];
 
                     icon = "/img/map-marker.gif";
-                    img = "img/simula1.jpg";
+                    //img = "img/simula1.jpg";
 
-                    txt = "<div class='img' style='background-image:url(" + img + ")' style='width:100%'></div><strong>" + txt + "</strong>";
+                    if (img == null) {
+                        img = "";
+                    }
+                    else {
+                        img = 'background-image:url(' + localStorage.server + '/app/pic/img/' + img + ')';
+                    }
+
+                    txt = "<strong>" + txt + "</strong>";
 
                     var feature = new OpenLayers.Feature.Vector(
                             new OpenLayers.Geometry.Point(lon, lat).transform(epsg4326, projectTo),
@@ -174,18 +214,22 @@
                 };
 
                 function createPopup(feature) {
-                    feature.popup = new OpenLayers.Popup.FramedCloud("pop",
-                            feature.geometry.getBounds().getCenterLonLat(),
-                            null,
-                            '<div class="markerContent">' + feature.attributes.description + '</div>',
-                            null,
-                            true,
-                            function () {
-                                controls['selector'].unselectAll();
-                            }
-                    );
-                    //feature.popup.closeOnMove = true;
-                    map.addPopup(feature.popup);
+                    var desc = feature.attributes.description;
+                    if (desc.length > 0) {
+                        console.log(feature.attributes.description);
+                        feature.popup = new OpenLayers.Popup.FramedCloud("pop",
+                                feature.geometry.getBounds().getCenterLonLat(),
+                                null,
+                                '<div class="markerContent">' + feature.attributes.description + '</div>',
+                                null,
+                                true,
+                                function () {
+                                    controls['selector'].unselectAll();
+                                }
+                        );
+                        //feature.popup.closeOnMove = true;
+                        map.addPopup(feature.popup);
+                    }
                 }
 
                 function destroyPopup(feature) {
@@ -199,7 +243,8 @@
                 $("#OpenLayers_Control_Attribution_7").hide();
                 $("#OpenLayers_Control_Zoom_5")
                         .css("position", "absolute")
-                        .css("right", "8px")
+                        .css("right", "16px")
+                        .css("top", "20px")
                         .css("left", "auto");
             }
 

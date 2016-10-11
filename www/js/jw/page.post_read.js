@@ -36,6 +36,15 @@ function postReadCb(res) {
         $("#img_fn").attr("src", localStorage.server + "/app/pic/img/" + img_fn);
     }
 
+    if (post[0]["address_lat"] != null) {
+        sessionStorage.post_lat = post[0]["address_lat"];
+        sessionStorage.post_lng = post[0]["address_lng"];
+    }
+    else {
+        sessionStorage.removeItem("post_lat");
+        sessionStorage.removeItem("post_lng");
+    }
+
     $("#post_view").html(view);
     $("#post_com").html(com);
     $("#post_like").html(like);
@@ -47,7 +56,7 @@ function postReadCb(res) {
     $("#post_view").html(post[0]["post_view"]);
     var txt = post[0]["post_txt"];
     if (txt !== null) {
-        if (txt.len > 32) {
+        if (txt.length > 32) {
             $("#post_txt_").html(txt.substr(0, 1));
             $("#post_txt").html(txt.substr(1));
         }

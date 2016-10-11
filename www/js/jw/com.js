@@ -78,7 +78,7 @@ function comStatus(post_id, status) {
 //==================================
 function comSend() {
 
-    $("#modal1 .loading").show();
+    $(".loading").show();
     // DATA TO SEND
     var data_form = $("#newcom").serialize();
     var data_user = {
@@ -101,11 +101,11 @@ function comSend() {
         timeout: 5000
     })
             .always(function () {
-                $("#modal1 .loading").hide();
+                $(".loading").hide();
             })
 
             .fail(function () {
-                $("#modal1 .cb_error").show();
+                $(".cb_error").show();
             })
 
             .done(function (res) {
@@ -117,7 +117,7 @@ function comSend() {
                         return;
                     }
                     if (res.success) {
-                        $("#modal1 .cb_success").show();
+                        $(".cb_success").show();
                         //sessionStorage.post_id = res.success;
                         //window.location.href = "ad.read.html";
                     }
@@ -163,66 +163,3 @@ function comList(post_id, cb, start_id) {
                 cb(res);
             });
 }
-
-/*
- function comListx() {
- 
- $('.loadmore').hide();
- $('#loading').fadeIn("fast");
- $.ajax({
- url: localStorage.server + "/com_list.php",
- data: {
- last_id: sessionStorage.com_last_id,
- post_id: sessionStorage.post_id
- },
- type: 'GET',
- dataType: 'jsonp',
- jsonp: 'callback',
- timeout: 5000
- })
- .always(function () {
- $('#loading').fadeOut("fast");
- })
- 
- .fail(function () {
- 
- })
- 
- .done(function (res) {
- if (res !== null) {
- console.log(res);
- if (res.error) {
- return;
- }
- var i = 0; // delay-i
- 
- $.each(res, function (key, val) {
- 
- i++;
- $("#com_template")
- .clone()
- .prop({
- id: "com_" + val["com_id"]
- })
- .appendTo("#com")
- .attr("data-id", val["com_id"])
- .addClass("delay-" + i)
- .addClass("com");
- $("#com_" + val["com_id"]).each(function (index) {
- 
- $(this).find(".com_user").html(val["user_first_name"]);
- $(this).find(".com_txt").html(val["com_txt"]);
- }).show();
- sessionStorage.com_last_id = val["com_id"];
- console.log(sessionStorage.com_last_id);
- if (i >= 7)
- i = 0;
- });
- //pretty();
- 
- addLoadMore();
- } // res not null
- 
- }); // after ajax
- }
- */

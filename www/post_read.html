@@ -14,38 +14,6 @@
     <body>
         <div id="main"> <!-- Main Container -->
 
-            <!-- Modal Structure -->
-            <div id="modal1" class="modal bottom-sheet" style="z-index:99999 !important">
-                <div class="modal-content" style="mmargin-bottom:-20px">
-                    <h4 style="font-size:14px">Comentar sobre <strong class="post_title"></strong></h4>
-                    <form id="newcom" style="margin-bottom:0px">
-                        <div class="input-field col s12">
-                            <input name="com_txt" type="text" class="validate" maxlength="100">
-                            <input name="post_id" value="" type="hidden" />
-                            <label>Mensagem</label>
-                        </div>
-                    </form>
-                    <div class="loading preloader-wrapper small active" style="display:none">
-                        <div class="spinner-layer spinner-green-only">
-                            <div class="circle-clipper left">
-                                <div class="circle"></div>
-                            </div><div class="gap-patch">
-                                <div class="circle"></div>
-                            </div><div class="circle-clipper right">
-                                <div class="circle"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cb_success" style="display:none">
-                        Enviado. <a href="#!" class=" modal-action modal-close waves-effect waves-green btn" style="float:right;font-size:12px">OK</a>
-                    </div>
-                    <div class="cb_error" style="display:none">
-                        Tente mais tarde. <a href="#!" class="modal-action modal-close waves-effect waves-green btn" style="float:right;font-size:12px">OK</a>
-                    </div>
-                </div>
-            </div>
-
             <!-- Page Contents -->
             <div id="content" class="main animated fadein">
 
@@ -70,7 +38,7 @@
                         <h4 class="m-0"><strong id="post_view"></strong></h4>
                         <p class="m-0 grey-text small"><i class="fa fa-eye" aria-hidden="true"></i> Visitas</p>
                     </div>
-                    <a href="#com_hash">
+                    <a href="#comsend">
                         <div class="col s4 p-10 center">
                             <h4 class="m-0"><strong id="post_com"></strong></h4>
                             <p class="m-0 grey-text small"><i class="fa fa-comment-o" aria-hidden="true"></i> Comentar</p>
@@ -179,9 +147,9 @@
                         <div id="com">
 
                             <div style="display:none" id="com_template" class="media-top-object animated fadeinright">
-                                <img src="img/anonymous-user_1.png" alt="" class="media-left avatar">
+                                <img src="img/user.png" alt="" class="media-left avatar">
                                 <div class="media-body">
-                                    <div class="com_date prettydate" style="float:right;font-size:10px;color:#666">date</div>
+                                    <div class="com_date prettydate" style="float:right;font-size:10px;color:#666"></div>
                                     <span class="com_user">Luke Noel</span>
                                     <span class="com_txt small">Ótimo trabalho!</span>
                                 </div>
@@ -201,9 +169,37 @@
                                 </div>
                             </div>
                         </center>
-                        <center id="com_hash" style="margin-top:15px">
-                            <a href="#modal1" class="waves-effect waves-light btn blue accent-2 modal-trigger" style="font-size:12px;">Enviar comentário</a>
-                        </center>
+
+                        <form id="newcom" style="margin-bottom:0">
+                            <div class="input-field col s12">
+                                <input name="com_txt" type="text" maxlength="100">
+                                <input name="post_id" value="" type="hidden" />
+                                <label>Mensagem</label>
+                            </div>
+                            <center style="margin-top:10px">
+                                <input id="comsend" type="submit" class="waves-effect waves-light btn grey darken-4" style="font-size:14px" value="Enviar comentário" />
+                            </center>
+                        </form>
+
+                        <div class="loading preloader-wrapper small active" style="display:none">
+                            <div class="spinner-layer spinner-green-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cb_success green-text" style="display:none">
+                            Enviado com sucesso.
+                        </div>
+                        <div class="cb_error red-text" style="display:none">
+                            Ocorreu um erro interno. Tente mais tarde.
+                        </div>
+
                     </div>
                 </div>
 
@@ -259,10 +255,14 @@
 
                                         $(document).ready(function () {
 
+                                            geo();
+
                                             $("#geo").click(function () {
-                                                launchnavigator.navigate([50.279306, -5.163158], {
-                                                    start: "50.342847, -4.749904"
+
+                                                launchnavigator.navigate([sessionStorage.post_lat, sessionStorage.post_lng], {
+                                                    start: sessionStorage.lat + "," + sessionStorage.lng
                                                 });
+
                                             });
 
                                             $("#fotosButton").click(function () {
@@ -292,7 +292,6 @@
                                                 comList(sessionStorage.post_id, comListCb);
                                             });
 
-
                                             $("#like_do").click(function () {
 
                                                 $("#like_but").hide();
@@ -302,6 +301,10 @@
                                                 $.ajax({
                                                     url: localStorage.server + "/post_like.php",
                                                     data: {
+                                                        user_id: localStorage.user_id,
+                                                        user_email: localStorage.user_email,
+                                                        user_pass: localStorage.user_pass,
+                                                        //
                                                         post_id: sessionStorage.post_id
                                                     },
                                                     type: 'GET',
@@ -315,12 +318,14 @@
                                                         })
 
                                                         .fail(function () {
-
+                                                            
                                                         })
 
                                                         .done(function (res) {
+
+                                                            console.log(res);
                                                             if (res !== null) {
-                                                                console.log(res);
+
                                                                 if (res.error) {
                                                                     return;
                                                                 }
@@ -342,10 +347,12 @@
                                             });
 
                                             $("#newcom").submit(function (e) {
+                                                e.preventDefault();
                                                 $(this).hide();
                                                 comSend();
                                                 return false;
                                             });
+
                                         });
         </script>
     </body>
