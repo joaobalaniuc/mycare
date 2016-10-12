@@ -48,6 +48,8 @@ var app = {
         app.receivedEvent('deviceready');
 
         start();
+        
+        geo();
 
         // SPLASHSCREEN (CONFIG.XML BUGFIX)
         setTimeout(function () {
