@@ -87,13 +87,13 @@ function postList(last_id) {
             })
 
             .fail(function () {
+                alertx("Ocorreu um erro interno");
                 //myApp.alert('Desculpe, verifique sua conexão e tente novamente.', 'Erro');
             })
 
             .done(function (res) {
                 if (res !== null) {
                     console.log(res);
-
 
                     if (res === false && sessionStorage.last_id == 0) {
                         $("#loading").hide();
@@ -180,6 +180,9 @@ function postList(last_id) {
 
 
                 } // res not null
+                else {
+                    alertx("Erro interno.");
+                }
 
             }); // after ajax
 }
