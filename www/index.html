@@ -218,7 +218,7 @@ functions.js:
                         })
 
                         .fail(function () {
-                            alertx("Ocorreu um erro interno");
+                            preloader(false);
                             //myApp.alert('Desculpe, verifique sua conexão e tente novamente.', 'Erro');
                         })
 
@@ -254,7 +254,7 @@ functions.js:
                                     onInit: function () {
                                         setTimeout(function () {
                                             preloader(false);
-                                        }, 500);
+                                        }, 1000);
                                     }
                                 });
                                 //$("#promo").fadeOut("slow");
