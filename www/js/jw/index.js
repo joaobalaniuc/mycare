@@ -33,7 +33,23 @@ $(document).ready(function () {
         $("body").fadeOut("fast", function () {
             window.location.href = href;
         });
-
+    });
+    //==============================================
+    // EXTERNAL LINK VIA JQ
+    //==============================================
+    $("body").on("click", "[data-url]", function () {
+        var url = $(this).attr("data-url");
+        cordova.InAppBrowser.open(url, '_blank', 'location=yes');
+    });
+    //==============================================
+    // GO TO POST JQ
+    //==============================================
+    $('body').on('click', '[data-post]', function () {
+        var id = $(this).attr("data-post");
+        sessionStorage.post_id = id;
+        $("body").fadeOut("fast", function () {
+            window.location.href = "post_read.html";
+        });
     });
 });
 

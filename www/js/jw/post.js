@@ -139,7 +139,8 @@ function postList(last_id) {
                                 $(this).find(".img_bg").css("background-image", "url(" + localStorage.server + localStorage.server_img + val["img_fn"] + ")");
                             }
                             if (val["user_fb"] != null) {
-                                $(this).find(".avatar").attr("src", "http://graph.facebook.com/" + val["user_fb"] + "/picture?width=100&height=100");
+                                console.log(val["user_fb_pic"]);
+                                $(this).find(".avatar").attr("src", val["user_fb_pic"]);
                             }
 
                             if (val["user_last_name"] != null) {
@@ -149,7 +150,8 @@ function postList(last_id) {
                                 var lastname = "";
 
                             $(this).find(".post_address").html(val["address_neigh"] + " - " + val["address_city"] + " <div style='float:right'>5km</div>");
-                            $(this).find(".post_title").html("#" + val["post_id"] + " " + val["post_title"]);
+                            //$(this).find(".post_title").html("#" + val["post_id"] + " " + val["post_title"]);
+                            $(this).find(".post_title").html(val["post_title"]);
                             $(this).find(".post_txt").html(val["post_title"]);
                             $(this).find(".post_user").html(val["user_first_name"] + " " + lastname);
                             $(this).find(".post_date").html(val["post_date"]);

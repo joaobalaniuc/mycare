@@ -322,11 +322,6 @@
                     comList(sessionStorage.post_id, comListCb, 0);
                 }
 
-                $("body").on("click", "[data-url]", function () {
-                    var url = $(this).attr("data-url");
-                    cordova.InAppBrowser.open(url, '_blank', 'location=yes');
-                });
-
                 $("body").on("click", "#loadmore", function (e) {
                     e.preventDefault();
                     // comment list

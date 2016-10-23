@@ -38,34 +38,13 @@ functions.js:
 
             <!-- Page Contents -->
             <div id="content" class="main animated fadein">
-
+                <!--
+                <img id="promo" src="img/promo.jpg" style="position:absolute;top:0;left:0;width:100%;z-index:9999" />
+                -->
                 <!-- Slider -->         
                 <div class="swiper-container swiper-slider">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="img/promo1.jpg" alt="">
-                            <!--<div class="opacity-overlay"></div>
-                            <div class="bottom center">
-                                <h4 class="white-text m-0"><strong>Eclipse is There!</strong></h4>
-                                <p class="text-flow white-text m-0">A mobile focused template</p>
-                            </div>-->
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="img/promo2.jpg" alt="">
-                            <!--<div class="opacity-overlay"></div>
-                            <div class="bottom left-align">
-                                <h4 class="white-text m-0"><strong>Eclipse is There!</strong></h4>
-                                <p class="text-flow white-text m-0">A mobile focused template</p>
-                            </div>-->
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="img/promo3.jpg" alt="">
-                            <!--<div class="opacity-overlay"></div>
-                            <div class="bottom right-align">
-                                <h4 class="white-text m-0"><strong>Eclipse is There!</strong></h4>
-                                <p class="text-flow white-text m-0">A mobile focused template</p>
-                            </div>-->
-                        </div>
+
                     </div>
                     <!-- Add Pagination -->
                     <div class="swiper-pagination"></div>
@@ -212,7 +191,9 @@ functions.js:
         <script src="js/functions.js"></script>
         -->
         <script>
-            
+
+            preloader();
+
             $(document).ready(function () {
 
                 if (typeof localStorage.user_id === "undefined") {
@@ -223,15 +204,62 @@ functions.js:
                 // GEOLOCATION
                 //geo();
 
-                // Swiper Sliders
-                var swiper = new Swiper('.swiper-slider', {
-                    pagination: '.swiper-pagination',
-                    paginationClickable: true,
-                    nextButton: '.swiper-button-next',
-                    prevButton: '.swiper-button-prev',
-                    autoplay: false,
-                    loop: true
-                });
+                $.ajax({
+                    url: localStorage.server + "/banner_list.php",
+                    data: {
+                    },
+                    type: 'GET',
+                    dataType: 'jsonp',
+                    jsonp: 'callback',
+                    timeout: localStorage.timeout
+                })
+                        .always(function () {
+                            //preloader(false);
+                        })
+
+                        .fail(function () {
+                            alertx("Ocorreu um erro interno");
+                            //myApp.alert('Desculpe, verifique sua conexão e tente novamente.', 'Erro');
+                        })
+
+                        .done(function (res) {
+                            if (res !== null) {
+                                console.log(res);
+
+                                if (res.error) {
+                                    return;
+                                }
+                                $.each(res, function (key, val) {
+                                    var img = localStorage.server + "/app/banner/" + val["banner_img_fn"];
+                                    var a = "<a href='#!'>"
+                                    if (val["banner_target_type"] == "url") {
+                                        var a = '<a href="#!" data-url="' + val["banner_target"] + '">';
+                                    }
+                                    if (val["banner_target_type"] == "post") {
+                                        var a = '<a href="#!" data-post="' + val["banner_target"] + '">';
+                                    }
+                                    var html = '<div class="swiper-slide">' + a + '<img src="' + img + '" alt=""></a></div>';
+
+                                    $('.swiper-wrapper').append(html);
+                                });
+                                // Swiper Sliders
+                                var swiper = new Swiper('.swiper-slider', {
+                                    pagination: '.swiper-pagination',
+                                    paginationClickable: true,
+                                    //nextButton: '.swiper-button-next',
+                                    //prevButton: '.swiper-button-prev',
+                                    autoplay: 2000,
+                                    loop: true,
+                                    speed: 1000,
+                                    onInit: function () {
+                                        setTimeout(function () {
+                                            preloader(false);
+                                        }, 500);
+                                    }
+                                });
+                                //$("#promo").fadeOut("slow");
+                            }
+                        }); // after ajax
 
             });
             $('body').on('click', '.go_list', function () {

@@ -88,7 +88,7 @@ function userLogin() {
                     if (res.id) {
                         localStorage.user_id = res.id;
                         localStorage.user_email = res.email;
-                        localStorage.user_pass = res.pass;
+                        localStorage.user_pass = $("#user_pass").val();
                         window.location.href = "index.html";
                     }
 

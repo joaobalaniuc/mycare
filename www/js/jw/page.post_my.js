@@ -60,7 +60,14 @@ $.ajax({
                             $(this).find(".post_status").html(post_status + " <br/><span style='color:#ccc'>#" + val["post_id"] + "</span>");
 
                             var rand = getRandomInt(1, 7);
-                            $(this).find(".post_img").attr("src", "img/simula" + rand + ".jpg");
+                            if (val["img_fn"] != null) {
+                                var url = localStorage.server + "/app/pic/img/" + val["img_fn"];
+                            }
+                            else {
+                                var url = "img/grey.jpg";
+                            }
+                            $(this).find(".post_img").attr("src", url);
+
                         }).show();
 
                     });
