@@ -160,7 +160,7 @@ function postReadCb(res) {
 
     sessionStorage.com_total = post[0]["post_total_com"];
 
-    $(".loadmore").remove();
+    $(".loadmore").hide();
 
     if (post[0]["post_total_com"] != null || post[0]["post_total_com"] != 0) {
         addLoadMore(); // com.js
@@ -248,10 +248,9 @@ function addLoadMore() {
     if (typeof sessionStorage.com_total === "undefined" || sessionStorage.com_total === "null") {
         sessionStorage.com_total = 0; // set in post.js => postRead();
     }
-    console.log(count + "<" + sessionStorage.com_total);
+    console.log(count + " x " + sessionStorage.com_total);
     if (count < sessionStorage.com_total) {
-        var loadmore = '<center class="loadmore"><a href="#" id="loadmore" class="loadmore waves-effect waves-light btn primary-color" style="font-size:12px;">Mais comentários</a></center>';
-        $("#com").append(loadmore);
+        $(".loadmore").show();
     }
 
 }

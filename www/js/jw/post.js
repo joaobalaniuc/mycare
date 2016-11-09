@@ -97,7 +97,7 @@ function postList(last_id) {
 
                     if (res === false && sessionStorage.last_id == 0) {
                         $("#loading").hide();
-                        $("#ads").html("<div style='margin:32px;text-align:center;font-size:18px;margin-bottom:50px;margin-top:50px'>Desculpe, sua busca não retornou resultados</div>");
+                        $("#ads").html("<div style='margin:32px;text-align:center;font-size:18px;margin-bottom:50px;margin-top:50px'>Desculpe, não este serviço ainda não existe em sua região. :(</div>");
                         return;
                     }
 
@@ -108,61 +108,102 @@ function postList(last_id) {
                     $.each(res, function (key, val) {
 
                         i++;
+                        //==================
+                        // PRO
+                        //==================
+                        if (val["post_pro"] > 0) {
+                            $("#pro_template")
+                                    .clone()
+                                    .prop({
+                                        id: "post_" + val["post_id"]
+                                    })
+                                    .appendTo("#ads")
+                                    .attr("data-id", val["post_id"])
+                                    .addClass("delay-" + i);
+                            $("#post_" + val["post_id"]).each(function (index) {
 
-                        $("#card_template")
-                                .clone()
-                                .prop({
-                                    id: "post_" + val["post_id"]
-                                })
-                                .appendTo("#ads")
-                                .attr("data-id", val["post_id"])
-                                .addClass("delay-" + i);
+                                var view = val["post_total_view"];
+                                if (view == null)
+                                    view = 0;
+                                var com = val["post_total_com"];
+                                if (com == null)
+                                    com = 0;
+                                var like = val["post_total_like"];
+                                if (like == null)
+                                    like = 0;
 
-                        $("#post_" + val["post_id"]).each(function (index) {
+                                if (val["like_id"] > 0) {
+                                    $(this).find(".post_like").css("color", "blue");
+                                    $(this).find(".post_like_txt").css("color", "blue").html("Curtiu");
+                                }
+                                if (val["img_fn"] != null) {
 
-                            var view = val["post_total_view"];
-                            if (view == null)
-                                view = 0;
-                            var com = val["post_total_com"];
-                            if (com == null)
-                                com = 0;
-                            var like = val["post_total_like"];
-                            if (like == null)
-                                like = 0;
+                                    $(this).find(".img_bg").css("background-image", "url(" + localStorage.server + localStorage.server_img + val["img_fn"] + ")");
+                                }
+                                if (val["user_fb"] != null) {
+                                    console.log(val["user_fb_pic"]);
+                                    $(this).find(".avatar").attr("src", val["user_fb_pic"]);
+                                }
 
-                            if (val["like_id"] > 0) {
-                                $(this).find(".post_like").css("color", "blue");
-                                $(this).find(".post_like_txt").css("color", "blue").html("Curtiu");
-                            }
-                            if (val["img_fn"] != null) {
+                                if (val["user_last_name"] != null) {
+                                    var lastname = val["user_last_name"];
+                                }
+                                else
+                                    var lastname = "";
 
-                                $(this).find(".img_bg").css("background-image", "url(" + localStorage.server + localStorage.server_img + val["img_fn"] + ")");
-                            }
-                            if (val["user_fb"] != null) {
-                                console.log(val["user_fb_pic"]);
-                                $(this).find(".avatar").attr("src", val["user_fb_pic"]);
-                            }
+                                $(this).find(".post_address").html(val["address_neigh"] + " - " + val["address_city"] + " <div style='float:right'>5km</div>");
+                                //$(this).find(".post_title").html("#" + val["post_id"] + " " + val["post_title"]);
+                                $(this).find(".post_title").html(val["post_title"]);
+                                $(this).find(".post_txt").html(val["post_title"]);
+                                $(this).find(".post_user").html(val["user_first_name"] + " " + lastname);
+                                $(this).find(".post_date").html(val["post_date"]);
+                                $(this).find(".go_read").attr("data-id", val["post_id"]);
+                                $(this).find(".post_view").html(view);
+                                $(this).find(".post_com").html(com);
+                                $(this).find(".post_like").html(like);
 
-                            if (val["user_last_name"] != null) {
-                                var lastname = val["user_last_name"];
-                            }
-                            else
-                                var lastname = "";
+                                //var rand = getRandomInt(1, 7);
 
-                            $(this).find(".post_address").html(val["address_neigh"] + " - " + val["address_city"] + " <div style='float:right'>5km</div>");
-                            //$(this).find(".post_title").html("#" + val["post_id"] + " " + val["post_title"]);
-                            $(this).find(".post_title").html(val["post_title"]);
-                            $(this).find(".post_txt").html(val["post_title"]);
-                            $(this).find(".post_user").html(val["user_first_name"] + " " + lastname);
-                            $(this).find(".post_date").html(val["post_date"]);
-                            $(this).find(".go_read").attr("data-id", val["post_id"]);
-                            $(this).find(".post_view").html(view);
-                            $(this).find(".post_com").html(com);
-                            $(this).find(".post_like").html(like);
+                            }).show();
+                        }
+                        //==================
+                        // FREE
+                        //==================
+                        else {
+                            $("#free_template")
+                                    .clone()
+                                    .prop({
+                                        id: "post_" + val["post_id"]
+                                    })
+                                    .appendTo("#ads")
+                                    .attr("data-id", val["post_id"])
+                                    .addClass("delay-" + i);
 
-                            //var rand = getRandomInt(1, 7);
 
-                        }).show();
+                            $("#post_" + val["post_id"]).each(function (index) {
+
+                                if (val["img_fn"] != null) {
+                                    var img = localStorage.server + localStorage.server_img + val["img_fn"];
+                                    console.log(img);
+                                    $(this).find("img").attr("src", img);
+                                }
+
+                                if (val["user_last_name"] != null) {
+                                    var lastname = val["user_last_name"];
+                                }
+                                else
+                                    var lastname = "";
+
+                                //$(this).find(".post_address").html(val["address_neigh"] + " - " + val["address_city"] + " <div style='float:right'>5km</div>");
+                                //$(this).find(".post_title").html("#" + val["post_id"] + " " + val["post_title"]);
+                                $(this).find(".post_title").html(val["post_title"]);
+                                $(this).find(".post_dist").html("há 5 km");
+                                $(this).find(".post_user").html("por " + val["user_first_name"] + " " + lastname);
+                                $(this).find(".go_read").attr("data-id", val["post_id"]);
+
+                            }).show();
+
+                        }
 
                         if (i > 7)
                             i = 0;
