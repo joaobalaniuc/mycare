@@ -34,7 +34,7 @@
                 </div>
             </div>
             -->
-            
+
             <!-- Page Contents -->
             <div id="content" class="main animated fadein">
 
@@ -57,15 +57,15 @@
                     </div>
                 </div>
 
-                <nav class="primary-color mm-b-20">
-                    <div class="nav-wrapper">
-                        <div class="col s12 center">
-                            <a href="#!" data-go="post_my.html" class="breadcrumb">Meus Anúncios</a>
-                            <a href="#!" class="breadcrumb">Fotos</a>
-                        </div>
-                    </div>
-                </nav>
+                <a href="#!" data-go="post_my.html" style="width:100%" class="waves-effect waves-light btn-large blue lighten-1 animated fadeinright delay-1 grey">
+                    Voltar aos Meus Anúncios
+                </a>
 
+                <a href="#modalx" style="width:100%" class="waves-effect waves-light btn-large blue lighten-1 animated fadeinright delay-2 modal-trigger">
+                    Enviar Foto
+                </a>
+
+                <!--
                 <center id="loading" style='margin-top:50px'>
                     <div class="preloader-wrapper big active">
                         <div class="spinner-layer spinner-blue">
@@ -109,9 +109,12 @@
                         </div>
                     </div>
                 </center>
+                -->
 
+                <!--
                 <iframe id="foo" style="border:0;width:100%;height:60px;">
                 </iframe>
+                -->
 
                 <!-- Gallery -->
 
@@ -161,6 +164,7 @@
         <!-- PAGE -->
         <script src="js/prettydate.js"></script>
         <script src="js/jw/pic.js"></script>
+        <script src="js/jw/class.camera.js"></script>
 
 
         <script>
@@ -168,10 +172,13 @@
             //$(".post_address").html(sessionStorage.edit_post_address);
 
             $(document).ready(function () {
-                var url = localStorage.server + "/app/pic/?post_id=" + sessionStorage.edit_post_id + "&user_id=" + localStorage.user_id + "&user_email=" + localStorage.user_email + "&user_pass=" + localStorage.user_pass;
-                $("#foo").attr("src", url);
-                $("#foo").hide();
-                console.log(url);
+                picList(sessionStorage.edit_post_id, picListCb);
+                /*
+                 var url = localStorage.server + "/app/pic/?post_id=" + sessionStorage.edit_post_id + "&user_id=" + localStorage.user_id + "&user_email=" + localStorage.user_email + "&user_pass=" + localStorage.user_pass;
+                 $("#foo").attr("src", url);
+                 $("#foo").hide();
+                 console.log(url);
+                 */
                 //sessionStorage.edit_post_id = 0;
             });
 
@@ -180,6 +187,14 @@
                 if (confirm("Tem certeza que deseja excluir esta imagem?")) {
                     picDel(id);
                 }
+            });
+
+            $('body').on('click', '#camera', function () {
+                getImage(true);
+            });
+
+            $('body').on('click', '#galeria', function () {
+                getImage();
             });
 
 
@@ -195,15 +210,25 @@
             });
 
             //picList(sessionStorage.edit_post_id, picListCb);
-
-            $('#foo').load(function () {
-                picList(sessionStorage.edit_post_id, picListCb);
-                $('#loading').fadeOut("fast", function () {
-                    $("#foo").fadeIn("slow");
-                });
-            });
-
+            /*
+             $('#foo').load(function () {
+             picList(sessionStorage.edit_post_id, picListCb);
+             $('#loading').fadeOut("fast", function () {
+             $("#foo").fadeIn("slow");
+             });
+             });
+             */
 
         </script>
+
+
+        <div id="modalx" class="modal bottom-sheet">
+            <div class="modal-content">
+                <a href="#!" id="camera" style="margin-bottom:5px" class="modal-action modal-close waves-effect waves-green btn">Câmera</a><br/>
+                <a href="#!" id="galeria" style="margin-bottom:5px" class="modal-action modal-close waves-effect waves-purple btn pink lighten-1">Galeria de Imagens</a><br/>
+                <a href="#!" style="font-size:12px" class="modal-action modal-close waves-effect waves-green btn grey">Cancelar</a>
+            </div>
+
+        </div>
     </body>
 </html>

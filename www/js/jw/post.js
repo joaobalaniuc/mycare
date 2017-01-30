@@ -72,7 +72,10 @@ function postList(last_id) {
             user_pass: localStorage.user_pass,
             //
             last_id: sessionStorage.last_id,
-            categ_id: sessionStorage.categ_id
+            categ_id: sessionStorage.categ_id,
+            //
+            lat: sessionStorage.lat,
+            lng: sessionStorage.lng
         },
         type: 'GET',
         dataType: 'jsonp',
@@ -97,11 +100,12 @@ function postList(last_id) {
 
                     if (res === false && sessionStorage.last_id == 0) {
                         $("#loading").hide();
-                        $("#ads").html("<div style='margin:32px;text-align:center;font-size:18px;margin-bottom:50px;margin-top:50px'>Desculpe, não este serviço ainda não existe em sua região. :(</div>");
+                        $("#ads").html("<div style='margin:32px;text-align:center;font-size:18px;margin-bottom:50px;margin-top:50px'>Desculpe, não encontramos nenhum serviço próximo a você. :(</div>");
                         return;
                     }
 
                     if (res.error) {
+                        alert("Desculpe, ocorreu um erro interno. Tente novamente.");
                         return;
                     }
                     var i = 0;
@@ -161,6 +165,7 @@ function postList(last_id) {
                                 $(this).find(".post_view").html(view);
                                 $(this).find(".post_com").html(com);
                                 $(this).find(".post_like").html(like);
+                                $(this).find(".distance").html(val["dis"]);
 
                                 //var rand = getRandomInt(1, 7);
 
