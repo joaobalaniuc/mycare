@@ -12,7 +12,7 @@ function start() {
     // Server
     //localStorage.server = "http://192.168.0.100/mycare/server/"; // casa
     //localStorage.server = "http://10.0.0.35/mycare/server/"; // allware
-    localStorage.server = "http://feirafree.com.br/mycare/"; // casa
+    localStorage.server = "http://www.helpanimal.com.br/json/"; // casa
     localStorage.server_img = "/app/pic/img/";
 
     // Ajax timeout
