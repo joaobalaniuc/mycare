@@ -39,7 +39,7 @@
                 </div>
 
                 <center>
-                    <a href="#!" data-go="post_send.html" class="waves-effect waves-light btn-large animated fadeinright delay-1  grey lighten-3 black-text">
+                    <a href="#!" data-go="post_send_home.html" class="waves-effect waves-light btn-large animated fadeinright delay-1  grey lighten-3 black-text">
                         Criar Novo Anúncio
                     </a>
                 </center>
@@ -151,10 +151,14 @@
                 sessionStorage.edit_post_id = id;
                 // empresa ou pessoa?
                 var cnpj = $(this).closest(".template").attr("data-cnpj");
+                var pet = $(this).closest(".template").attr("data-pet");
                 if (cnpj) {
                     window.location.href = "post_send_jur.html";
                 }
-                else {
+                //
+                else if (pet) {
+                    window.location.href = "post_send_pet.html";
+                } else {
                     window.location.href = "post_send_fis.html";
                 }
             });

@@ -5,13 +5,89 @@
 function postReadCb(res) {
     preloader(false);
 
-    var cat = res["categ"];
+    console.log(res);
+
+    if (typeof res === "undefined") {
+        return false;
+    }
+
+    if (typeof res.categ !== "undefined") {
+        var cat = res["categ"];
+    }
     var post = res["post"];
     var img = res["img"];
 
     console.log(cat);
     console.log(post);
     console.log(img);
+
+    if (post[0]["post_pet"] === "1") {
+        $(".pet_0").hide();
+        $(".pet_1").show();
+    } else {
+        $(".pet_0").show();
+        $(".pet_1").hide();
+    }
+
+    // PET
+    if (post[0]["post_pet_ver"] == "1")
+        $("#post_pet_ver").show();
+    else
+        $("#post_pet_ver").hide();
+    if (post[0]["post_pet_vac"] == "1")
+        $("#post_pet_vac").show();
+    else
+        $("#post_pet_vac").hide();
+    //
+    if (post[0]["post_pet_specie"] != null) {
+        $("#especie").html(ucFirst(post[0]["post_pet_specie"]));
+    }
+    if (post[0]["post_pet_breed"] != null) {
+        $("#raca").html(post[0]["post_pet_breed"]);
+    }
+    if (post[0]["post_pet_size"] != null) {
+        var s = post[0]["post_pet_size"];
+        if (s == "pp")
+            s = "Muito pequeno";
+        if (s == "p")
+            s = "Pequeno";
+        if (s == "m")
+            s = "Médio";
+        if (s == "g")
+            s = "Grande";
+        if (s == "gg")
+            s = "Muito grande";
+        $("#porte").html(s);
+    }
+    if (post[0]["post_pet_age"] != null) {
+        var a = post[0]["post_pet_age"];
+        if (a == "3m")
+            a = "Bebê (até 3 meses)";
+        if (a == "6m")
+            a = "Filhote (até 6 meses)";
+        if (a == "1")
+            a = "Até 1 ano";
+        if (a == "2")
+            a = "Até 2 anos";
+        if (a == "3")
+            a = "Até 3 anos";
+        if (a == "4")
+            a = "Até 4 anos";
+        if (a == "5")
+            a = "Até 5 anos";
+        if (a == "6")
+            a = "Até 6 anos";
+        if (a == "7")
+            a = "Até 7 anos";
+        if (a == "8")
+            a = "Até 8 anos";
+        if (a == "9")
+            a = "Até 9 anos";
+        if (a == "9+")
+            a = "Acima de 9 anos";
+        $("#idade").html(a);
+    }
+    // /PET
 
     if (post[0]["post_com"] === "0") {
         $("#post_div").hide();
@@ -39,8 +115,7 @@ function postReadCb(res) {
     if (post[0]["address_lat"] != null) {
         sessionStorage.post_lat = post[0]["address_lat"];
         sessionStorage.post_lng = post[0]["address_lng"];
-    }
-    else {
+    } else {
         sessionStorage.removeItem("post_lat");
         sessionStorage.removeItem("post_lng");
     }
@@ -50,6 +125,7 @@ function postReadCb(res) {
     $("#post_like").html(like);
     $("[name=post_id]").val(post[0]["post_id"]);
     $(".post_title").html(post[0]["post_title"]);
+    $(".post_name").html(post[0]["post_name"]);
     $("#post_neigh_city").html(post[0]["address_neigh"] + " - " + post[0]["address_city"]);
     if (post[0]["post_view"] === null)
         post[0]["post_view"] = 0;
@@ -59,11 +135,11 @@ function postReadCb(res) {
         if (txt.length > 32) {
             $("#post_txt_").html(txt.substr(0, 1));
             $("#post_txt").html(txt.substr(1));
-        }
-        else {
+        } else {
             $("#post_txt").html(txt);
         }
     }
+
     if (post[0]["post_home"] == 1) {
         $("#post_home").show();
     }
@@ -72,8 +148,7 @@ function postReadCb(res) {
     }
     if (post[0]["post_total_com"] !== null && post[0]["post_total_com"] > 0) {
         $("#post_com_title").html(post[0]["post_total_com"] + " Comentário(s)");
-    }
-    else {
+    } else {
         $("#post_com_title").html("Nenhum comentário");
     }
     if (post[0]["like_id"] > 0) {
@@ -84,8 +159,7 @@ function postReadCb(res) {
         var ref = "";
         if (post[0]["address_ref"] !== null) {
             ref = " - " + post[0]["address_ref"];
-        }
-        else
+        } else
             ref = "";
 
         var address_txt = post[0]["address_street"] + " " + post[0]["address_number"] + ", " + post[0]["address_neigh"] + " - " + post[0]["address_city"] + " " + post[0]["address_state"] + ref;
@@ -96,7 +170,13 @@ function postReadCb(res) {
 
         var address = encodeURI(address_noRef);
 
-        $("#iframe").html('<iframe width="100%" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=' + address + '&hl=es;z=14&amp;output=embed"></iframe>');
+        $("#iframe").html('<iframe style="display:none" id="iframe_map" width="100%" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=' + address + '&hl=es;z=14&amp;output=embed"></iframe>');
+        $("#iframe_map").load(function () {
+
+            $("#iframe_loading").fadeOut("slow", function () {
+                $("#iframe_map").fadeIn("slow");
+            });
+        });
     }
     if (cat[0]) {
         var virG = "";
@@ -121,8 +201,7 @@ function postReadCb(res) {
                 $(".grid").append(grid);
             }
         });
-    }
-    else {
+    } else {
         $(".tabs").hide();
         $("#fotos").hide();
     }
@@ -130,23 +209,25 @@ function postReadCb(res) {
     //==============================
     // URL CONTACT
     //==============================
-    if (post[0]["post_facebook"] !== null && post[0]["post_facebook"] != "") {
-        $(".facebook").attr("data-url", post[0]["post_facebook"]).show();
+    var facebook = post[0]["post_facebook"];
+    if (facebook !== null && facebook != "" && facebook != "http://") {
+        $(".facebook").attr("data-url", facebook).show();
     }
-    if (post[0]["post_twitter"] !== null && post[0]["post_twitter"] != "") {
-        $(".twitter").attr("data-url", post[0]["post_twitter"]).show();
+    var insta = post[0]["post_instagram"];
+    if (insta !== null && insta != "" && insta != "http://") {
+        $(".instagram").attr("data-url", insta).show();
     }
-    if (post[0]["post_instagram"] !== null && post[0]["post_instagram"] != "") {
-        $(".instagram").attr("data-url", post[0]["post_instagram"]).show();
+    var twitter = post[0]["post_twitter"];
+    if (twitter !== null && twitter != "" && twitter != "http://") {
+        $(".twitter").attr("data-url", twitter).show();
     }
-    if (post[0]["post_twitter"] !== null && post[0]["post_twitter"] != "") {
-        $(".twitter").attr("data-url", post[0]["post_twitter"]).show();
+    var linkedin = post[0]["post_linkedin"];
+    if (linkedin !== null && linkedin != "" && linkedin != "http://") {
+        $(".linkedin").attr("data-url", linkedin).show();
     }
-    if (post[0]["post_linkedin"] !== null && post[0]["post_linkedin"] != "") {
-        $(".linkedin").attr("data-url", post[0]["post_linkedin"]);
-    }
-    if (post[0]["post_site"] !== null && post[0]["post_site"] != "") {
-        $(".site").attr("data-url", post[0]["post_site"]).show();
+    var site = post[0]["post_site"];
+    if (site !== null && site != "" && site != "http://") {
+        $(".site").attr("data-url", site).show();
     }
     if (post[0]["post_email"] !== null && post[0]["post_email"] != "") {
         $(".email").attr("href", "mailto:" + post[0]["post_email"]).show();
@@ -184,8 +265,6 @@ function postReadFormCb(res) {
         sessionStorage.serialize = $("#post").serialize();
 
     }, 1000);
-
-
 
 }
 

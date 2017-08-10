@@ -15,8 +15,7 @@ $(document).ready(function () {
             if (confirm("Descartar alterações efetuadas?")) {
                 window.history.back();
             }
-        }
-        else {
+        } else {
             window.history.back();
         }
     });
@@ -35,20 +34,25 @@ $(document).ready(function () {
 
         if ($("#post").valid()) {
 
-            var categ = 0;
-            $('.categ').each(function () {
-                if ($(this).is(':checked')) {
-                    categ++;
-                }
-            });
-            if (categ > 0) {
+            if ($("[name=post_pet]").val() > 0) {
                 postUnmask();
                 postSend();
-            }
-            else {
-                alertx("Escolha ao menos uma categoria de serviço.");
+            } else {
+                var categ = 0;
+                $('.categ').each(function () {
+                    if ($(this).is(':checked')) {
+                        categ++;
+                    }
+                });
+                if (categ > 0) {
+                    postUnmask();
+                    postSend();
+                } else {
+                    alertx("Escolha ao menos uma categoria de serviço.");
+                }
             }
         }
+        // valid
         else {
             alertx("Preencha os campos obrigatórios corretamente.");
         }

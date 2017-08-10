@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>PESSOA JURÍDICA</title>
+        <meta content="IE=edge" http-equiv="x-ua-compatible"/>
+        <meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="yes" name="apple-touch-fullscreen"/>
+        <link rel="stylesheet" href="css/include.css" />
+    </head>
+
+    <body>
+
+        <div id="main"> <!-- Main Container -->
+
+            <!-- Page Contents -->
+            <div id="content" class="main animated fadein">
+
+                <!-- Header -->
+                <div class="hero-header hero-small animated fadeindown">
+                    <div class="section center grey lighten-4" style="padding-bottom:20px;margin-top:-30px">
+                        <i class="fa fa-handshake-o big"></i>
+                        <h4 class="m-0"><strong>Anúncio de Adoção</strong></h4>
+                        <div class="line"></div>
+                        <p class="text-flow m-0">Conte-nos sobre o bixinho...</p>
+                    </div>
+                </div>
+
+                <nav id="breadcrumb" style="display:none" class="primary-color">
+                    <div class="nav-wrapper">
+                        <div class="col s12 center">
+                            <a href="#!" data-go="post_my.html" class="breadcrumb">Meus Anúncios</a>
+                            <a href="#!" class="breadcrumb">Editar</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Form Inputs --> 
+                <div class="form-inputs p-20">
+                    <form id="post">
+
+                        <input type="hidden" name="post_id" value="" />
+                        <input type="hidden" name="post_pet" value="1" />
+
+                        <div>
+                            <div class="input-field animated fadeinright">
+                                <input name="post_title" type="text">
+                                <label>Apelido do animal</label>
+                            </div>
+                        </div>
+                        
+                        <div class="input-field animated fadeinright delay-2">
+                            <textarea name="post_txt" class="materialize-textarea"></textarea> 
+                            <label>Por que alguém deve adotá-lo?</label>
+                        </div>
+                        
+                        <div class="animated fadeinright delay-1">
+                            <label>Espécie</label>
+                            <select required id="specie" name="post_pet_specie" class="browser-default">
+                                <option value="">Selecione a espécie...</option>
+                                <option value="ave">Ave</option>
+                                <option value="cachorro">Cachorro</option>
+                                <option value="coelho">Coelho</option>
+                                <option value="gato">Gato</option>
+                                <option value="peixe">Peixe</option>
+                                <option value="roedor">Roedor</option>
+                                <option value="tartaruga">Tartaruga</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+                        <!--
+                        <div class="animated fadeinright delay-1">
+                            <label>Raça do animal</label>
+                            <select id="breed" name="post_pet_breed" class="browser-default">
+                                <option value="">Selecione a raça...</option>
+                                <option value="vira-lata">Vira-lata</option>
+                                <option value="outros">Pastor alemão</option>
+                                <option value="outros">Labrador</option>
+                                <option value="outros">Rottweiler</option>
+                                <option value="outros">Beagle</option>
+                                <option value="outros">Outros</option>
+                                <option value="outros">Outros</option>
+                                <option value="outros">Outros</option>
+                                <option value="outros">Outros</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+                        -->
+                        <div class="animated fadeinright delay-1">
+                            <label>Porte do animal</label>
+                            <select id="size" name="post_pet_size" class="browser-default">
+                                <option value="">Selecione o porte...</option>
+                                <option value="pp">Muito pequeno</option>
+                                <option value="p">Pequeno</option>
+                                <option value="m">Médio</option>
+                                <option value="g">Grande</option>
+                                <option value="gg">Muito grande</option>
+                            </select>
+                        </div>
+                        
+                        <div class="animated fadeinright delay-1">
+                            <label>Idade</label>
+                            <select id="age" name="post_pet_age" class="browser-default">
+                                <option value="">Selecione a idade...</option>
+                                <option value="3m">Bebê (até 3 meses)</option>
+                                <option value="6m">Filhote (até 6 meses)</option>
+                                <option value="1">Até 1 ano</option>
+                                <option value="2">Até 2 anos</option>
+                                <option value="3">Até 3 anos</option>
+                                <option value="4">Até 4 anos</option>
+                                <option value="5">Até 5 anos</option>
+                                <option value="6">Até 6 anos</option>
+                                <option value="7">Até 7 anos</option>
+                                <option value="8">Até 8 anos</option>
+                                <option value="9">Até 9 anos</option>
+                                <option value="9+">Acima de 9 anos</option>
+                            </select>
+                        </div>
+                        
+                        <p style="margin-bottom:0" class="remember animated bouncein delay-3">
+                            <input type="checkbox" id="post_pet_vac" name="post_pet_vac" value="1" />
+                            <label for="post_pet_vac">Vacinado</label>
+                        </p>
+                        
+                        <p style="margin-bottom:0" class="remember animated bouncein delay-3">
+                            <input type="checkbox" id="post_pet_ver" name="post_pet_ver" value="1" />
+                            <label for="post_pet_ver">Vermifugado</label>
+                        </p>
+                        
+                        
+                        <div class="section center" style="margin-bottom:-20px;">
+                            <i class="fa fa-phone-square" aria-hidden="true" style="font-size:30px"></i>
+                            <h4 class="m-10"><strong>Dados de Contato</strong></h4>
+                            <div class="line"></div>
+                            <p class="text-flow m-0 center">Seus dados pessoais</p>
+                        </div>
+                        
+                        <div class="input-field animated fadeinright delay-3">
+                            <input name="post_name" type="text">
+                            <label>Seu Nome</label>
+                        </div>
+
+                        <div class="input-field animated fadeinright delay-3">
+                            <input name="post_phone" type="text" pattern="[0-9]">
+                            <label>Seu Telefone</label>
+                        </div>
+
+                        <div class="input-field animated fadeinright delay-4">
+                            <input name="post_phone2" type="text" pattern="[0-9]">
+                            <label>WhatsApp</label>
+                        </div>
+
+                        <div class="input-field animated fadeinright delay-5">
+                            <input name="post_email" type="email">
+                            <label>E-mail</label>
+                        </div>
+
+                        <div class="section center" style="margin-bottom:-40px;">
+                            <i class="fa fa-home" aria-hidden="true" style="font-size:30px"></i>
+                            <h4 class="m-10"><strong>Onde se encontra?</strong></h4>
+                            <div class="line"></div>
+                            <p class="text-flow m-0 center">Localização do animal</p>
+                        </div>
+
+                        <div class="input-field animated fadeinright delay-4">
+                            <input value="29345-000" id="cep" name="address_zipcode" value="" type="text" pattern="[0-9]" class="addess" maxlength="9" onblur="pesquisacep(this.value);">
+                            <label>CEP</label>
+                        </div>
+                        <div class="input-field animated fadeinright delay-4">
+                            <input value="av beira mar" id="rua" name="address_street" value="" type="text" class="address">
+                            <label>Logradouro</label>
+                        </div>
+                        <div class="input-field animated fadeinright delay-4">
+                            <input value="126" name="address_number" value="" type="text" pattern="[0-9]" class="address">
+                            <label>Número</label>
+                        </div>
+                        <div class="input-field animated fadeinright delay-4">
+                            <input name="address_ref" value="" type="text">
+                            <label>Complemento (opcional)</label>
+                        </div>
+                        <div class="input-field animated fadeinright delay-4">
+                            <input value="barra" id="bairro" name="address_neigh" value="" type="text" class="address">
+                            <label>Bairro</label>
+                        </div>
+                        <div class="input-field animated fadeinright delay-4">
+                            <input value="marataizes" id="cidade" name="address_city" value="" type="text" class="address">
+                            <label>Cidade</label>
+                        </div>
+
+                        <input type="hidden" name="address_country" value="BR" />
+
+
+                        <div class="animated fadeinright delay-4">
+                            <label>Estado</label>
+                            <select id="uf" name="address_state" class="address browser-default">
+                                <option value="">Selecione...</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espirito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+
+
+                        <input name="address_lat" type="hidden" />
+                        <input name="address_lng" type="hidden" />
+
+                        <!-- Map -->
+                        <div id="iframe" style="margin-top:15px">
+                        </div>
+
+                        <a href="#!" id="send" class="waves-effect waves-light btn-large block animated bouncein delay-6 grey lighten-3 black-text" style="margin-top:50px">
+                            Enviar Anúncio
+                        </a>
+
+                        <a href="#!" id="cancel" class="waves-effect waves-light grey btn-large block animated bouncein" style="margin-top:20px;">
+                            Cancelar
+                        </a>
+
+                    </form>
+
+
+
+                </div>
+                <!-- End of Form -->
+
+                <!-- Footer -->
+                <footer class="page-footer primary-color">
+                </footer>
+
+            </div> 
+            <!-- End of Page Contents -->
+
+            <!-- Menu Trigger -->
+            <div class="menu-trigger z-depth-2"> 
+                <div id="menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <nav id="menu" class="menu">
+
+            </nav> <!-- End of Menu -->
+
+        </div><!-- End of Main Container -->
+
+        <!-- PHONEGAP -->
+        <script src="cordova.js"></script>
+        <!-- JQ -->
+        <script src="js/jquery-1.12.2.js"></script>
+        <!-- JW -->
+        <script src="js/jw/app.js"></script>
+        <script src="js/jw/index.js"></script>
+        <!-- GENERAL -->
+        <script src="js/modernizr.js"></script>
+        <script src="js/jquery.swipebox.min.js"></script>   
+        <script src="js/jquery.smoothState.min.js"></script> 
+        <script src="js/materialize.min.js"></script>
+        <script src="js/swiper.min.js"></script>  
+        <script src="js/jquery.mixitup.min.js"></script>
+        <script src="js/masonry.min.js"></script>
+        <script src="js/chart.min.js"></script>
+        <!-- PAGE -->
+        <script src="js/jquery.mask.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/jw/categ.js"></script>
+        <script src="js/jw/post.js"></script>
+        <script src="js/jw/page.post_send.js"></script>
+        <script src="js/jw/page.post_read.js"></script>
+
+        <script>
+
+                                $(document).ready(function () {
+
+                                    // CARREGAR CATEGORIAS
+                                    sessionStorage.categ_type = "cpf";
+                                    //categRead();
+
+                                    $('select').material_select();
+
+                                });
+        </script>
+    </body>
+</html>

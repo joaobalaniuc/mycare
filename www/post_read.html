@@ -82,12 +82,24 @@
                             <!-- Contents -->
                             <p class="text-flow"><span class="dropcap" id="post_txt_"></span><span id="post_txt"></span></p>
 
-                            <p class="remember" style="display:none" id="post_home">
+                            <p class="pet_0 remember" style="display:none" id="post_home">
                                 <input type="checkbox" checked="checked" />
                                 <label>Atendemos a domicílio</label>
                             </p>
                             <blockquote class="primary-border" id="post_home_txt" style="margin-top:-10px;display:none">"The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog."</blockquote>
 
+
+                            <p class="pet_1 text-flow"><b>Espécie / Raça:</b> <span id="especie"></span> <span id="raca"></span></p>
+                            <p class="pet_1 text-flow"><b>Porte / Idade:</b> <span id="porte"></span> / <span id="idade"></span></p>
+
+                            <p class="pet_1" style="display:none" id="post_pet_vac">
+                                <input type="checkbox" checked="checked" />
+                                <label>Vacinado</label>
+                            </p>
+                            <p class="pet_1" style="display:none" id="post_pet_ver">
+                                <input type="checkbox" checked="checked" />
+                                <label>Vermifugado</label>
+                            </p>
                             <!-- Slider --       
                             <div class="swiper-container swiper-slider m-b-20">
                                 <div class="swiper-wrapper">
@@ -103,11 +115,17 @@
                         </div>
                             <!-- End of Slider -->
 
-                            <p class="text-flow"><b>Serviços:</b> <span id="categ"></span></p>
+                            <p class="pet_0 text-flow"><b>Serviços:</b> <span id="categ"></span></p>
 
                             <p class="text-flow" id="post_address_"><b>Endereço:</b> <span id="post_address"></span></p>
 
+                            <div id="iframe_loading" style="margin:32px">
+                                <center>
+                                    <img src="img/loader6.gif" style="width:128px" />
+                                </center>
+                            </div>
                             <div id="iframe"></div>
+
                             <a id="geo" href="#!" class="primary-color waves-effect waves-light btn block animated bouncein" style="font-size:12px;margin-top:-5px">
                                 <i style="font-size:16px !important" class="fa fa-car"></i>
                                 &nbsp; Como chegar aqui
@@ -116,7 +134,10 @@
 
                             <!-- Share -->
                             <div class="share center-align" style="margin-top:35px">
-                                <h5 style="margin-bottom:10px">Entre em contato com<br/><span class="post_title" style="font-weight:bold;"></span></h5>
+                                <h5 style="margin-bottom:10px">Entre em contato com<br/>
+                                    <span class="pet_0 post_title" style="font-weight:bold;"></span>
+                                    <span class="pet_1 post_name" style="font-weight:bold;"></span>
+                                </h5>
                                 <span>
                                     <a href="#!" class="phone green-text" style="display:none">
                                         <i class="fa fa-phone-square"></i>
@@ -196,9 +217,9 @@
                             </div>
 
                         </div>
-                        
+
                         <center class="loadmore"><a href="#" id="loadmore" class="loadmore waves-effect waves-light btn primary-color" style="font-size:12px;">Mais comentários</a></center>
-                        
+
                         <center id="comLoading">
                             <div class="preloader-wrapper small active">
                                 <div class="spinner-layer spinner-green-only">
@@ -375,8 +396,7 @@
                                         if (res.like > 0) {
                                             $("#post_like").css("color", "blue");
                                             $("#post_like_txt").css("color", "blue").html("Curtiu");
-                                        }
-                                        else {
+                                        } else {
                                             $("#post_like").css("color", "");
                                             $("#post_like_txt").css("color", "").html("Curtir");
                                         }
@@ -393,6 +413,7 @@
                     comSend();
                     return false;
                 });
+
 
             });
         </script>

@@ -62,8 +62,6 @@ function postList(last_id) {
     else
         $('#loading').fadeIn("slow");
 
-    //alert(sessionStorage.last_id+" "+sessionStorage.categ_id);
-
     $.ajax({
         url: localStorage.server + "/post_list.php",
         data: {
@@ -97,6 +95,10 @@ function postList(last_id) {
             .done(function (res) {
                 if (res !== null) {
                     console.log(res);
+
+                    if (typeof res === "undefined") {
+                        return false;
+                    }
 
                     if (res === false && sessionStorage.last_id == 0) {
                         $("#loading").hide();
@@ -144,15 +146,13 @@ function postList(last_id) {
 
                                     $(this).find(".img_bg").css("background-image", "url(" + localStorage.server + localStorage.server_img + val["img_fn"] + ")");
                                 }
-                                if (val["user_fb"] != null) {
-                                    console.log(val["user_fb_pic"]);
+                                if (val["user_fb_pic"] !== "") {
                                     $(this).find(".avatar").attr("src", val["user_fb_pic"]);
                                 }
 
                                 if (val["user_last_name"] != null) {
                                     var lastname = val["user_last_name"];
-                                }
-                                else
+                                } else
                                     var lastname = "";
 
                                 $(this).find(".post_address").html(val["address_neigh"] + " - " + val["address_city"] + " <div style='float:right'>5km</div>");
@@ -195,8 +195,7 @@ function postList(last_id) {
 
                                 if (val["user_last_name"] != null) {
                                     var lastname = val["user_last_name"];
-                                }
-                                else
+                                } else
                                     var lastname = "";
 
                                 //$(this).find(".post_address").html(val["address_neigh"] + " - " + val["address_city"] + " <div style='float:right'>5km</div>");
