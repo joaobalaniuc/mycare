@@ -40,6 +40,7 @@ $.ajax({
                                 .attr("data-id", val["post_id"])
                                 .attr("data-title", val["post_title"])
                                 .attr("data-com", val["post_com"]) // permite comentarios?
+                                .attr("data-pet", val["post_pet"])
                                 .attr("data-cnpj", val["post_cnpj"]);
                         ;
 
@@ -62,8 +63,7 @@ $.ajax({
                             var rand = getRandomInt(1, 7);
                             if (val["img_fn"] != null) {
                                 var url = localStorage.server + "/app/pic/img/" + val["img_fn"];
-                            }
-                            else {
+                            } else {
                                 var url = "img/grey.jpg";
                             }
                             $(this).find(".post_img").attr("src", url);

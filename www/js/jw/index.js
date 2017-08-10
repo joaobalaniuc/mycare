@@ -109,8 +109,7 @@ function preloader(txt, loaderNum, fadeEffect) {
     $('body').append(html);
     if (fadeEffect) {
         $('#preloader').fadeIn("slow");
-    }
-    else {
+    } else {
         $('#preloader').show();
     }
 }
@@ -350,6 +349,8 @@ function FF(data, form_elem) {
                 //==========================
                 // INPUT VALUE
                 //==========================
+                v = v.replace("http://", "");
+                v = v.replace("https://", "");
                 $elem.find(input).val(v);
                 //==========================
                 // CHECKBOX
@@ -384,4 +385,18 @@ function FF(data, form_elem) {
 function isFunction(functionToCheck) {
     var getType = {};
     return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+}
+
+
+//==============================================
+// STRINGS
+//==============================================
+function encode_utf8(s) {
+    return unescape(encodeURIComponent(s));
+}
+function decode_utf8(s) {
+    return decodeURIComponent(escape(s));
+}
+function ucFirst(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
