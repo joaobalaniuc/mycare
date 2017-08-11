@@ -2,8 +2,7 @@ function getImage(gallery) {
     var type;
     if (typeof gallery === "undefined") {
         type = navigator.camera.PictureSourceType.PHOTOLIBRARY
-    }
-    else {
+    } else {
         type = navigator.camera.PictureSourceType.CAMERA
     }
     navigator.camera.getPicture(uploadPhoto, function (message) {
@@ -39,7 +38,7 @@ function uploadPhoto(imageURI) {
     options.chunkedMode = false;
 
     var ft = new FileTransfer();
-    ft.upload(imageURI, "http://feirafree.com.br/mycare/upload.php", function (result) {
+    ft.upload(imageURI, localStorage.server + "/upload.php", function (result) {
 
         //pic.js
         picList(sessionStorage.edit_post_id, picListCb);
