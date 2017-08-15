@@ -155,12 +155,12 @@ function postList(last_id) {
                                 } else
                                     var lastname = "";
 
-                                $(this).find(".post_address").html(val["address_neigh"] + " - " + val["address_city"] + " <div style='float:right'>5km</div>");
+                                $(this).find(".post_address").html(val["address_neigh"] + " - " + val["address_city"] + " <div style='float:right'>" + val["dis"] + "</div>");
                                 //$(this).find(".post_title").html("#" + val["post_id"] + " " + val["post_title"]);
                                 $(this).find(".post_title").html(val["post_title"]);
                                 $(this).find(".post_txt").html(val["post_title"]);
                                 $(this).find(".post_user").html(val["user_first_name"] + " " + lastname);
-                                $(this).find(".post_date").html(val["post_date"]);
+                                //$(this).find(".post_date").html(val["post_date"]);
                                 $(this).find(".go_read").attr("data-id", val["post_id"]);
                                 $(this).find(".post_view").html(view);
                                 $(this).find(".post_com").html(com);
@@ -201,7 +201,7 @@ function postList(last_id) {
                                 //$(this).find(".post_address").html(val["address_neigh"] + " - " + val["address_city"] + " <div style='float:right'>5km</div>");
                                 //$(this).find(".post_title").html("#" + val["post_id"] + " " + val["post_title"]);
                                 $(this).find(".post_title").html(val["post_title"]);
-                                $(this).find(".post_dist").html("há 5 km");
+                                $(this).find(".distance").html(val["dis"]);
                                 $(this).find(".post_user").html("por " + val["user_first_name"] + " " + lastname);
                                 $(this).find(".go_read").attr("data-id", val["post_id"]);
 

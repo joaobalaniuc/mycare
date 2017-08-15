@@ -88,9 +88,9 @@
         <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 
         <script>
-            
+
             preloader();
-            
+
             $(document).ready(function () {
                 /*sessionStorage.lat = -20.299387;
                  sessionStorage.lng = -40.292573;
@@ -155,8 +155,7 @@
                 if (typeof sessionStorage.lng !== "undefined") {
                     var zoom = 16;
                     var lonLat = new OpenLayers.LonLat(sessionStorage.lng, sessionStorage.lat).transform(epsg4326, projectTo);
-                }
-                else {
+                } else {
                     var zoom = 10;
                     var lonLat = new OpenLayers.LonLat(-40.32119, -20.2821881).transform(epsg4326, projectTo);
                 }
@@ -175,7 +174,7 @@
                     var feature = new OpenLayers.Feature.Vector(
                             new OpenLayers.Geometry.Point(lon, lat).transform(epsg4326, projectTo),
                             {description: ""},
-                    {externalGraphic: localStorage.server + icon, graphicHeight: 50, graphicWidth: 50, graphicXOffset: -25, graphicYOffset: -50}
+                            {externalGraphic: localStorage.server + icon, graphicHeight: 50, graphicWidth: 50, graphicXOffset: -25, graphicYOffset: -50}
                     );
                     vectorLayer.addFeatures(feature);
                 }
@@ -188,28 +187,28 @@
 
                     var lon = markers[i]["address_lng"];
                     var lat = markers[i]["address_lat"];
-                    var txt = markers[i]["post_title"];
+                    var title = markers[i]["post_title"];
+                    var txt = markers[i]["post_txt"];
                     var img = markers[i]["img_fn"];
                     var icon = markers[i]["post_icon"];
                     var id = markers[i]["post_id"];
                     var phone = markers[i]["post_phone"];
 
-                    icon = "/img/map-marker.gif";
+                    icon = "/img/map-marker.png";
                     //img = "img/simula1.jpg";
 
                     if (img == null) {
                         img = "";
-                    }
-                    else {
+                    } else {
                         img = 'background-image:url(' + localStorage.server + '/app/pic/img/' + img + ')';
                     }
 
-                    txt = "<strong>" + txt + "</strong>";
+                    txt = "<strong>" + title + "</strong><br/>" + txt;
 
                     var feature = new OpenLayers.Feature.Vector(
                             new OpenLayers.Geometry.Point(lon, lat).transform(epsg4326, projectTo),
                             {description: txt},
-                    {externalGraphic: localStorage.server + icon, graphicHeight: 50, graphicWidth: 50, graphicXOffset: -25, graphicYOffset: -50}
+                            {externalGraphic: localStorage.server + icon, graphicHeight: 50, graphicWidth: 50, graphicXOffset: -25, graphicYOffset: -50}
                     );
                     vectorLayer.addFeatures(feature);
                 }
