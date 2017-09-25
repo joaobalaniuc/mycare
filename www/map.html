@@ -203,7 +203,7 @@
                         img = 'background-image:url(' + localStorage.server + '/app/pic/img/' + img + ')';
                     }
 
-                    txt = "<strong>" + title + "</strong><br/>" + txt;
+                    txt = "<a href='#' onclick=\"javascript:sessionStorage.post_id=" + id + "; window.location.href = 'post_read.html';\"><strong>" + title + "</strong><br/>" + txt + "</a>";
 
                     var feature = new OpenLayers.Feature.Vector(
                             new OpenLayers.Geometry.Point(lon, lat).transform(epsg4326, projectTo),
@@ -258,6 +258,19 @@
 
 
 
+        </script>
+
+        <script>
+            $(function () {
+                $('body').on('click', '.teste', function () {
+                    alert(1);
+                    var id = $(this).attr("data-post");
+                    sessionStorage.post_id = id;
+                    $("body").fadeOut("fast", function () {
+                        window.location.href = "post_read.html";
+                    });
+                });
+            });
         </script>
     </body>
 </html>
